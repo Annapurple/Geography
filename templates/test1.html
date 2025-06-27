@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<title>Тест</title>
+<body>
+    <h1>Тест</h1>
+    <form method="post">
+        <label>Сколько тебе лет?</label><br>
+        <input type="radio" name="age" value="14"> 14<br>
+        <input type="radio" name="age" value="16"> 16<br>
+        <input type="radio" name="age" value="18"> 18<br><br>
+
+        <label>Как тебя зовут?</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <input type="submit" value="Отправить">
+    </form>
+</body>
+{% endblock %}
