@@ -1,18 +1,326 @@
 {% extends "base.html" %}
 {% block content %}
 <title>Тест</title>
+<style>
+    .timer {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin: 20px 0;
+        padding: 10px;
+        background-color: #ecf0f1;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+
+    .question-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .question {
+        display: none;
+    }
+
+    .question.active {
+        display: block;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .prev-btn, .next-btn, .submit-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .prev-btn {
+        background-color: #95a5a6;
+        color: white;
+    }
+
+    .prev-btn:hover {
+        background-color: #7f8c8d;
+    }
+
+    .prev-btn:disabled {
+        background-color: #bdc3c7;
+        cursor: not-allowed;
+    }
+
+    .next-btn, .submit-btn {
+        background-color: #3498db;
+        color: white;
+    }
+
+    .next-btn:hover, .submit-btn:hover {
+        background-color: #2980b9;
+    }
+
+    label {
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    input[type="radio"] {
+        margin-right: 8px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        margin-top: 5px;
+    }
+
+    /* Modal styles */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .modal-content h3 {
+        color: #e74c3c;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .modal-content p {
+        color: #2c3e50;
+        margin-bottom: 25px;
+        line-height: 1.5;
+    }
+
+    .modal-btn {
+        background-color: #27ae60;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .modal-btn:hover {
+        background-color: #229954;
+    }
+</style>
+
 <body>
-    <h1>Тест</h1>
-    <form method="post">
-        <label>Сколько тебе лет?</label><br>
-        <input type="radio" name="age" value="14"> 14<br>
-        <input type="radio" name="age" value="16"> 16<br>
-        <input type="radio" name="age" value="18"> 18<br><br>
+<h1 style="text-align: center; color: #333;">Тест</h1>
 
-        <label>Как тебя зовут?</label><br>
-        <input type="text" name="name" required><br><br>
+<div class="timer" id="timer">Осталось: 20:00</div>
 
-        <input type="submit" value="Отправить">
+<div class="question-container">
+    <form method="post" id="testForm">
+        <div class="question active" id="question1">
+            <label>Сколько тебе лет?</label><br>
+            <input type="radio" name="age" value="14" id="age14"> <label for="age14">14</label><br>
+            <input type="radio" name="age" value="16" id="age16"> <label for="age16">16</label><br>
+            <input type="radio" name="age" value="18" id="age18"> <label for="age18">18</label><br>
+        </div>
+
+        <div class="question" id="question2">
+            <label>Как тебя зовут?</label><br>
+            <input type="text" name="name" id="name" required>
+        </div>
+
+        <div class="navigation">
+            <button type="button" class="prev-btn" id="prevBtn" disabled>← Назад</button>
+            <button type="button" class="next-btn" id="nextBtn">Далее →</button>
+        </div>
     </form>
+</div>
+
+<!-- Modal for timeout notification -->
+<div class="modal-overlay" id="timeoutModal">
+    <div class="modal-content">
+        <h3>Время вышло!</h3>
+        <p>Ваши ответы автоматически сохранены.<br>Тест завершен.</p>
+        <button class="modal-btn" id="modalOkBtn">OK</button>
+    </div>
+</div>
+
+<script>
+    let currentQuestion = 0;
+    const questions = document.querySelectorAll('.question');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const testForm = document.getElementById('testForm');
+    const timerElement = document.getElementById('timer');
+    const timeoutModal = document.getElementById('timeoutModal');
+    const modalOkBtn = document.getElementById('modalOkBtn');
+
+    // Таймер на 20 минут (1200 секунд) - для тестирования используем 12 секунд
+    let timeLeft = 12; // 0.2 * 60; // 12 секунд для демонстрации
+    let timerInterval;
+    let isAutoSubmitted = false;
+    const STORAGE_KEY = 'test_answers_' + window.location.pathname;
+
+    // Функция форматирования времени
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    // Сохранение ответов в sessionStorage
+    function saveAnswers() {
+        const formData = new FormData(testForm);
+        const answers = {};
+        for (let [key, value] of formData.entries()) {
+            answers[key] = value;
+        }
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+    }
+
+    // Загрузка ответов из sessionStorage
+    function loadAnswers() {
+        const saved = sessionStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            const answers = JSON.parse(saved);
+            // Восстанавливаем radio buttons
+            if (answers.age) {
+                const ageRadio = document.querySelector(`input[name="age"][value="${answers.age}"]`);
+                if (ageRadio) ageRadio.checked = true;
+            }
+            // Восстанавливаем текстовое поле
+            if (answers.name) {
+                document.getElementById('name').value = answers.name;
+            }
+        }
+    }
+
+    // Обновление таймера
+    function updateTimer() {
+        timerElement.textContent = `Осталось: ${formatTime(timeLeft)}`;
+
+
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            autoSubmit();
+            return;
+        }
+
+        timeLeft--;
+        saveAnswers(); // Сохраняем ответы каждую секунду
+    }
+
+    // Автоматическая отправка при истечении времени
+    function autoSubmit() {
+        if (isAutoSubmitted) return;
+        isAutoSubmitted = true;
+
+        // Сохраняем финальные ответы
+        saveAnswers();
+
+        // Показываем модальное окно
+        timeoutModal.style.display = 'flex';
+
+        // Отключаем кнопки навигации
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        nextBtn.textContent = 'Отправлено';
+        nextBtn.classList.replace('next-btn', 'submit-btn');
+    }
+
+    // Обработка навигации
+    function showQuestion(index) {
+        questions.forEach((question, i) => {
+            question.classList.toggle('active', i === index);
+        });
+
+        prevBtn.disabled = index === 0;
+        nextBtn.textContent = index === questions.length - 1 ? 'Отправить' : 'Далее →';
+    }
+
+    function nextQuestion() {
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            showQuestion(currentQuestion);
+            saveAnswers();
+        } else {
+            // Отправка формы
+            clearInterval(timerInterval);
+            testForm.submit();
+        }
+    }
+
+    function prevQuestion() {
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            showQuestion(currentQuestion);
+            saveAnswers();
+        }
+    }
+
+    // Обработчики событий
+    nextBtn.addEventListener('click', nextQuestion);
+    prevBtn.addEventListener('click', prevQuestion);
+
+    // Сохранение при изменении полей
+    testForm.addEventListener('change', saveAnswers);
+    testForm.addEventListener('input', saveAnswers);
+
+    // Обработка отправки формы
+    testForm.addEventListener('submit', function(e) {
+        if (!isAutoSubmitted) {
+            e.preventDefault();
+            clearInterval(timerInterval);
+            // В реальном приложении здесь была бы отправка формы
+            alert('Тест успешно отправлен!');
+            window.location.href = '/';
+        }
+    });
+
+    // Обработка нажатия OK в модальном окне
+    modalOkBtn.addEventListener('click', function() {
+        // Перенаправление на главную страницу
+        window.location.href = '/';
+    });
+
+    // Загрузка сохраненных ответов при инициализации
+    loadAnswers();
+
+    // Запуск таймера
+    timerInterval = setInterval(updateTimer, 1000);
+    showQuestion(currentQuestion);
+</script>
 </body>
 {% endblock %}
