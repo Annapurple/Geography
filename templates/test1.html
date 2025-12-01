@@ -14,7 +14,6 @@
         transition: all 0.3s ease;
     }
 
-
     .question-container {
         max-width: 600px;
         margin: 0 auto;
@@ -139,9 +138,18 @@
     .modal-btn:hover {
         background-color: #229954;
     }
+
+    .noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 </style>
 
-<body>
+<body class="noselect">
 <h1 style="text-align: center; color: #333;">Тест</h1>
 
 <div class="timer" id="timer">Осталось: 20:00</div>
@@ -186,8 +194,9 @@
     const timeoutModal = document.getElementById('timeoutModal');
     const modalOkBtn = document.getElementById('modalOkBtn');
 
-    // Таймер на 20 минут (1200 секунд) - для тестирования используем 12 секунд
-    let timeLeft = 12; // 0.2 * 60; // 12 секунд для демонстрации
+    // Таймер на 20 минут (1200 секунд)
+    let timeLeft = 12; // Для реального использования - 20 минут
+
     let timerInterval;
     let isAutoSubmitted = false;
     const STORAGE_KEY = 'test_answers_' + window.location.pathname;
@@ -230,8 +239,6 @@
     function updateTimer() {
         timerElement.textContent = `Осталось: ${formatTime(timeLeft)}`;
 
-
-
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
             autoSubmit();
@@ -258,6 +265,18 @@
         nextBtn.disabled = true;
         nextBtn.textContent = 'Отправлено';
         nextBtn.classList.replace('next-btn', 'submit-btn');
+
+        // Отправляем форму программно
+        const formData = new FormData(testForm);
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', window.location.href, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                // После отправки разрешаем нажать OK
+                modalOkBtn.disabled = false;
+            }
+        };
+        xhr.send(formData);
     }
 
     // Обработка навигации
@@ -298,20 +317,28 @@
     testForm.addEventListener('change', saveAnswers);
     testForm.addEventListener('input', saveAnswers);
 
-    // Обработка отправки формы
+    // Обработка отправки формы (ручной отправки)
     testForm.addEventListener('submit', function(e) {
         if (!isAutoSubmitted) {
             e.preventDefault();
             clearInterval(timerInterval);
-            // В реальном приложении здесь была бы отправка формы
-            alert('Тест успешно отправлен!');
-            window.location.href = '/';
+            // Отправка формы через AJAX чтобы не перезагружать страницу
+            const formData = new FormData(testForm);
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', window.location.href, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    alert('Тест успешно отправлен!');
+                    window.location.href = '/';
+                }
+            };
+            xhr.send(formData);
         }
     });
 
     // Обработка нажатия OK в модальном окне
     modalOkBtn.addEventListener('click', function() {
-        // Перенаправление на главную страницу
+        modalOkBtn.disabled = true;
         window.location.href = '/';
     });
 
@@ -321,6 +348,9 @@
     // Запуск таймера
     timerInterval = setInterval(updateTimer, 1000);
     showQuestion(currentQuestion);
+
+    // Инициализация кнопки OK как неактивной до отправки
+    modalOkBtn.disabled = true;
 </script>
 </body>
 {% endblock %}
