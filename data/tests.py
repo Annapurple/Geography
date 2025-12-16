@@ -17,7 +17,4 @@ class Tests(SqlAlchemyBase, SerializerMixin):
     test3 = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     test4 = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     test5 = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
-    test6 = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
-    test7 = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
-    test8 = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     user = orm.relationship('User')

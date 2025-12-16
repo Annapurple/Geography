@@ -21,29 +21,27 @@ def page():
 
 @app.route('/text1')
 def text1():
-    return render_template("text1.html",  test="test1")
+    return render_template("text1.html", test="test1")
 
 
 @app.route('/text2')
 def text2():
-    return render_template("text2.html", test="test4")
+    return render_template("text2.html", test="test2")
 
 
 @app.route('/text3')
 def text3():
-    return render_template("text3.html",test="test5")
+    return render_template("text3.html", test="test3")
 
 
 @app.route('/text4')
 def text4():
-    return render_template("text4.html", test="test6")
+    return render_template("text4.html", test="test4")
 
 
 @app.route('/text5')
 def text5():
-    return render_template("text1.html", test="test7")
-
-
+    return render_template("text1.html", test="test5")
 
 
 @app.route('/test1', methods=['GET', 'POST'])
@@ -147,134 +145,6 @@ def test1():
 
 @app.route('/test2', methods=['GET', 'POST'])
 def test2():
-    return redirect('/')
-
-
-@app.route('/test3', methods=['GET', 'POST'])
-def test3():
-    if not current_user.is_authenticated:
-        return redirect('/')
-    db_sess = db_session.create_session()
-    if request.method == 'POST':
-        score = 0
-
-        if request.form.get('q1', '').strip().replace(' ', '') == '3412':
-            score += 1
-
-        q2 = set(request.form.getlist('q2'))
-        if q2 == {'1', '3', '5'}:
-            score += 1
-
-        if request.form.get('q3') == 'b':
-            score += 1
-
-        if request.form.get('q4') == 'c':
-            score += 1
-
-        if request.form.get('q5') == 'b':
-            score += 1
-
-        q6 = set(request.form.getlist('q6'))
-        if q6 == {'a', 'c'}:
-            score += 1
-
-        q7 = set(request.form.getlist('q7'))
-        if q7 == {'a', 'd'}:
-            score += 1
-
-        q8 = set(request.form.getlist('q8'))
-        if q8 == {'a', 'c'}:
-            score += 1
-
-        q9 = set(request.form.getlist('q9'))
-        if q9 == {'d'}:
-            score += 1
-
-        q10 = set(request.form.getlist('q10'))
-        if q10 == {'a', 'c', 'e'}:
-            score += 1
-
-        if request.form.get('q11') == 'b':
-            score += 1
-
-        if request.form.get('q12') == 'b':
-            score += 1
-
-        if request.form.get('q13') == 'C':
-            score += 1
-
-        if request.form.get('q14') == 'B':
-            score += 1
-
-        if request.form.get('q15') == 'C':
-            score += 1
-
-        if request.form.get('q16') == 'A':
-            score += 1
-
-        if request.form.get('q17') == 'D':
-            score += 1
-
-        if request.form.get('q18') == 'D':
-            score += 1
-
-        if request.form.get('q19', '').strip().replace(' ', '').lower() == 'гдвба':
-            score += 1
-
-        if request.form.get('q20', '').strip().replace(' ', '') == '4321':
-            score += 1
-
-        if request.form.get('q21', '').strip() == '5.7' or request.form.get('q21',
-                                                                            '').strip() == '5,7' or request.form.get(
-            'q21', '').strip() == '57':
-            q21_val = request.form.get('q21', '').strip().replace(',', '.')
-            if q21_val == '5.7':
-                score += 1
-
-        if request.form.get('q22', '').strip().lower().replace('ё', 'е') in ['эвтрофикация', 'эвтрофикации',
-                                                                             'эвтрофикацией']:
-            score += 1
-
-        if request.form.get('q23', '').strip().lower() in ['рекультивация', 'рекультивации']:
-            score += 1
-
-        q24_ans = request.form.get('q24', '').strip().lower()
-        if q24_ans in ['экологической', 'геоэкологической']:
-            score += 1
-
-        if request.form.get('q25', '').strip().lower() in ['устойчивым', 'устойчивое']:
-            score += 1
-
-        if request.form.get('q26') == 'B':
-            score += 1
-
-        q27 = set(request.form.getlist('q27'))
-        if q27 == {'A', 'C'}:
-            score += 1
-
-        if request.form.get('q28') == 'C':
-            score += 1
-
-        if request.form.get('q29') == 'B':
-            score += 1
-
-        if request.form.get('q30') == 'D':
-            score += 1
-
-        user_id = current_user.id
-        test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
-        if test_entry:
-            test_entry.test3 = score
-        else:
-            test_entry = Tests(user_id=user_id, test3=score)
-            db_sess.add(test_entry)
-        db_sess.commit()
-        return redirect('/')
-    return render_template('test4.html')
-
-
-@app.route('/test4', methods=['GET', 'POST'])
-def test4():
     if not current_user.is_authenticated:
         return redirect('/')
     db_sess = db_session.create_session()
@@ -381,17 +251,17 @@ def test4():
         user_id = current_user.id
         test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
         if test_entry:
-            test_entry.test4 = score
+            test_entry.test2 = score
         else:
-            test_entry = Tests(user_id=user_id, test4=score)
+            test_entry = Tests(user_id=user_id, test2=score)
             db_sess.add(test_entry)
         db_sess.commit()
         return redirect('/')
-    return render_template('test4.html')
+    return render_template('test2.html')
 
 
-@app.route('/test5', methods=['GET', 'POST'])
-def test5():
+@app.route('/test3', methods=['GET', 'POST'])
+def test3():
     if not current_user.is_authenticated:
         return redirect('/')
     db_sess = db_session.create_session()
@@ -505,17 +375,17 @@ def test5():
         user_id = current_user.id
         test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
         if test_entry:
-            test_entry.test5 = score
+            test_entry.test3 = score
         else:
-            test_entry = Tests(user_id=user_id, test5=score)
+            test_entry = Tests(user_id=user_id, test3=score)
             db_sess.add(test_entry)
         db_sess.commit()
         return redirect('/')
-    return render_template('test5.html')
+    return render_template('test3.html')
 
 
-@app.route('/test6', methods=['GET', 'POST'])
-def test6():
+@app.route('/test4', methods=['GET', 'POST'])
+def test4():
     if not current_user.is_authenticated:
         return redirect('/')
 
@@ -637,17 +507,17 @@ def test6():
         user_id = current_user.id
         test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
         if test_entry:
-            test_entry.test6 = score
+            test_entry.test4 = score
         else:
-            test_entry = Tests(user_id=user_id, test6=score)
+            test_entry = Tests(user_id=user_id, test4=score)
             db_sess.add(test_entry)
         db_sess.commit()
         return redirect('/')
-    return render_template('test6.html')
+    return render_template('test4.html')
 
 
-@app.route('/test7', methods=['GET', 'POST'])
-def test7():
+@app.route('/test5', methods=['GET', 'POST'])
+def test5():
     if not current_user.is_authenticated:
         return redirect('/')
     db_sess = db_session.create_session()
@@ -901,13 +771,13 @@ def test7():
         user_id = current_user.id
         test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
         if test_entry:
-            test_entry.test7 = score
+            test_entry.test5 = score
         else:
-            test_entry = Tests(user_id=user_id, test7=score)
+            test_entry = Tests(user_id=user_id, test5=score)
             db_sess.add(test_entry)
         db_sess.commit()
         return redirect('/')
-    return render_template('test7.html')
+    return render_template('test5.html')
 
 
 @app.route('/results', methods=['GET', 'POST'])

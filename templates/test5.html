@@ -152,252 +152,496 @@
     }
 </style>
 
-
-
 <body class="noselect">
 <h1 style="text-align: center; color: #333;">Тест</h1>
-
 <div class="timer" id="timer">Осталось: 20:00</div>
-
 <div class="question-container">
     <form method="post" id="testForm">
         <div class="question active" id="question1">
-            <label>1. Установите соответствие между принципами геоэкологии и их содержанием:<br>
-            А) Геоэкология <br>
-            Б) Историзм<br>
-            В) Превентивность<br>
-            Г) Устойчивое развитие<br><br>
-            1) Предотвращение экологических проблем, а не ликвидация последствий<br>
-            2) Удовлетворение потребностей настоящего без ущерба для будущих поколений<br>
-            3) Природа и общество как единая геосистема<br>
-            4) Учёт прошлых изменений для прогноза будущего</label><br>
-            <input type="text" name="q1" placeholder="Введите последовательность цифр">
+            <label>1. Назовите три основных глобальных проблемы.</label><br>
+            <input type="radio" name="q1" value="A" id="q1A"> <label for="q1A">а) Экономическое неравенство, изменение климата, терроризм</label><br>
+            <input type="radio" name="q1" value="B" id="q1B"> <label for="q1B">б) Изменение климата, бедность, войны</label><br>
+            <input type="radio" name="q1" value="C" id="q1C"> <label for="q1C">в) Политическая стабильность, миграция, урбанизация</label><br>
+            <input type="radio" name="q1" value="D" id="q1D"> <label for="q1D">г) Энергетическая безопасность, здравоохранение, технологии</label>
         </div>
 
         <div class="question" id="question2">
-            <label>2. Выберите все парниковые газы:</label><br>
-            <input type="checkbox" name="q2" value="1" id="q2_1"> <label for="q2_1"> Метан</label><br>
-            <input type="checkbox" name="q2" value="2" id="q2_2"> <label for="q2_2"> Азот</label><br>
-            <input type="checkbox" name="q2" value="3" id="q2_3"> <label for="q2_3"> Водяной пар</label><br>
-            <input type="checkbox" name="q2" value="4" id="q2_4"> <label for="q2_4"> Диоксид серы</label><br>
-            <input type="checkbox" name="q2" value="5" id="q2_5"> <label for="q2_5"> Оксид азота</label>
+            <label>2. Какой фактор в наибольшей степени способствует глобальному изменению климата?</label><br>
+            <input type="radio" name="q2" value="a" id="q2a"> <label for="q2a">а) Рост городов</label><br>
+            <input type="radio" name="q2" value="b" id="q2b"> <label for="q2b">б) Использование ископаемого топлива</label><br>
+            <input type="radio" name="q2" value="c" id="q2c"> <label for="q2c">в) Увеличение численности населения</label><br>
+            <input type="radio" name="q2" value="d" id="q2d"> <label for="q2d">г) Все перечисленные</label>
         </div>
 
         <div class="question" id="question3">
-            <label>3. Основной путь решения проблемы пластикового загрязнения океанов:</label><br>
-            <input type="radio" name="q3" value="a" id="q3a"> <label for="q3a"> Сжигание пластика</label><br>
-            <input type="radio" name="q3" value="b" id="q3b"> <label for="q3b"> Запрет одноразового пластика и переработка</label><br>
-            <input type="radio" name="q3" value="c" id="q3c"> <label for="q3c"> Увеличение рыболовства</label><br>
-            <input type="radio" name="q3" value="d" id="q3d"> <label for="q3d"> Строительство плотин</label>
+            <label>3. К глобальным экологическим проблемам относятся:</label><br>
+            <input type="checkbox" name="q3" value="a" id="q3a"> <label for="q3a">а) Опустынивание</label><br>
+            <input type="checkbox" name="q3" value="b" id="q3b"> <label for="q3b">б) Уничтожение озонового слоя</label><br>
+            <input type="checkbox" name="q3" value="c" id="q3c"> <label for="q3c">в) Локальные наводнения</label><br>
+            <input type="checkbox" name="q3" value="d" id="q3d"> <label for="q3d">г) Загрязнение Мирового океана</label><br>
+            <input type="checkbox" name="q3" value="e" id="q3e"> <label for="q3e">д) Строительство АЭС</label>
         </div>
 
         <div class="question" id="question4">
-            <label>4. Главный парниковый газ, вызывающий изменение климата:</label><br>
-            <input type="radio" name="q4" value="a" id="q4a"> <label for="q4a"> Азот</label><br>
-            <input type="radio" name="q4" value="b" id="q4b"> <label for="q4b"> Кислород</label><br>
-            <input type="radio" name="q4" value="c" id="q4c"> <label for="q4c"> Углекислый газ</label><br>
-            <input type="radio" name="q4" value="d" id="q4d"> <label for="q4d"> Водород</label>
+            <label>4. Проблемы, связанные с ростом численности населения в развивающихся странах:</label><br>
+            <input type="checkbox" name="q4" value="a" id="q4a"> <label for="q4a">а) Нехватка продовольствия</label><br>
+            <input type="checkbox" name="q4" value="b" id="q4b"> <label for="q4b">б) Безработица</label><br>
+            <input type="checkbox" name="q4" value="c" id="q4c"> <label for="q4c">в) Сокращение смертности</label><br>
+            <input type="checkbox" name="q4" value="d" id="q4d"> <label for="q4d">г) Давление на природные ресурсы</label><br>
+            <input type="checkbox" name="q4" value="e" id="q4e"> <label for="q4e">д) Рост уровня образования</label>
         </div>
 
         <div class="question" id="question5">
-            <label>5. Какой принцип лежит в основе устойчивого развития?</label><br>
-            <input type="radio" name="q5" value="a" id="q5a"> <label for="q5a"> Максимальная прибыль</label><br>
-            <input type="radio" name="q5" value="b" id="q5b"> <label for="q5b"> Баланс экономики, экологии и социума</label><br>
-            <input type="radio" name="q5" value="c" id="q5c"> <label for="q5c"> Максимальная эксплуатация ресурсов</label><br>
-            <input type="radio" name="q5" value="d" id="q5d"> <label for="q5d"> Увеличение городов</label>
+            <label>5. Россия участвует в решении глобальных проблем через:</label><br>
+            <input type="checkbox" name="q5" value="a" id="q5a"> <label for="q5a">а) Парижское соглашение по климату</label><br>
+            <input type="checkbox" name="q5" value="b" id="q5b"> <label for="q5b">б) Программы ООН по развитию</label><br>
+            <input type="checkbox" name="q5" value="c" id="q5c"> <label for="q5c">в) Экспорт оружия</label><br>
+            <input type="checkbox" name="q5" value="d" id="q5d"> <label for="q5d">г) Поднятие экономики</label><br>
+            <input type="checkbox" name="q5" value="e" id="q5e"> <label for="q5e">д) Строительство новых ТЭС</label>
         </div>
 
         <div class="question" id="question6">
-            <label>6. Какие меры помогают бороться с изменением климата? (выберите все верные)</label><br>
-            <input type="checkbox" name="q6" value="a" id="q6a"> <label for="q6a"> Переход на солнечную энергию</label><br>
-            <input type="checkbox" name="q6" value="b" id="q6b"> <label for="q6b"> Массовая вырубка лесов</label><br>
-            <input type="checkbox" name="q6" value="c" id="q6c"> <label for="q6c"> Переход на электромобили</label><br>
-            <input type="checkbox" name="q6" value="d" id="q6d"> <label for="q6d"> Строительство новых угольных ТЭС</label>
+            <label>6. Установите соответствие между проблемой и её проявлением:<br>
+            A) Демографическая<br>
+            B) Экологическая<br>
+            C) Продовольственная<br>
+            D) Энергетическая<br>
+            1) Снижение рождаемости в Европе<br>
+            2) Таяние ледников в Арктике<br>
+            3) Голод в странах Африки к югу от Сахары<br>
+            4) Дефицит нефти в Японии</label><br>
+            <input type="text" name="q6" placeholder="Пример: A1B2C3D4">
         </div>
 
         <div class="question" id="question7">
-            <label>7. Какие действия способствуют сохранению биоразнообразия? (выберите все верные)</label><br>
-            <input type="checkbox" name="q7" value="a" id="q7a"> <label for="q7a"> Создание заповедников</label><br>
-            <input type="checkbox" name="q7" value="b" id="q7b"> <label for="q7b"> Браконьерство</label><br>
-            <input type="checkbox" name="q7" value="c" id="q7c"> <label for="q7c"> Осушение болот</label><br>
-            <input type="checkbox" name="q7" value="d" id="q7d"> <label for="q7d"> Борьба с инвазивными видами</label>
+            <label>7. Оцените суждения:<br>
+            А) Демографический переход — это процесс снижения рождаемости и смертности.<br>
+            Б) Все глобальные проблемы независимы друг от друга.</label><br>
+            <input type="radio" name="q7" value="1" id="q7_1"> <label for="q7_1">1) Верно А</label><br>
+            <input type="radio" name="q7" value="2" id="q7_2"> <label for="q7_2">2) Верно Б</label><br>
+            <input type="radio" name="q7" value="3" id="q7_3"> <label for="q7_3">3) Оба неверны</label><br>
+            <input type="radio" name="q7" value="4" id="q7_4"> <label for="q7_4">4) Оба верны</label>
         </div>
 
         <div class="question" id="question8">
-            <label>8. Что способствует деградации почв? (выберите все верные)</label><br>
-            <input type="checkbox" name="q8" value="a" id="q8a"> <label for="q8a"> Чрезмерное использование удобрений</label><br>
-            <input type="checkbox" name="q8" value="b" id="q8b"> <label for="q8b"> Посадка лесов</label><br>
-            <input type="checkbox" name="q8" value="c" id="q8c"> <label for="q8c"> Ветровая эрозия</label><br>
-            <input type="checkbox" name="q8" value="d" id="q8d"> <label for="q8d"> Севооборот</label>
+            <label>8. Сколько целей устойчивого развития (ЦУР) утверждено ООН?</label><br>
+            <input type="text" name="q8" placeholder="Только число">
         </div>
 
         <div class="question" id="question9">
-            <label>9. Какие принципы лежат в основе геоэкологического подхода?</label><br>
-            <input type="checkbox" name="q9" value="a" id="q9a"> <label for="q9a"> Иерархия</label><br>
-            <input type="checkbox" name="q9" value="b" id="q9b"> <label for="q9b"> Экономическая выгода</label><br>
-            <input type="checkbox" name="q9" value="c" id="q9c"> <label for="q9c"> Прогнозирование</label><br>
-            <input type="checkbox" name="q9" value="d" id="q9d"> <label for="q9d"> Системность</label>
+            <label>9. Каким образом рост населения влияет на энергетическую проблему?</label><br>
+            <input type="radio" name="q9" value="a" id="q9a"> <label for="q9a">а) Снижает спрос на энергию</label><br>
+            <input type="radio" name="q9" value="b" id="q9b"> <label for="q9b">б) Увеличивает потребление энергоресурсов</label><br>
+            <input type="radio" name="q9" value="c" id="q9c"> <label for="q9c">в) Способствует переходу на ВИЭ</label><br>
+            <input type="radio" name="q9" value="d" id="q9d"> <label for="q9d">г) Не влияет</label>
         </div>
 
         <div class="question" id="question10">
-            <label>10. Какие из перечисленных проблем относятся к глобальным экологическим? (выберите все верные)</label><br>
-            <input type="checkbox" name="q10" value="a" id="q10a"> <label for="q10a"> Изменение климата</label><br>
-            <input type="checkbox" name="q10" value="b" id="q10b"> <label for="q10b"> Бедность</label><br>
-            <input type="checkbox" name="q10" value="c" id="q10c"> <label for="q10c"> Загрязнение океанов</label><br>
-            <input type="checkbox" name="q10" value="d" id="q10d"> <label for="q10d"> Войны</label><br>
-            <input type="checkbox" name="q10" value="e" id="q10e"> <label for="q10e"> Опустынивание</label>
+            <label>10. Почему Арктика особенно уязвима к глобальному потеплению?</label><br>
+            <input type="radio" name="q10" value="a" id="q10a"> <label for="q10a">а) Там мало людей</label><br>
+            <input type="radio" name="q10" value="b" id="q10b"> <label for="q10b">б) Лёд отражает солнечный свет, и его таяние усиливает нагрев</label><br>
+            <input type="radio" name="q10" value="c" id="q10c"> <label for="q10c">в) Там нет растительности</label><br>
+            <input type="radio" name="q10" value="d" id="q10d"> <label for="q10d">г) Это связано с военной активностью</label>
         </div>
 
         <div class="question" id="question11">
-            <label>11. Какой тип загрязнения наиболее опасен для Мирового океана в XXI веке?</label><br>
-            <input type="radio" name="q11" value="a" id="q11a"> <label for="q11a"> Радиоактивное</label><br>
-            <input type="radio" name="q11" value="b" id="q11b"> <label for="q11b"> Пластиковое</label><br>
-            <input type="radio" name="q11" value="c" id="q11c"> <label for="q11c"> Тепловое</label><br>
-            <input type="radio" name="q11" value="d" id="q11d"> <label for="q11d"> Шумовое</label>
+            <label>11. Россия участвует в решении энергетической проблемы за счёт:</label><br>
+            <input type="radio" name="q11" value="a" id="q11a"> <label for="q11a">а) Экспорта нефти и газа</label><br>
+            <input type="radio" name="q11" value="b" id="q11b"> <label for="q11b">б) Развития атомной энергетики</label><br>
+            <input type="radio" name="q11" value="c" id="q11c"> <label for="q11c">в) Строительства ветряных электростанций в Сибири</label><br>
+            <input type="radio" name="q11" value="d" id="q11d"> <label for="q11d">г) Все перечисленные</label>
         </div>
 
         <div class="question" id="question12">
-            <label>12. Что является основной причиной парникового эффекта?</label><br>
-            <input type="radio" name="q12" value="a" id="q12a"> <label for="q12a"> Уменьшение озонового слоя</label><br>
-            <input type="radio" name="q12" value="b" id="q12b"> <label for="q12b"> Увеличение выбросов CO₂</label><br>
-            <input type="radio" name="q12" value="c" id="q12c"> <label for="q12c"> Извержения вулканов</label><br>
-            <input type="radio" name="q12" value="d" id="q12d"> <label for="q12d"> Повышение солнечной активности</label>
+            <label>12. «Зелёная» экономика направлена на:</label><br>
+            <input type="radio" name="q12" value="a" id="q12a"> <label for="q12a">а) Стабилизацию экономики</label><br>
+            <input type="radio" name="q12" value="b" id="q12b"> <label for="q12b">б) Устойчивое использование ресурсов и снижение вреда природе</label><br>
+            <input type="radio" name="q12" value="c" id="q12c"> <label for="q12c">в) Развитие сельского хозяйства</label><br>
+            <input type="radio" name="q12" value="d" id="q12d"> <label for="q12d">г) Экспорт «чистых» технологий</label>
         </div>
 
         <div class="question" id="question13">
-            <label>13. Уменьшению выбросов в атмосферу углекислого газа способствует:</label><br>
-            <input type="radio" name="q13" value="A" id="q13A"> <label for="q13A"> Сокращение площади тропических лесов</label><br>
-            <input type="radio" name="q13" value="B" id="q13B"> <label for="q13B"> Перевод тепловых электростанций с природного газа на уголь</label><br>
-            <input type="radio" name="q13" value="C" id="q13C"> <label for="q13C"> Развитие ветровой и солнечной энергетики</label><br>
-            <input type="radio" name="q13" value="D" id="q13D"> <label for="q13D"> Ограничение дальнейшего развития атомной энергетики</label>
+            <label>13. Как глобальная проблема изменения климата влияет на миграционные процессы?</label><br>
+            <input type="radio" name="q13" value="a" id="q13a"> <label for="q13a">а) Увеличивает климатическую миграцию</label><br>
+            <input type="radio" name="q13" value="b" id="q13b"> <label for="q13b">б) Снижает миграцию</label><br>
+            <input type="radio" name="q13" value="c" id="q13c"> <label for="q13c">в) Не влияет</label><br>
+            <input type="radio" name="q13" value="d" id="q13d"> <label for="q13d">г) Способствует внутренней урбанизации</label>
         </div>
 
         <div class="question" id="question14">
-            <label>14. Примером нерационального природопользования является:</label><br>
-            <input type="radio" name="q14" value="A" id="q14A"> <label for="q14A"> Использование металлолома в чёрной металлургии</label><br>
-            <input type="radio" name="q14" value="B" id="q14B"> <label for="q14B"> Распашка крутых склонов</label><br>
-            <input type="radio" name="q14" value="C" id="q14C"> <label for="q14C"> Создание системы оборотного водоснабжения на промышленных предприятиях</label><br>
-            <input type="radio" name="q14" value="D" id="q14D"> <label for="q14D"> Проведение снегозадержания в зимнее время</label>
+            <label>14. К каким последствиям может привести истощение рыбных запасов Мирового океана?</label><br>
+            <input type="radio" name="q14" value="a" id="q14a"> <label for="q14a">а) Пищевой кризис в прибрежных странах</label><br>
+            <input type="radio" name="q14" value="b" id="q14b"> <label for="q14b">б) Разрушение морских экосистем</label><br>
+            <input type="radio" name="q14" value="c" id="q14c"> <label for="q14c">в) Рост цен на морепродукты</label><br>
+            <input type="radio" name="q14" value="d" id="q14d"> <label for="q14d">г) Все перечисленные</label>
         </div>
 
         <div class="question" id="question15">
-            <label>15. Примером рационального природопользования является:</label><br>
-            <input type="radio" name="q15" value="A" id="q15A"> <label for="q15A"> Сплав леса по реке отдельными брёвнами</label><br>
-            <input type="radio" name="q15" value="B" id="q15B"> <label for="q15B"> Дополнительное орошение в засушливых районах</label><br>
-            <input type="radio" name="q15" value="C" id="q15C"> <label for="q15C"> Комплексное использование добываемого минерального сырья</label><br>
-            <input type="radio" name="q15" value="D" id="q15D"> <label for="q15D"> Перевод ТЭС с природного газа на уголь</label>
+            <label>15. Что такое «экологический след»?</label><br>
+            <input type="radio" name="q15" value="a" id="q15a"> <label for="q15a">а) Площадь, необходимая для обеспечения ресурсами одного человека</label><br>
+            <input type="radio" name="q15" value="b" id="q15b"> <label for="q15b">б) Количество отходов, производимых страной</label><br>
+            <input type="radio" name="q15" value="c" id="q15c"> <label for="q15c">в) Уровень загрязнения рек</label><br>
+            <input type="radio" name="q15" value="d" id="q15d"> <label for="q15d">г) Количество заповедников в стране</label>
         </div>
 
         <div class="question" id="question16">
-            <label>16. Какое из перечисленных мероприятий способствует развитию эрозии почвы в земледельческих районах?</label><br>
-            <input type="radio" name="q16" value="A" id="q16A"> <label for="q16A"> Регулярная распашка склонов</label><br>
-            <input type="radio" name="q16" value="B" id="q16B"> <label for="q16B"> Посев зерновых без предварительной вспашки</label><br>
-            <input type="radio" name="q16" value="C" id="q16C"> <label for="q16C"> Террасирование склонов</label><br>
-            <input type="radio" name="q16" value="D" id="q16D"> <label for="q16D"> Посадка лесополос между полями</label>
+            <label>16. Снижение биоразнообразия — это угроза:</label><br>
+            <input type="radio" name="q16" value="a" id="q16a"> <label for="q16a">а) Только для экологии</label><br>
+            <input type="radio" name="q16" value="b" id="q16b"> <label for="q16b">б) Для устойчивости экосистем и человека</label><br>
+            <input type="radio" name="q16" value="c" id="q16c"> <label for="q16c">в) Только для животных умеренного пояса</label><br>
+            <input type="radio" name="q16" value="d" id="q16d"> <label for="q16d">г) Для сельского хозяйства</label>
         </div>
 
         <div class="question" id="question17">
-            <label>17. Какой из перечисленных видов природных ресурсов относится к исчерпаемым возобновимым?</label><br>
-            <input type="radio" name="q17" value="A" id="q17A"> <label for="q17A"> Нефть</label><br>
-            <input type="radio" name="q17" value="B" id="q17B"> <label for="q17B"> Энергия ветра</label><br>
-            <input type="radio" name="q17" value="C" id="q17C"> <label for="q17C"> Энергия приливов</label><br>
-            <input type="radio" name="q17" value="D" id="q17D"> <label for="q17D"> Плодородие почв</label>
+            <label>17. Как называется международное сотрудничество в решении глобальных проблем?</label><br>
+            <input type="radio" name="q17" value="a" id="q17a"> <label for="q17a">а) Глобализация</label><br>
+            <input type="radio" name="q17" value="b" id="q17b"> <label for="q17b">б) Мультилатерализм</label><br>
+            <input type="radio" name="q17" value="c" id="q17c"> <label for="q17c">в) Интернационализм</label><br>
+            <input type="radio" name="q17" value="d" id="q17d"> <label for="q17d">г) Кооперация</label>
         </div>
 
         <div class="question" id="question18">
-            <label>18. Какое из перечисленных мероприятий применяется для борьбы с эрозией почв в зоне степей?</label><br>
-            <input type="radio" name="q18" value="A" id="q18A"> <label for="q18A"> Осушение болот в долинах рек</label><br>
-            <input type="radio" name="q18" value="B" id="q18B"> <label for="q18B"> Распашка склонов холмов</label><br>
-            <input type="radio" name="q18" value="C" id="q18C"> <label for="q18C"> Химическая мелиорация</label><br>
-            <input type="radio" name="q18" value="D" id="q18D"> <label for="q18D"> Создание полезащитных лесополос</label>
+            <label>18. Кто является основным субъектом решения глобальных проблем?</label><br>
+            <input type="radio" name="q18" value="a" id="q18a"> <label for="q18a">а) Отдельные личности</label><br>
+            <input type="radio" name="q18" value="b" id="q18b"> <label for="q18b">б) Частные фирмы и компании</label><br>
+            <input type="radio" name="q18" value="c" id="q18c"> <label for="q18c">в) Государства и международные организации</label><br>
+            <input type="radio" name="q18" value="d" id="q18d"> <label for="q18d">г) Военные альянсы</label>
         </div>
 
         <div class="question" id="question19">
-            <label>19. Установите последовательность увеличения экологической нагрузки на окружающую среду объектов топливно-энергетического комплекса (от наименьшей к наибольшей):<br>
-            а) ТЭС, функционирующие на сжигании угля и горючих сланцев<br>
-            б) ТЭС — на сжигании нефтепродуктов<br>
-            в) ТЭС, работающие на газе<br>
-            г) АЭС — в случае безаварийной работы<br>
-            д) Геотермальные электростанции</label><br>
-            <input type="text" name="q19" placeholder="Пример: гдвба">
+            <label>19. Какой принцип лежит в основе концепции «устойчивого развития»?</label><br>
+            <input type="radio" name="q19" value="a" id="q19a"> <label for="q19a">а) Максимизация экономического роста</label><br>
+            <input type="radio" name="q19" value="b" id="q19b"> <label for="q19b">б) Удовлетворение потребностей настоящего без ущерба для будущих поколений</label><br>
+            <input type="radio" name="q19" value="c" id="q19c"> <label for="q19c">в) Технологический прогресс любой ценой</label><br>
+            <input type="radio" name="q19" value="d" id="q19d"> <label for="q19d">г) Глобальная унификация экономик</label>
         </div>
 
         <div class="question" id="question20">
-            <label>20. Установите соответствие между видами загрязнения и их источниками:<br>
-            A) Атмосферное<br>
-            B) Водное<br>
-            C) Почвенное<br>
-            D) Радиационное<br>
-            1) АЭС, ядерные испытания<br>
-            2) Пестициды, ТБО<br>
-            3) Сточные воды, нефтепродукты<br>
-            4) Автомобили, ТЭС</label><br>
-            <input type="text" name="q20" placeholder="Пример: 4321">
+            <label>20. Какой из следующих регионов является «горячей точкой» биоразнообразия и одновременно зоной высокого риска вырубки лесов?</label><br>
+            <input type="radio" name="q20" value="a" id="q20a"> <label for="q20a">а) Амазония</label><br>
+            <input type="radio" name="q20" value="b" id="q20b"> <label for="q20b">б) Тайга Сибири</label><br>
+            <input type="radio" name="q20" value="c" id="q20c"> <label for="q20c">в) Сахара</label><br>
+            <input type="radio" name="q20" value="d" id="q20d"> <label for="q20d">г) Уральские горы</label>
         </div>
 
         <div class="question" id="question21">
-            <label>21. Среднему россиянину требуется ______ глобальных гектаров для поддержания образа жизни.</label><br>
-            <input type="text" name="q21" placeholder="Только число">
+            <label>21. Какое из последствий таяния вечной мерзлоты в Арктике имеет глобальное значение?</label><br>
+            <input type="radio" name="q21" value="a" id="q21a"> <label for="q21a">а) Разрушение дорог</label><br>
+            <input type="radio" name="q21" value="b" id="q21b"> <label for="q21b">б) Выброс метана</label><br>
+            <input type="radio" name="q21" value="c" id="q21c"> <label for="q21c">в) Снижение численности оленей</label><br>
+            <input type="radio" name="q21" value="d" id="q21d"> <label for="q21d">г) Рост туризма</label>
         </div>
 
         <div class="question" id="question22">
-            <label>22. Процесс обогащения водоёмов азотом и фосфором, приводящий к «цветению воды», называется:</label><br>
-            <input type="text" name="q22" placeholder="Введите термин">
+            <label>22. Какой из регионов России наиболее подвержен риску опустынивания?</label><br>
+            <input type="radio" name="q22" value="a" id="q22a"> <label for="q22a">а) Калмыкия</label><br>
+            <input type="radio" name="q22" value="b" id="q22b"> <label for="q22b">б) Камчатка</label><br>
+            <input type="radio" name="q22" value="c" id="q22c"> <label for="q22c">в) Карелия</label><br>
+            <input type="radio" name="q22" value="d" id="q22d"> <label for="q22d">г) Архангельская область</label>
         </div>
 
         <div class="question" id="question23">
-            <label>23. Метод восстановления нарушенных земель —</label><br>
-            <input type="text" name="q23" placeholder="Введите термин">
+            <label>23. Какое из последствий глобализации усугубляет экологические проблемы?</label><br>
+            <input type="radio" name="q23" value="a" id="q23a"> <label for="q23a">а) Урбанизация</label><br>
+            <input type="radio" name="q23" value="b" id="q23b"> <label for="q23b">б) Увеличение объёмов международных грузоперевозок и ресурсопотребления</label><br>
+            <input type="radio" name="q23" value="c" id="q23c"> <label for="q23c">в) Рост международного сотрудничества</label><br>
+            <input type="radio" name="q23" value="d" id="q23d"> <label for="q23d">г) Снижение культурного разнообразия</label>
         </div>
 
         <div class="question" id="question24">
-            <label>24. Совокупность природных и антропогенных компонентов на определённой территории, взаимодействующих как единое целое, называется ________ системой.</label><br>
-            <input type="text" name="q24" placeholder="Введите термин">
+            <label>24. В чём заключается проблема нехватки ресурсов?</label><br>
+            <input type="radio" name="q24" value="A" id="q24A"> <label for="q24A">а) Избыточное потребление ресурсов</label><br>
+            <input type="radio" name="q24" value="B" id="q24B"> <label for="q24B">б) Невозможность удовлетворить потребности населения</label><br>
+            <input type="radio" name="q24" value="C" id="q24C"> <label for="q24C">в) Увеличение производства</label><br>
+            <input type="radio" name="q24" value="D" id="q24D"> <label for="q24D">г) Недоступность ресурсов</label>
         </div>
 
         <div class="question" id="question25">
-            <label>25. Стратегия развития, удовлетворяющая потребности настоящего без ущерба для будущих поколений, называется ________ развитием.</label><br>
-            <input type="text" name="q25" placeholder="Введите термин">
+            <label>25. Что такое "демографический взрыв"?</label><br>
+            <input type="radio" name="q25" value="A" id="q25A"> <label for="q25A">а) Резкое увеличение численности населения</label><br>
+            <input type="radio" name="q25" value="B" id="q25B"> <label for="q25B">б) Быстрый рост населения в результате снижения смертности</label><br>
+            <input type="radio" name="q25" value="C" id="q25C"> <label for="q25C">в) Уменьшение численности населения</label><br>
+            <input type="radio" name="q25" value="D" id="q25D"> <label for="q25D">г) Плавный рост населения</label>
         </div>
 
         <div class="question" id="question26">
-            <label>26. Какой показатель отражает площадь биологически продуктивных земель, необходимую для поддержания образа жизни одного человека?</label><br>
-            <input type="radio" name="q26" value="A" id="q26A"> <label for="q26A"> Экологический ущерб</label><br>
-            <input type="radio" name="q26" value="B" id="q26B"> <label for="q26B"> Экологический след</label><br>
-            <input type="radio" name="q26" value="C" id="q26C"> <label for="q26C"> Углеродный след</label><br>
-            <input type="radio" name="q26" value="D" id="q26D"> <label for="q26D"> Биоёмкость</label>
+            <label>26. В чём проявляется связь между экономическим развитием и экологическими проблемами?</label><br>
+            <input type="radio" name="q26" value="a" id="q26a"> <label for="q26a">а) Чем выше ВВП на душу населения, тем ниже уровень загрязнения воздуха в городах.</label><br>
+            <input type="radio" name="q26" value="b" id="q26b"> <label for="q26b">б) Развитые страны полностью отказались от ископаемого топлива, поэтому их экологический след минимален.</label><br>
+            <input type="radio" name="q26" value="c" id="q26c"> <label for="q26c">в) Экономический рост всегда сопровождается ростом выбросов парниковых газов.</label><br>
+            <input type="radio" name="q26" value="d" id="q26d"> <label for="q26d">г) На ранних этапах индустриализации загрязнение растёт, но при достижении определённого уровня дохода страны начинают инвестировать в «зелёные» технологии, что может снижать давление на природу (гипотеза Кузнеца).</label>
         </div>
 
         <div class="question" id="question27">
-            <label>27. Выберите два примера рационального природопользования:</label><br>
-            <input type="checkbox" name="q27" value="A" id="q27A"> <label for="q27A"> Комплексное использование минерального сырья</label><br>
-            <input type="checkbox" name="q27" value="B" id="q27B"> <label for="q27B"> Распашка крутых склонов</label><br>
-            <input type="checkbox" name="q27" value="C" id="q27C"> <label for="q27C"> Создание системы оборотного водоснабжения</label><br>
-            <input type="checkbox" name="q27" value="D" id="q27D"> <label for="q27D"> Сплав леса по реке отдельными брёвнами</label>
+            <label>27. Какое из перечисленных последствий изменения климата наблюдается в Арктической зоне РФ и несёт наибольшую угрозу для устойчивого развития региона?</label><br>
+            <input type="radio" name="q27" value="a" id="q27a"> <label for="q27a">а) Увеличение числа туристов.</label><br>
+            <input type="radio" name="q27" value="b" id="q27b"> <label for="q27b">б) Расширение ареалов.</label><br>
+            <input type="radio" name="q27" value="c" id="q27c"> <label for="q27c">в) Рост биоразнообразия за счёт миграции южных видов.</label><br>
+            <input type="radio" name="q27" value="g" id="q27g"> <label for="q27g">Г) Таяние вечной мерзлоты</label>
         </div>
 
         <div class="question" id="question28">
-            <label>28. Что из перечисленного способствует деградации почв?</label><br>
-            <input type="radio" name="q28" value="A" id="q28A"> <label for="q28A"> Посадка лесов</label><br>
-            <input type="radio" name="q28" value="B" id="q28B"> <label for="q28B"> Севооборот</label><br>
-            <input type="radio" name="q28" value="C" id="q28C"> <label for="q28C"> Чрезмерное использование удобрений</label><br>
-            <input type="radio" name="q28" value="D" id="q28D"> <label for="q28D"> Террасирование склонов</label>
+            <label>28. В каком случае «экологический след» страны может быть занижен при формальном расчёте?</label><br>
+            <input type="radio" name="q28" value="a" id="q28a"> <label for="q28a">а) Если в ней много лесов</label><br>
+            <input type="radio" name="q28" value="b" id="q28b"> <label for="q28b">б) Если она использует солнечную энергию</label><br>
+            <input type="radio" name="q28" value="v" id="q28v"> <label for="q28v">в) Если она покупает товары, сделанные с вредом для природы в других странах</label><br>
+            <input type="radio" name="q28" value="g" id="q28g"> <label for="q28g">г) Если в ней мало машин</label>
         </div>
 
         <div class="question" id="question29">
-            <label>29. Какой принцип геоэкологии наиболее тесно связан с необходимостью учёта прошлых изменений ландшафтов при прогнозировании будущих?</label><br>
-            <input type="radio" name="q29" value="A" id="q29A"> <label for="q29A"> Системность</label><br>
-            <input type="radio" name="q29" value="B" id="q29B"> <label for="q29B"> Историзм</label><br>
-            <input type="radio" name="q29" value="C" id="q29C"> <label for="q29C"> Превентивность</label><br>
-            <input type="radio" name="q29" value="D" id="q29D"> <label for="q29D"> Региональность</label>
+            <label>29. Какой из перечисленных процессов наиболее вероятно станет «новой глобальной проблемой» из-за сочетания демографии, климата и технологий?</label><br>
+            <input type="radio" name="q29" value="a" id="q29a"> <label for="q29a">а) Исчезновение тропических лесов.</label><br>
+            <input type="radio" name="q29" value="b" id="q29b"> <label for="q29b">б) Полный переход на электромобили.</label><br>
+            <input type="radio" name="q29" value="v" id="q29v"> <label for="q29v">в) Глобальный дефицит меди.</label><br>
+            <input type="radio" name="q29" value="g" id="q29g"> <label for="q29g">г) Миграции</label>
         </div>
 
         <div class="question" id="question30">
-            <label>30. Почему геотермальные ЭС стоят на первом месте по минимальной экологической нагрузке в иерархии ТЭК?</label><br>
-            <input type="radio" name="q30" value="A" id="q30A"> <label for="q30A"> Они не используют воду</label><br>
-            <input type="radio" name="q30" value="B" id="q30B"> <label for="q30B"> Они не требуют земельных ресурсов</label><br>
-            <input type="radio" name="q30" value="C" id="q30C"> <label for="q30C"> Они дешевле всех остальных</label><br>
-            <input type="radio" name="q30" value="D" id="q30D"> <label for="q30D"> Они не сжигают топливо и не выделяют CO₂</label>
+            <label>30. Что точно не удастся сделать к 2030 году по плану ООН?</label><br>
+            <input type="radio" name="q30" value="a" id="q30a"> <label for="q30a">а) Повысить уровень образования</label><br>
+            <input type="radio" name="q30" value="b" id="q30b"> <label for="q30b">б) Достичь гендерного равенства</label><br>
+            <input type="radio" name="q30" value="v" id="q30v"> <label for="q30v">в) Увеличить «зелёную» энергию</label><br>
+            <input type="radio" name="q30" value="g" id="q30g"> <label for="q30g">г) Полностью устранить разрыв в доходах между странами</label>
+        </div>
+
+        <div class="question" id="question31">
+            <label>31. Какой из перечисленных документов ООН напрямую связан с правами человека и устойчивым развитием?</label><br>
+            <input type="radio" name="q31" value="a" id="q31a"> <label for="q31a">а) Парижское соглашение</label><br>
+            <input type="radio" name="q31" value="b" id="q31b"> <label for="q31b">б) Всеобщая декларация прав человека</label><br>
+            <input type="radio" name="q31" value="v" id="q31v"> <label for="q31v">в) Конвенция о запрещении химического оружия</label><br>
+            <input type="radio" name="q31" value="g" id="q31g"> <label for="q31g">г) Хартия ООН</label>
+        </div>
+
+        <div class="question" id="question32">
+            <label>32. Какой из следующих регионов мира испытывает наибольший дефицит пресной воды на душу населения?</label><br>
+            <input type="radio" name="q32" value="a" id="q32a"> <label for="q32a">а) Северная Европа</label><br>
+            <input type="radio" name="q32" value="b" id="q32b"> <label for="q32b">б) Ближний Восток</label><br>
+            <input type="radio" name="q32" value="v" id="q32v"> <label for="q32v">в) Южная Америка</label><br>
+            <input type="radio" name="q32" value="g" id="q32g"> <label for="q32g">г) Центральная Африка</label>
+        </div>
+
+        <div class="question" id="question33">
+            <label>33. Какой из перечисленных ресурсов считается возобновляемым?</label><br>
+            <input type="radio" name="q33" value="a" id="q33a"> <label for="q33a">а) Нефть</label><br>
+            <input type="radio" name="q33" value="b" id="q33b"> <label for="q33b">б) Уголь</label><br>
+            <input type="radio" name="q33" value="v" id="q33v"> <label for="q33v">в) Солнечная энергия</label><br>
+            <input type="radio" name="q33" value="g" id="q33g"> <label for="q33g">г) Природный газ</label>
+        </div>
+
+        <div class="question" id="question34">
+            <label>34. Какой из следующих регионов России наиболее подвержен последствиям повышения уровня Мирового океана?</label><br>
+            <input type="radio" name="q34" value="a" id="q34a"> <label for="q34a">а) Алтайский край</label><br>
+            <input type="radio" name="q34" value="b" id="q34b"> <label for="q34b">б) Республика Тыва</label><br>
+            <input type="radio" name="q34" value="v" id="q34v"> <label for="q34v">в) Калининградская область</label><br>
+            <input type="radio" name="q34" value="g" id="q34g"> <label for="q34g">г) Чукотский автономный округ</label>
+        </div>
+
+        <div class="question" id="question35">
+            <label>35. В каком из следующих случаев наблюдается «декуплирование» экономического роста и экологического воздействия?</label><br>
+            <input type="radio" name="q35" value="a" id="q35a"> <label for="q35a">а) Рост ВВП сопровождается увеличением выбросов CO₂.</label><br>
+            <input type="radio" name="q35" value="b" id="q35b"> <label for="q35b">б) Экономика растёт, но объём потребления ресурсов и загрязнения остаётся стабильным или снижается.</label><br>
+            <input type="radio" name="q35" value="v" id="q35v"> <label for="q35v">в) Снижение ВВП при росте использования угля.</label><br>
+            <input type="radio" name="q35" value="g" id="q35g"> <label for="q35g">г) Рост сельского хозяйства за счёт вырубки лесов.</label>
+        </div>
+
+        <div class="question" id="question36">
+            <label>36. Какой из следующих факторов делает демографическую политику в России структурно сложной?</label><br>
+            <input type="radio" name="q36" value="a" id="q36a"> <label for="q36a">а) Высокая рождаемость в мегаполисах.</label><br>
+            <input type="radio" name="q36" value="b" id="q36b"> <label for="q36b">б) Избыток трудовых ресурсов.</label><br>
+            <input type="radio" name="q36" value="v" id="q36v"> <label for="q36v">в) Неравномерное распределение населения, старение и отток молодёжи из регионов.</label><br>
+            <input type="radio" name="q36" value="g" id="q36g"> <label for="q36g">г) Преобладание мигрантов в общей численности населения.</label>
+        </div>
+
+        <div class="question" id="question37">
+            <label>37. Как глобальный переход к «зелёной» экономике может повлиять на страны-экспортёры ископаемого топлива, такие как Россия?</label><br>
+            <input type="radio" name="q37" value="a" id="q37a"> <label for="q37a">а) Увеличит их геополитическое влияние.</label><br>
+            <input type="radio" name="q37" value="b" id="q37b"> <label for="q37b">б) Создаст экономические риски из-за снижения спроса на нефть и газ.</label><br>
+            <input type="radio" name="q37" value="v" id="q37v"> <label for="q37v">в) Приведёт к автоматическому росту ВИЭ в этих странах.</label><br>
+            <input type="radio" name="q37" value="g" id="q37g"> <label for="q37g">г) Не окажет никакого влияния.</label>
+        </div>
+
+        <div class="question" id="question38">
+            <label>38. Как связаны продовольственная безопасность и изменение климата в контексте России?</label><br>
+            <input type="radio" name="q38" value="a" id="q38a"> <label for="q38a">а) Россия не зависит от климатических рисков в сельском хозяйстве.</label><br>
+            <input type="radio" name="q38" value="b" id="q38b"> <label for="q38b">б) Увеличение засух и экстремальных погодных явлений угрожает урожайности, несмотря на потенциальный рост пашни на севере.</label><br>
+            <input type="radio" name="q38" value="v" id="q38v"> <label for="q38v">в) Изменение климата полностью решит проблему сельхозпроизводства в Сибири.</label><br>
+            <input type="radio" name="q38" value="g" id="q38g"> <label for="q38g">г) Россия станет главным экспортером воды к 2050 году.</label>
+        </div>
+
+        <div class="question" id="question39">
+            <label>39. Какой из следующих факторов является ключевым ограничением для масштабирования ВИЭ в России?</label><br>
+            <input type="radio" name="q39" value="a" id="q39a"> <label for="q39a">а) Отсутствие солнца и ветра.</label><br>
+            <input type="radio" name="q39" value="b" id="q39b"> <label for="q39b">б) Инфраструктурная и институциональная инерция, ориентированная на топливно-энергетический комплекс.</label><br>
+            <input type="radio" name="q39" value="v" id="q39v"> <label for="q39v">в) Полный запрет на солнечные панели.</label><br>
+            <input type="radio" name="q39" value="g" id="q39g"> <label for="q39g">г) Отсутствие квалифицированных кадров в любом регионе.</label>
+        </div>
+
+        <div class="question" id="question40">
+            <label>40. Какой из следующих факторов делает Арктику стратегически важной не только для экологии, но и для глобальной энергетической безопасности?</label><br>
+            <input type="radio" name="q40" value="a" id="q40a"> <label for="q40a">а) Наличие запасов редкоземельных металлов</label><br>
+            <input type="radio" name="q40" value="b" id="q40b"> <label for="q40b">б) Сокращение ледового покрова, открывающее новые морские маршруты и доступ к ресурсам</label><br>
+            <input type="radio" name="q40" value="c" id="q40c"> <label for="q40c">в) Развитие научных станций</label><br>
+            <input type="radio" name="q40" value="d" id="q40d"> <label for="q40d">г) Увеличение биоразнообразия</label>
+        </div>
+
+        <div class="question" id="question41">
+            <label>41. Какое из следующих утверждений верно в отношении «водной безопасности» как глобальной проблемы?</label><br>
+            <input type="radio" name="q41" value="a" id="q41a"> <label for="q41a">а) Пресная вода равномерно распределена по планете</label><br>
+            <input type="radio" name="q41" value="b" id="q41b"> <label for="q41b">б) Водные конфликты чаще возникают внутри стран, чем между ними</label><br>
+            <input type="radio" name="q41" value="c" id="q41c"> <label for="q41c">в) Опреснение морской воды полностью решает проблему нехватки воды</label><br>
+            <input type="radio" name="q41" value="d" id="q41d"> <label for="q41d">г) Россия не испытывает локальных водных дефицитов</label>
+        </div>
+
+        <div class="question" id="question42">
+            <label>42. Что такое «пищевая суверенность» и почему она важна в условиях глобальных кризисов?</label><br>
+            <input type="radio" name="q42" value="a" id="q42a"> <label for="q42a">а) Право страны регулировать собственную продовольственную политику</label><br>
+            <input type="radio" name="q42" value="b" id="q42b"> <label for="q42b">б) Импорт продуктов из одной страны</label><br>
+            <input type="radio" name="q42" value="c" id="q42c"> <label for="q42c">в) Полный отказ от сельского хозяйства</label><br>
+            <input type="radio" name="q42" value="d" id="q42d"> <label for="q42d">г) Глобальная стандартизация питания</label>
+        </div>
+
+        <div class="question" id="question43">
+            <label>43. Какой из принципов «циркулярной экономики» наиболее трудно реализовать в России?</label><br>
+            <input type="radio" name="q43" value="a" id="q43a"> <label for="q43a">а) Повторное использование материалов</label><br>
+            <input type="radio" name="q43" value="b" id="q43b"> <label for="q43b">б) Сбор и переработка отходов на уровне муниципалитетов</label><br>
+            <input type="radio" name="q43" value="c" id="q43c"> <label for="q43c">в) Производство товаров с учётом их утилизации</label><br>
+            <input type="radio" name="q43" value="d" id="q43d"> <label for="q43d">г) Снижение потребления энергии</label>
+        </div>
+
+        <div class="question" id="question44">
+            <label>44. Как изменение климата может усугубить проблему неравенства внутри стран?</label><br>
+            <input type="radio" name="q44" value="a" id="q44a"> <label for="q44a">а) Бедные слои населения чаще живут в уязвимых зонах и имеют меньше ресурсов для адаптации</label><br>
+            <input type="radio" name="q44" value="b" id="q44b"> <label for="q44b">б) Богатые слои начинают потреблять больше энергии</label><br>
+            <input type="radio" name="q44" value="c" id="q44c"> <label for="q44c">в) Государства сокращают социальные расходы</label><br>
+            <input type="radio" name="q44" value="d" id="q44d"> <label for="q44d">г) Растёт миграция в развитые страны</label>
+        </div>
+
+        <div class="question" id="question45">
+            <label>45. Какой из следующих показателей используется для сравнения «экологического следа» стран?</label><br>
+            <input type="radio" name="q45" value="a" id="q45a"> <label for="q45a">а) ВВП на душу населения</label><br>
+            <input type="radio" name="q45" value="b" id="q45b"> <label for="q45b">б) Гектары на человека</label><br>
+            <input type="radio" name="q45" value="c" id="q45c"> <label for="q45c">в) Доля ВИЭ в энергобалансе</label><br>
+            <input type="radio" name="q45" value="d" id="q45d"> <label for="q45d">г) Количество заповедников</label>
+        </div>
+
+        <div class="question" id="question46">
+            <label>46. Какой международный орган отвечает за координацию гуманитарной помощи при стихийных бедствиях?</label><br>
+            <input type="radio" name="q46" value="a" id="q46a"> <label for="q46a">а) Всемирный банк</label><br>
+            <input type="radio" name="q46" value="b" id="q46b"> <label for="q46b">б) ЮНЕСКО</label><br>
+            <input type="radio" name="q46" value="c" id="q46c"> <label for="q46c">в) Управление ООН по координации гуманитарных вопросов (OCHA)</label><br>
+            <input type="radio" name="q46" value="d" id="q46d"> <label for="q46d">г) Всемирная торговая организация</label>
+        </div>
+
+        <div class="question" id="question47">
+            <label>47. Какой из следующих факторов наиболее критичен для обеспечения продовольственной безопасности в малых государствах?</label><br>
+            <input type="radio" name="q47" value="a" id="q47a"> <label for="q47a">а) Наличие крупных сельскохозяйственных угодий</label><br>
+            <input type="radio" name="q47" value="b" id="q47b"> <label for="q47b">б) Высокий уровень рождаемости</label><br>
+            <input type="radio" name="q47" value="c" id="q47c"> <label for="q47c">в) Зависимость от импорта продовольствия и уязвимость к повышению уровня океана</label><br>
+            <input type="radio" name="q47" value="d" id="q47d"> <label for="q47d">г) Развитая система рыболовства</label>
+        </div>
+
+        <div class="question" id="question48">
+            <label>48. Какой из следующих видов отходов создаёт наибольшую угрозу для морских экосистем?</label><br>
+            <input type="radio" name="q48" value="a" id="q48a"> <label for="q48a">а) Металлолом</label><br>
+            <input type="radio" name="q48" value="b" id="q48b"> <label for="q48b">б) Органические отходы</label><br>
+            <input type="radio" name="q48" value="c" id="q48c"> <label for="q48c">в) Микропластик</label><br>
+            <input type="radio" name="q48" value="d" id="q48d"> <label for="q48d">г) Строительный мусор</label>
+        </div>
+
+        <div class="question" id="question49">
+            <label>49. Что из перечисленного является основной причиной сокращения биоразнообразия в тропических регионах?</label><br>
+            <input type="radio" name="q49" value="a" id="q49a"> <label for="q49a">а) Изменение магнитного поля Земли</label><br>
+            <input type="radio" name="q49" value="b" id="q49b"> <label for="q49b">б) Снижение солнечной активности</label><br>
+            <input type="radio" name="q49" value="c" id="q49c"> <label for="q49c">в) Преобразование естественных экосистем под сельское хозяйство</label><br>
+            <input type="radio" name="q49" value="d" id="q49d"> <label for="q49d">г) Увеличение числа заповедников</label>
+        </div>
+
+        <div class="question" id="question50">
+            <label>50. Как сокращение биоразнообразия влияет на продовольственную безопасность?</label><br>
+            <input type="radio" name="q50" value="a" id="q50a"> <label for="q50a">а) Увеличивает урожайность за счёт монокультур</label><br>
+            <input type="radio" name="q50" value="b" id="q50b"> <label for="q50b">б) Снижает устойчивость сельского хозяйства к вредителям и болезням</label><br>
+            <input type="radio" name="q50" value="c" id="q50c"> <label for="q50c">в) Упрощает логистику поставок</label><br>
+            <input type="radio" name="q50" value="d" id="q50d"> <label for="q50d">г) Способствует росту экспорта семян</label>
+        </div>
+
+        <div class="question" id="question51">
+            <label>51. Как международные санкции могут косвенно усугубить экологические проблемы в стране?</label><br>
+            <input type="radio" name="q51" value="a" id="q51a"> <label for="q51a">а) Способствуют переходу на «зелёные» технологии</label><br>
+            <input type="radio" name="q51" value="b" id="q51b"> <label for="q51b">б) Ограничивают доступ к современным экологическим технологиям и инвестициям</label><br>
+            <input type="radio" name="q51" value="c" id="q51c"> <label for="q51c">в) Снижают потребление энергии</label><br>
+            <input type="radio" name="q51" value="d" id="q51d"> <label for="q51d">г) Увеличивают экспорт леса</label>
+        </div>
+
+        <div class="question" id="question52">
+            <label>52. Как зависимость от ископаемого топлива связана с геополитической нестабильностью?</label><br>
+            <input type="radio" name="q52" value="a" id="q52a"> <label for="q52a">а) Снижает интерес к международной торговле</label><br>
+            <input type="radio" name="q52" value="b" id="q52b"> <label for="q52b">б) Создаёт конкуренцию за контроль над ресурсами и транспортными коридорами</label><br>
+            <input type="radio" name="q52" value="c" id="q52c"> <label for="q52c">в) Увеличивает доверие между странами-экспортёрами</label><br>
+            <input type="radio" name="q52" value="d" id="q52d"> <label for="q52d">г) Способствует миру в нефтедобывающих регионах</label>
+        </div>
+
+        <div class="question" id="question53">
+            <label>53. Как деградация почв влияет на климатические изменения?</label><br>
+            <input type="radio" name="q53" value="a" id="q53a"> <label for="q53a">а) Увеличивает поглощение CO₂</label><br>
+            <input type="radio" name="q53" value="b" id="q53b"> <label for="q53b">b) Снижает способность почвы хранить углерод, усиливая парниковый эффект</label><br>
+            <input type="radio" name="q53" value="c" id="q53c"> <label for="q53c">c) Способствует росту лесов</label><br>
+            <input type="radio" name="q53" value="d" id="q53d"> <label for="q53d">d) Не имеет связи с климатом</label>
+        </div>
+
+        <div class="question" id="question54">
+            <label>54. Как развитие возобновляемой энергетики может повлиять на рынок труда в странах с ресурсной экономикой?</label><br>
+            <input type="radio" name="q54" value="a" id="q54a"> <label for="q54a">a) Обеспечит автоматический рост зарплат</label><br>
+            <input type="radio" name="q54" value="b" id="q54b"> <label for="q54b">b) Может вызвать структурную безработицу в добывающих отраслях без своевременной переподготовки кадров</label><br>
+            <input type="radio" name="q54" value="c" id="q54c"> <label for="q54c">c) Увеличит спрос на уголь</label><br>
+            <input type="radio" name="q54" value="d" id="q54d"> <label for="q54d">d) Не окажет никакого влияния</label>
+        </div>
+
+        <div class="question" id="question55">
+            <label>55. После сильнейшей засухи в регионе X фермеры массово бросают поля и переезжают в столицу. Город не справляется с наплывом людей: растёт число трущоб, не хватает воды и работы. Какие глобальные вызовы проявляются одновременно?</label><br>
+            <input type="radio" name="q55" value="a" id="q55a"> <label for="q55a">a) Климатическая уязвимость, миграция и урбанизация</label><br>
+            <input type="radio" name="q55" value="b" id="q55b"> <label for="q55b">b) Гендерное неравенство и продовольственный дефицит</label><br>
+            <input type="radio" name="q55" value="c" id="q55c"> <label for="q55c">c) Энергетическая бедность и цифровой разрыв</label><br>
+            <input type="radio" name="q55" value="d" id="q55d"> <label for="q55d">d) Демографический спад и загрязнение воздуха</label>
+        </div>
+
+        <div class="question" id="question56">
+            <label>56. В прибрежном государстве Y из-за подъёма уровня моря солёная вода проникает в подземные источники пресной воды. Фермеры не могут орошать поля, и начинается отток молодёжи в другие страны. Какие глобальные вызовы проявляются в этой цепочке?</label><br>
+            <input type="radio" name="q56" value="a" id="q56a"> <label for="q56a">a) Сырьевая проблема и угроза биоразнообразию</label><br>
+            <input type="radio" name="q56" value="b" id="q56b"> <label for="q56b">b) Водный кризис, миграции</label><br>
+            <input type="radio" name="q56" value="c" id="q56c"> <label for="q56c">c) Демографический переход и урбанизация</label><br>
+            <input type="radio" name="q56" value="d" id="q56d"> <label for="q56d">d) Истощение ресурсов и энергетическая бедность</label>
+        </div>
+
+        <div class="question" id="question57">
+            <label>57. В результате автоматизации сельского хозяйства в стране Z урожайность выросла, но сотни тысяч сельских работников потеряли работу и переехали в перенаселённые пригороды без инфраструктуры. Какие глобальные вызовы здесь взаимодействуют?</label><br>
+            <input type="radio" name="q57" value="a" id="q57a"> <label for="q57a">a) Изменение климата и Рурализация</label><br>
+            <input type="radio" name="q57" value="b" id="q57b"> <label for="q57b">b) Технологический прогресс, урбанизация и социальное неравенство</label><br>
+            <input type="radio" name="q57" value="c" id="q57c"> <label for="q57c">c) Продовольственный дефицит, голод и международная миграция</label><br>
+            <input type="radio" name="q57" value="d" id="q57d"> <label for="q57d">d) Потеря биоразнообразия и цифровизация</label>
+        </div>
+
+        <div class="question" id="question58">
+            <label>58. Какой из следующих демографических процессов в России создаёт риски для продовольственной безопасности в отдалённых регионах?</label><br>
+            <input type="radio" name="q58" value="a" id="q58a"> <label for="q58a">a) Отток населения из сельской местности и Дальнего Востока</label><br>
+            <input type="radio" name="q58" value="b" id="q58b"> <label for="q58b">b) Рост числа городов-миллионников</label><br>
+            <input type="radio" name="q58" value="c" id="q58c"> <label for="q58c">c) Положительный ЕП</label><br>
+            <input type="radio" name="q58" value="d" id="q58d"> <label for="q58d">d) Увеличение числа мигрантов в Москве</label>
+        </div>
+
+        <div class="question" id="question59">
+            <label>59. Какой из следующих подходов отражает роль России в решении проблемы водной безопасности в Центральной Азии?</label><br>
+            <input type="radio" name="q59" value="a" id="q59a"> <label for="q59a">a) Строительство плотин в Казахстане силами РФ</label><br>
+            <input type="radio" name="q59" value="b" id="q59b"> <label for="q59b">b) Участие в двусторонних переговорах по трансграничным рекам и поддержка устойчивого водопользования</label><br>
+            <input type="radio" name="q59" value="c" id="q59c"> <label for="q59c">c) Отказ от сотрудничества</label><br>
+            <input type="radio" name="q59" value="d" id="q59d"> <label for="q59d">d) Экспорт пресной воды из Сибири</label>
+        </div>
+
+        <div class="question" id="question60">
+            <label>60. Какой из следующих ресурсов России имеет стратегическое значение не только для энергетики, но и для глобального технологического развития?</label><br>
+            <input type="radio" name="q60" value="a" id="q60a"> <label for="q60a">a) Торф</label><br>
+            <input type="radio" name="q60" value="b" id="q60b"> <label for="q60b">b) Сланцы</label><br>
+            <input type="radio" name="q60" value="c" id="q60c"> <label for="q60c">c) Редкоземельные металлы и уран</label><br>
+            <input type="radio" name="q60" value="d" id="q60d"> <label for="q60d">d) Древесина</label>
         </div>
 
         <div class="navigation">
@@ -406,6 +650,7 @@
         </div>
     </form>
 </div>
+
 
 <!-- Modal for timeout notification -->
 <div class="modal-overlay" id="timeoutModal">
