@@ -2,170 +2,520 @@
 {% block content %}
 <title>Тест</title>
 <style>
-    .timer {
-        text-align: center;
-        font-size: 18px;
-        font-weight: bold;
-        color: #2c3e50;
-        margin: 20px 0;
-        padding: 10px;
-        background-color: #ecf0f1;
-        border-radius: 5px;
-        transition: all 0.3s ease;
+    label[for] {
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 0;
     }
+        .timer {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
 
-    .question-container {
-        max-width: 600px;
-        margin: 0 auto;
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .question-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            display: none;
+        }
+
+        .question.active {
+            display: block;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .prev-btn, .next-btn, .submit-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .prev-btn {
+            background-color: #b08bc7;
+            color: white;
+        }
+
+        .prev-btn:hover {
+            background-color: #b7a1c4;
+        }
+
+        .prev-btn:disabled {
+            background-color: #c9bad6;
+            cursor: not-allowed;
+        }
+
+        .next-btn, .submit-btn {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .next-btn:hover, .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-top:8px;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .modal-content h3 {
+            color: #e74c3c;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .modal-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .modal-btn:hover {
+            background-color: #229954;
+        }
+
+        .noselect {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
-
-    .question {
-        display: none;
-    }
-
-    .question.active {
-        display: block;
-    }
-
-    .navigation {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 30px;
-    }
-
-    .prev-btn, .next-btn, .submit-btn {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
-
-    .prev-btn {
-        background-color: #95a5a6;
-        color: white;
-    }
-
-    .prev-btn:hover {
-        background-color: #7f8c8d;
-    }
-
-    .prev-btn:disabled {
-        background-color: #bdc3c7;
-        cursor: not-allowed;
-    }
-
-    .next-btn, .submit-btn {
-        background-color: #3498db;
-        color: white;
-    }
-
-    .next-btn:hover, .submit-btn:hover {
-        background-color: #2980b9;
-    }
-
-    label {
-        font-weight: bold;
-        color: #2c3e50;
-        margin-bottom: 10px;
-        display: block;
-    }
-
-    input[type="radio"] {
-        margin-right: 8px;
-    }
-
-    input[type="text"] {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-        margin-top: 5px;
-    }
-
-    /* Modal styles */
-    .modal-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.5);
-        z-index: 1000;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .modal-content {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        text-align: center;
-        max-width: 400px;
-        width: 90%;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
-
-    .modal-content h3 {
-        color: #e74c3c;
-        margin-top: 0;
-        margin-bottom: 20px;
-    }
-
-    .modal-content p {
-        color: #2c3e50;
-        margin-bottom: 25px;
-        line-height: 1.5;
-    }
-
-    .modal-btn {
-        background-color: #27ae60;
-        color: white;
-        border: none;
-        padding: 10px 25px;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    .modal-btn:hover {
-        background-color: #229954;
-    }
-
-    .noselect {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
 </style>
-
 <body class="noselect">
 <h1 style="text-align: center; color: #333;">Тест</h1>
-
 <div class="timer" id="timer">Осталось: 20:00</div>
-
 <div class="question-container">
     <form method="post" id="testForm">
         <div class="question active" id="question1">
-            <label>Сколько тебе лет?</label><br>
-            <input type="radio" name="age" value="14" id="age14"> <label for="age14">14</label><br>
-            <input type="radio" name="age" value="16" id="age16"> <label for="age16">16</label><br>
-            <input type="radio" name="age" value="18" id="age18"> <label for="age18">18</label><br>
+            <label>1. Какой(ие) из следующих фактов о России является неверным?</label><br>
+            <input type="checkbox" name="q1" value="1" id="q1A"> <label for="q1A"> Плотность населения России
+            составляет 15 чел./км²</label><br>
+            <input type="checkbox" name="q1" value="2" id="q1B"> <label for="q1B"> В России более 190
+            национальностей</label><br>
+            <input type="checkbox" name="q1" value="3" id="q1C"> <label for="q1C"> Россия входит в ВТО</label><br>
+            <input type="checkbox" name="q1" value="4" id="q1D"> <label for="q1D"> Россия занимает 2 место по добыче
+            природного газа</label><br>
+            <input type="checkbox" name="q1" value="5" id="q1E"> <label for="q1E"> Внешняя политика направлена
+            на укрепление её позиций, сотрудничество, безопасность граждан</label><br>
+            <input type="checkbox" name="q1" value="6" id="q1F"> <label for="q1F"> Россия – унитарное государство с
+            республиканской формой правления</label>
         </div>
 
         <div class="question" id="question2">
-            <label>Как тебя зовут?</label><br>
-            <input type="text" name="name" id="name" required>
+            <label>2. Какой из следующих международных союзов был создан для углубления экономической интеграции между
+                Россией и другими странами СНГ?</label><br>
+            <input type="radio" name="q2" value="a" id="q2a"> <label for="q2a"> НАТО</label><br>
+            <input type="radio" name="q2" value="b" id="q2b"> <label for="q2b"> ЕАЭС</label><br>
+            <input type="radio" name="q2" value="c" id="q2c"> <label for="q2c"> ЕС</label><br>
+            <input type="radio" name="q2" value="d" id="q2d"> <label for="q2d"> ООН</label>
+        </div>
+
+        <div class="question" id="question3">
+            <label>3. Выберите цели, относящиеся к основным целям интеграции (множественный выбор):</label><br>
+            <input type="checkbox" name="q3" value="1" id="q3_1"> <label for="q3_1"> Укрепление взаимопонимания и
+            сотрудничества в политической, военной, социальной, культурной и других неэкономических областях</label><br>
+            <input type="checkbox" name="q3" value="2" id="q3_2"> <label for="q3_2"> Обеспечение экономического
+            развития страны вне зависимости от других стран</label><br>
+            <input type="checkbox" name="q3" value="3" id="q3_3"> <label for="q3_3"> Обеспечение расширения размеров
+            рынка, сокращение транзакционных издержек и извлечение выгод на основе теории экономики</label><br>
+            <input type="checkbox" name="q3" value="4" id="q3_4"> <label for="q3_4"> Обеспечение стабильного уровня
+            потребительских цен</label><br>
+            <input type="checkbox" name="q3" value="5" id="q3_5"> <label for="q3_5"> Обеспечение экономической свободы
+            для субъектов хозяйствования и частных лиц</label><br>
+            <input type="checkbox" name="q3" value="6" id="q3_6"> <label for="q3_6"> Привлечь прямые иностранные
+            инвестиции, которые с большей охотой приходят на рынки значительных размеров</label>
+        </div>
+
+        <div class="question" id="question4">
+            <label>4. Международная интеграция — это:</label><br>
+            <input type="radio" name="q4" value="c" id="q4A"> <label for="q4A"> Процесс объединения культур разных
+            стран</label><br>
+            <input type="radio" name="q4" value="b" id="q4B"> <label for="q4B"> Процесс объединения национальных
+            экономик для повышения взаимной торговли</label><br>
+            <input type="radio" name="q4" value="c" id="q4C"> <label for="q4C"> Процесс создания политических союзов
+            между государствами</label><br>
+            <input type="radio" name="q4" value="d" id="q4D"> <label for="q4D"> Процесс разделения экономик
+            стран</label>
+        </div>
+
+        <div class="question" id="question5">
+            <label>5. Какие страны, помимо России, являются членами ЕАЭС?</label><br>
+            <input type="radio" name="q5" value="a" id="q5a"> <label for="q5a"> Китай и Беларусь</label><br>
+            <input type="radio" name="q5" value="b" id="q5b"> <label for="q5b"> Казахстан и Беларусь</label><br>
+            <input type="radio" name="q5" value="c" id="q5c"> <label for="q5c"> Грузия и Армения</label><br>
+            <input type="radio" name="q5" value="d" id="q5d"> <label for="q5d"> Азербайджан и Таджикистан</label>
+        </div>
+
+        <div class="question" id="question6">
+            <label>6. Какой из следующих факторов наименьшим образом влияет на экономику России?</label><br>
+            <input type="radio" name="q6" value="a" id="q6a"> <label for="q6a"> Политическая стабильность</label><br>
+            <input type="radio" name="q6" value="b" id="q6b"> <label for="q6b"> Природные ресурсы</label><br>
+            <input type="radio" name="q6" value="c" id="q6c"> <label for="q6c"> Культурное разнообразие</label><br>
+            <input type="radio" name="q6" value="d" id="q6d"> <label for="q6d"> Инвестиции в технологии</label>
+        </div>
+
+        <div class="question" id="question7">
+            <label>7. Какой товар Россия чаще всего импортирует из других стран?</label><br>
+            <input type="radio" name="q7" value="a" id="q7a"> <label for="q7a"> Машины и оборудование</label><br>
+            <input type="radio" name="q7" value="b" id="q7b"> <label for="q7b"> Нефть и газ</label><br>
+            <input type="radio" name="q7" value="c" id="q7c"> <label for="q7c"> Зерно</label><br>
+            <input type="radio" name="q7" value="d" id="q7d"> <label for="q7d"> Древесина</label>
+        </div>
+
+        <div class="question" id="question8">
+            <label>8. Это экономическое объединение, созданное в 2015 году, которое включает страны, такие как Россия,
+                Беларусь, Казахстан, Армения и Кыргызстан. Его цель — углубление экономической интеграции между
+                государствами-участниками.</label><br>
+            <input type="text" name="q8" placeholder="Введите аббревиатуру">
+        </div>
+
+        <div class="question" id="question9">
+            <label>9. Это международная организация, основанная в 1995 году, которая занимается вопросами международной
+                торговли, снижением торговых барьеров и разрешением споров.</label><br>
+            <input type="text" name="q9" placeholder="Введите аббревиатуру">
+        </div>
+
+        <div class="question" id="question10">
+            <label>10. Это региональная организация, основанная в 2001 году, которая включает страны, такие как Россия,
+                Китай и Индия. Она сосредоточена на политическом, экономическом и военном сотрудничестве.</label><br>
+            <input type="text" name="q10" placeholder="Введите аббревиатуру">
+        </div>
+
+        <div class="question" id="question11">
+            <label class="question-text">11. Расположите страны по убыванию численности населения (перетащите мышью или
+                введите порядок через запятую):<br>Индия, Китай, США, Индонезия, Пакистан, Нигерия, Бразилия, Бангладеш,
+                Россия</label>
+            <input type="text" name="q11" placeholder="Например: Китай, Индия, США...">
+        </div>
+
+        <div class="question" id="question12">
+            <label class="question-text">12. Сопоставьте международные организации с их характеристиками:</label>
+            <div class="answer-option">
+                <input type="radio" name="q12" value="1" id="q12_1">
+                <label for="q12_1" class="answer-text">ООН — Постоянный член Совета Безопасности с правом вето</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q12" value="2" id="q12_2">
+                <label for="q12_2" class="answer-text">БРИКС — Альтернатива западноцентричной финансовой системе</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q12" value="3" id="q12_3">
+                <label for="q12_3" class="answer-text">ШОС — Платформа для диалога с Китаем и странами Центральной
+                    Азии</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q12" value="4" id="q12_4">
+                <label for="q12_4" class="answer-text">АТЭС — Доступ к рынкам Азиатско-Тихоокеанского региона</label>
+            </div>
+        </div>
+
+        <div class="question" id="question13">
+            <label>13. Сколько государств граничит с Россией?</label>
+            <input type="text" name="q13" id="q13" placeholder="Только число">
+        </div>
+
+        <div class="question" id="question14">
+            <label class="question-text">14. Какой из следующих океанов НЕ омывает Россию?</label>
+            <div class="answer-option">
+                <input type="radio" name="q14" value="a" id="q14a">
+                <label for="q14a" class="answer-text"> Атлантический</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q14" value="b" id="q14b">
+                <label for="q14b" class="answer-text"> Северный Ледовитый</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q14" value="c" id="q14c">
+                <label for="q14c" class="answer-text"> Тихий</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q14" value="d" id="q14d">
+                <label for="q14d" class="answer-text"> Индийский</label>
+            </div>
+        </div>
+
+        <div class="question" id="question15">
+            <label class="question-text">15. Какая отрасль экономики России делает страну одним из мировых лидеров по
+                производству зерна?</label>
+            <div class="answer-option">
+                <input type="radio" name="q15" value="a" id="q15a">
+                <label for="q15a" class="answer-text">a) Лёгкая промышленность</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q15" value="b" id="q15b">
+                <label for="q15b" class="answer-text">b) Сельское хозяйство</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q15" value="c" id="q15c">
+                <label for="q15c" class="answer-text">c) Химическая промышленность</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q15" value="d" id="q15d">
+                <label for="q15d" class="answer-text">d) Пищевая промышленность</label>
+            </div>
+        </div>
+
+        <div class="question" id="question16">
+            <label class="question-text">16. Какая из следующих стран входит в ЕАЭС вместе с Россией?</label>
+            <div class="answer-option">
+                <input type="radio" name="q16" value="a" id="q16a">
+                <label for="q16a" class="answer-text">a) Украина</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q16" value="b" id="q16b">
+                <label for="q16b" class="answer-text">b) Армения</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q16" value="c" id="q16c">
+                <label for="q16c" class="answer-text">c) Грузия</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q16" value="d" id="q16d">
+                <label for="q16d" class="answer-text">d) Турция</label>
+            </div>
+        </div>
+
+        <div class="question" id="question17">
+            <label class="question-text">17. Какое место Россия занимает в мире по численности населения?</label>
+            <input type="text" name="q17" placeholder="Только число">
+        </div>
+
+        <div class="question" id="question18">
+            <label class="question-text">18. Какой из следующих товаров входит в топ-5 экспортных позиций
+                России?</label>
+            <div class="answer-option">
+                <input type="radio" name="q18" value="a" id="q18a">
+                <label for="q18a" class="answer-text">a) Серная кислота</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q18" value="b" id="q18b">
+                <label for="q18b" class="answer-text">b) Одежда</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q18" value="c" id="q18c">
+                <label for="q18c" class="answer-text">c) Медикаменты</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q18" value="d" id="q18d">
+                <label for="q18d" class="answer-text">d) Ноутбуки</label>
+            </div>
+        </div>
+
+        <div class="question" id="question19">
+            <label class="question-text">19. Какой из следующих тезисов НАИБОЛЕЕ точно отражает подход России к
+                суверенитету в её внешней политике?</label>
+            <div class="answer-option">
+                <input type="radio" name="q19" value="a" id="q19a">
+                <label for="q19a" class="answer-text">a) Россия готова делегировать суверенитет международным
+                    организациям</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q19" value="b" id="q19b">
+                <label for="q19b" class="answer-text">b) Россия стремится сохранить суверенитет и противодействует
+                    вмешательству во внутренние дела</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q19" value="c" id="q19c">
+                <label for="q19c" class="answer-text">c) Суверенитет считается устаревшей концепцией</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q19" value="d" id="q19d">
+                <label for="q19d" class="answer-text">d) Суверенитет важен только в военной сфере</label>
+            </div>
+        </div>
+
+        <div class="question" id="question20">
+            <label class="question-text">20. Что из перечисленного является прямым следствием неравномерного размещения
+                населения в России?</label>
+            <div class="answer-option">
+                <input type="radio" name="q20" value="a" id="q20a">
+                <label for="q20a" class="answer-text">a) Преобладание сельского населения</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q20" value="b" id="q20b">
+                <label for="q20b" class="answer-text">b) Социально-экономическое неравенство между регионами</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q20" value="c" id="q20c">
+                <label for="q20c" class="answer-text">c) Снижение доли городского населения</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q20" value="d" id="q20d">
+                <label for="q20d" class="answer-text">d) Увеличение численности коренных народов</label>
+            </div>
+        </div>
+
+        <div class="question" id="question21">
+            <label class="question-text">21. Какой из следующих аспектов человеческого потенциала России прямо влияет на
+                её трудовые ресурсы?</label>
+            <div class="answer-option">
+                <input type="radio" name="q21" value="a" id="q21a">
+                <label for="q21a" class="answer-text">a) Многонациональный состав</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q21" value="b" id="q21b">
+                <label for="q21b" class="answer-text">b) Преобладание женского населения</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q21" value="c" id="q21c">
+                <label for="q21c" class="answer-text">c) Повышение пенсионного возраста</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q21" value="d" id="q21d">
+                <label for="q21d" class="answer-text">d) Высокий уровень урбанизации</label>
+            </div>
+        </div>
+
+        <div class="question" id="question22">
+            <label class="question-text">22. Какое из перечисленных преимуществ интеграции в ЕАЭС?</label>
+            <div class="answer-option">
+                <input type="radio" name="q22" value="a" id="q22a">
+                <label for="q22a" class="answer-text">a) Общая валюта</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q22" value="b" id="q22b">
+                <label for="q22b" class="answer-text">b) Привлечение иностранных инвестиций за счёт крупного общего
+                    рынка</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q22" value="c" id="q22c">
+                <label for="q22c" class="answer-text">c) Единая армия</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q22" value="d" id="q22d">
+                <label for="q22d" class="answer-text">d) Автоматический вступление в ВТО</label>
+            </div>
+        </div>
+
+        <div class="question" id="question23">
+            <label class="question-text">23. Какой из следующих тезисов о БРИКС соответствует материалу
+                конспекта?</label>
+            <div class="answer-option">
+                <input type="radio" name="q23" value="a" id="q23a">
+                <label for="q23a" class="answer-text">a) БРИКС создан для военного сотрудничества</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q23" value="b" id="q23b">
+                <label for="q23b" class="answer-text">b) БРИКС занимается экономическим сотрудничеством, инфраструктурой
+                    и борьбой с бедностью</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q23" value="c" id="q23c">
+                <label for="q23c" class="answer-text">c) БРИКС включает только азиатские страны</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q23" value="d" id="q23d">
+                <label for="q23d" class="answer-text">d) БРИКС является альтернативой ООН</label>
+            </div>
+        </div>
+
+        <div class="question" id="question24">
+            <label class="question-text">24. Какой из следующих тезисов о ШОС?</label>
+            <div class="answer-option">
+                <input type="radio" name="q24" value="a" id="q24a">
+                <label for="q24a" class="answer-text">a) ШОС включает только страны СНГ</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q24" value="b" id="q24b">
+                <label for="q24b" class="answer-text">b) ШОС занимается вопросами безопасности, экономики и культурного
+                    обмена</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q24" value="c" id="q24c">
+                <label for="q24c" class="answer-text">c) ШОС была создана в 2010 году</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q24" value="d" id="q24d">
+                <label for="q24d" class="answer-text">d) ШОС не включает Китай</label>
+            </div>
+        </div>
+
+        <div class="question" id="question25">
+            <label class="question-text">25. Какой из следующих народов составляет около 4% населения России?</label>
+            <div class="answer-option">
+                <input type="radio" name="q25" value="a" id="q25a">
+                <label for="q25a" class="answer-text">a) Украинцы</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q25" value="b" id="q25b">
+                <label for="q25b" class="answer-text">b) Татары</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q25" value="c" id="q25c">
+                <label for="q25c" class="answer-text">c) Башкиры</label>
+            </div>
+            <div class="answer-option">
+                <input type="radio" name="q25" value="d" id="q25d">
+                <label for="q25d" class="answer-text">d) Чеченцы</label>
+            </div>
         </div>
 
         <div class="navigation">
@@ -175,7 +525,6 @@
     </form>
 </div>
 
-<!-- Modal for timeout notification -->
 <div class="modal-overlay" id="timeoutModal">
     <div class="modal-content">
         <h3>Время вышло!</h3>
@@ -194,12 +543,12 @@
     const timeoutModal = document.getElementById('timeoutModal');
     const modalOkBtn = document.getElementById('modalOkBtn');
 
-    // Таймер на 20 минут (1200 секунд)
-    let timeLeft = 12; // Для реального использования - 20 минут
+    const TOTAL_TIME = 1200; // 20 минут в секундах
+    const STORAGE_KEY = 'test_answers_' + window.location.pathname;
+    const TIMER_KEY = 'test_timer_' + window.location.pathname;
 
     let timerInterval;
     let isAutoSubmitted = false;
-    const STORAGE_KEY = 'test_answers_' + window.location.pathname;
 
     // Функция форматирования времени
     function formatTime(seconds) {
@@ -235,6 +584,20 @@
         }
     }
 
+    // Сохранение времени в sessionStorage
+    function saveTimer(time) {
+        sessionStorage.setItem(TIMER_KEY, time.toString());
+    }
+
+    // Загрузка времени из sessionStorage
+    function loadTimer() {
+        const savedTime = sessionStorage.getItem(TIMER_KEY);
+        if (savedTime !== null) {
+            return parseInt(savedTime, 10);
+        }
+        return TOTAL_TIME;
+    }
+
     // Обновление таймера
     function updateTimer() {
         timerElement.textContent = `Осталось: ${formatTime(timeLeft)}`;
@@ -246,6 +609,7 @@
         }
 
         timeLeft--;
+        saveTimer(timeLeft); // Сохраняем оставшееся время
         saveAnswers(); // Сохраняем ответы каждую секунду
     }
 
@@ -254,8 +618,9 @@
         if (isAutoSubmitted) return;
         isAutoSubmitted = true;
 
-        // Сохраняем финальные ответы
+        // Сохраняем финальные ответы и время
         saveAnswers();
+        saveTimer(0);
 
         // Показываем модальное окно
         timeoutModal.style.display = 'flex';
@@ -297,6 +662,7 @@
         } else {
             // Отправка формы
             clearInterval(timerInterval);
+            saveTimer(0); // Сохраняем, что время закончилось
             testForm.submit();
         }
     }
@@ -322,12 +688,15 @@
         if (!isAutoSubmitted) {
             e.preventDefault();
             clearInterval(timerInterval);
+            saveTimer(0); // Сохраняем, что время закончилось
             // Отправка формы через AJAX чтобы не перезагружать страницу
             const formData = new FormData(testForm);
             const xhr = new XMLHttpRequest();
             xhr.open('POST', window.location.href, true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4) {
+                    sessionStorage.removeItem(STORAGE_KEY);
+                    sessionStorage.removeItem(TIMER_KEY);
                     alert('Тест успешно отправлен!');
                     window.location.href = '/';
                 }
@@ -339,14 +708,25 @@
     // Обработка нажатия OK в модальном окне
     modalOkBtn.addEventListener('click', function() {
         modalOkBtn.disabled = true;
+        sessionStorage.removeItem(STORAGE_KEY);
+        sessionStorage.removeItem(TIMER_KEY);
         window.location.href = '/';
     });
 
     // Загрузка сохраненных ответов при инициализации
     loadAnswers();
 
-    // Запуск таймера
-    timerInterval = setInterval(updateTimer, 1000);
+    // Загрузка сохраненного времени при инициализации
+    let timeLeft = loadTimer();
+
+    // Если время уже истекло, сразу отправляем
+    if (timeLeft <= 0) {
+        autoSubmit();
+    } else {
+        // Запуск таймера
+        timerInterval = setInterval(updateTimer, 1000);
+    }
+
     showQuestion(currentQuestion);
 
     // Инициализация кнопки OK как неактивной до отправки

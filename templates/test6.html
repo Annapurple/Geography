@@ -1,0 +1,644 @@
+{% extends "base.html" %}
+{% block content %}
+<title>Тест</title>
+<style>
+
+    label[for] {
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 0;
+    }
+        .timer {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .question-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            display: none;
+        }
+
+        .question.active {
+            display: block;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .prev-btn, .next-btn, .submit-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .prev-btn {
+            background-color: #b08bc7;
+            color: white;
+        }
+
+        .prev-btn:hover {
+            background-color: #b7a1c4;
+        }
+
+        .prev-btn:disabled {
+            background-color: #c9bad6;
+            cursor: not-allowed;
+        }
+
+        .next-btn, .submit-btn {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .next-btn:hover, .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-top:8px;
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .modal-content h3 {
+            color: #e74c3c;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .modal-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .modal-btn:hover {
+            background-color: #229954;
+        }
+
+        .noselect {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+</style>
+
+<body class="noselect">
+<h1 style="text-align: center; color: #333;">Тест</h1>
+
+<div class="timer" id="timer">Осталось: 20:00</div>
+
+<div class="question-container">
+    <form method="post" id="testForm">
+        <div class="question active" id="question1">
+            <label>1. Какая наука изучает численность, состав и воспроизводство населения?</label><br>
+            <input type="radio" name="q1" value="A" id="q1A"> <label for="q1A"> Социология</label><br>
+            <input type="radio" name="q1" value="B" id="q1B"> <label for="q1B"> Этнография</label><br>
+            <input type="radio" name="q1" value="C" id="q1C"> <label for="q1C"> Демография</label><br>
+            <input type="radio" name="q1" value="D" id="q1D"> <label for="q1D"> Геополитика</label>
+        </div>
+
+        <div class="question" id="question2">
+            <label>2. Что такое естественный прирост населения?</label><br>
+            <input type="radio" name="q2" value="A" id="q2A"> <label for="q2A"> Разница между мигрантами и эмигрантами</label><br>
+            <input type="radio" name="q2" value="B" id="q2B"> <label for="q2B"> Разность между рождаемостью и смертностью</label><br>
+            <input type="radio" name="q2" value="C" id="q2C"> <label for="q2C"> Общий прирост населения за год</label><br>
+            <input type="radio" name="q2" value="D" id="q2D"> <label for="q2D"> Сумма рождаемости и смертности</label>
+        </div>
+
+        <div class="question" id="question3">
+            <label>3. Какой тип воспроизводства характерен для большинства развитых стран?</label><br>
+            <input type="radio" name="q3" value="A" id="q3A"> <label for="q3A"> Расширенный</label><br>
+            <input type="radio" name="q3" value="B" id="q3B"> <label for="q3B"> Суженный</label><br>
+            <input type="radio" name="q3" value="C" id="q3C"> <label for="q3C"> Простой</label><br>
+            <input type="radio" name="q3" value="D" id="q3D"> <label for="q3D"> Динамичный</label>
+        </div>
+
+        <div class="question" id="question4">
+            <label>4. Какой показатель рождаемости необходим для простого воспроизводства населения?</label><br>
+            <input type="radio" name="q4" value="A" id="q4A"> <label for="q4A"> 1,0</label><br>
+            <input type="radio" name="q4" value="B" id="q4B"> <label for="q4B"> 2,1</label><br>
+            <input type="radio" name="q4" value="C" id="q4C"> <label for="q4C"> 3,0</label><br>
+            <input type="radio" name="q4" value="D" id="q4D"> <label for="q4D"> 1,5</label>
+        </div>
+
+        <div class="question" id="question5">
+            <label>5. Что такое «демографический взрыв»?</label><br>
+            <input type="radio" name="q5" value="A" id="q5A"> <label for="q5A"> Резкое снижение численности населения</label><br>
+            <input type="radio" name="q5" value="B" id="q5B"> <label for="q5B"> Резкий рост численности населения при падении смертности</label><br>
+            <input type="radio" name="q5" value="C" id="q5C"> <label for="q5C"> Старение населения</label><br>
+            <input type="radio" name="q5" value="D" id="q5D"> <label for="q5D"> Миграционный кризис</label>
+        </div>
+
+        <div class="question" id="question6">
+            <label>6. Какие из перечисленных стран проводят стимулирующую демографическую политику?</label><br>
+            <input type="checkbox" name="q6" value="A" id="q6A"> <label for="q6A"> Россия</label><br>
+            <input type="checkbox" name="q6" value="B" id="q6B"> <label for="q6B"> Индия</label><br>
+            <input type="checkbox" name="q6" value="C" id="q6C"> <label for="q6C"> Германия</label><br>
+            <input type="checkbox" name="q6" value="D" id="q6D"> <label for="q6D"> США</label>
+        </div>
+
+        <div class="question" id="question7">
+            <label>7. Какие факторы способствуют демографическому кризису в России?</label><br>
+            <input type="checkbox" name="q7" value="A" id="q7A"> <label for="q7A">Низкая рождаемость</label><br>
+            <input type="checkbox" name="q7" value="B" id="q7B"> <label for="q7B">Высокая смертность мужчин</label><br>
+            <input type="checkbox" name="q7" value="C" id="q7C"> <label for="q7C">Экономическая нестабильность</label><br>
+            <input type="checkbox" name="q7" value="D" id="q7D"> <label for="q7D">Высокий уровень иммиграции</label>
+        </div>
+
+        <div class="question" id="question8">
+            <label>8. Установите соответствие между типом воспроизводства и его характеристикой:<br>
+            1) Расширенный<br>
+            2) Суженный<br>
+            3) Простой<br>
+            A) Население сокращается<br>
+            B) Население растёт<br>
+            C) Численность стабильна</label><br>
+            <input type="text" name="q8" placeholder="Пример: BAC">
+        </div>
+
+        <div class="question" id="question9">
+            <label>9. «Резкое сокращение численности населения из-за низкой рождаемости и/или высокой смертности» — это:</label><br>
+            <input type="radio" name="q9" value="A" id="q9A"> <label for="q9A"> Демографический взрыв</label><br>
+            <input type="radio" name="q9" value="B" id="q9B"> <label for="q9B"> Демографический кризис</label><br>
+            <input type="radio" name="q9" value="C" id="q9C"> <label for="q9C"> Демографический переход</label><br>
+            <input type="radio" name="q9" value="D" id="q9D"> <label for="q9D"> Миграционный отток</label>
+        </div>
+
+        <div class="question" id="question10">
+            <label>10. В какой стране ранее действовала политика «одного ребёнка»?</label><br>
+            <input type="radio" name="q10" value="A" id="q10A"> <label for="q10A"> Индия</label><br>
+            <input type="radio" name="q10" value="B" id="q10B"> <label for="q10B"> Китай</label><br>
+            <input type="radio" name="q10" value="C" id="q10C"> <label for="q10C"> Бразилия</label><br>
+            <input type="radio" name="q10" value="D" id="q10D"> <label for="q10D"> Япония</label>
+        </div>
+
+        <div class="question" id="question11">
+            <label>11. К какой глобальной проблеме относится образование мегаполисов и трущоб?</label><br>
+            <input type="radio" name="q11" value="A" id="q11A"> <label for="q11A"> Демографической</label><br>
+            <input type="radio" name="q11" value="B" id="q11B"> <label for="q11B"> Проблеме урбанизации</label><br>
+            <input type="radio" name="q11" value="C" id="q11C"> <label for="q11C"> Продовольственной</label><br>
+            <input type="radio" name="q11" value="D" id="q11D"> <label for="q11D"> Экологической</label>
+        </div>
+
+        <div class="question" id="question12">
+            <label>12. Какая из перечисленных проблем наиболее остро стоит в странах Африки?</label><br>
+            <input type="radio" name="q12" value="A" id="q12A"> <label for="q12A"> Старение населения</label><br>
+            <input type="radio" name="q12" value="B" id="q12B"> <label for="q12B"> Демографический взрыв и голод</label><br>
+            <input type="radio" name="q12" value="C" id="q12C"> <label for="q12C"> Отрицательный прирост</label><br>
+            <input type="radio" name="q12" value="D" id="q12D"> <label for="q12D"> Избыток трудовых ресурсов</label>
+        </div>
+
+        <div class="question" id="question13">
+            <label>13. Продовольственная проблема особенно остра в странах, где наблюдается:</label><br>
+            <input type="radio" name="q13" value="A" id="q13A"> <label for="q13A"> Отрицательный прирост</label><br>
+            <input type="radio" name="q13" value="B" id="q13B"> <label for="q13B"> Высокий демографический прирост при слабом АПК</label><br>
+            <input type="radio" name="q13" value="C" id="q13C"> <label for="q13C"> Старение населения</label><br>
+            <input type="radio" name="q13" value="D" id="q13D"> <label for="q13D"> Высокий уровень урбанизации</label>
+        </div>
+
+        <div class="question" id="question14">
+            <label>14. Оцените суждения:<br>
+            А) В странах с нейтральной демографической политикой рождаемость и смертность всегда равны.<br>
+            Б) Демографический переход завершён во всех странах мира.</label><br>
+            <input type="radio" name="q14" value="1" id="q14_1"> <label for="q14_1">1) Верно только А</label><br>
+            <input type="radio" name="q14" value="2" id="q14_2"> <label for="q14_2">2) Верно только Б</label><br>
+            <input type="radio" name="q14" value="3" id="q14_3"> <label for="q14_3">3) Оба суждения верны</label><br>
+            <input type="radio" name="q14" value="4" id="q14_4"> <label for="q14_4">4) Оба суждения неверны</label>
+        </div>
+
+        <div class="question" id="question15">
+            <label>15. Какой показатель используется для измерения рождаемости и смертности?</label><br>
+            <input type="radio" name="q15" value="A" id="q15A"> <label for="q15A"> Проценты</label><br>
+            <input type="radio" name="q15" value="B" id="q15B"> <label for="q15B"> Промилле</label><br>
+            <input type="radio" name="q15" value="C" id="q15C"> <label for="q15C"> Децибелы</label><br>
+            <input type="radio" name="q15" value="D" id="q15D"> <label for="q15D"> Индексы</label>
+        </div>
+
+        <div class="question" id="question16">
+            <label>16. Какие из перечисленных факторов усугубляют продовольственную проблему?</label><br>
+            <input type="checkbox" name="q16" value="A" id="q16A"> <label for="q16A">Климатические риски</label><br>
+            <input type="checkbox" name="q16" value="B" id="q16B"> <label for="q16B">Слабое развитие АПК</label><br>
+            <input type="checkbox" name="q16" value="C" id="q16C"> <label for="q16C">Быстрый рост населения</label><br>
+            <input type="checkbox" name="q16" value="D" id="q16D"> <label for="q16D">Старение населения</label>
+        </div>
+
+        <div class="question" id="question17">
+            <label>17. Укажите последствия сверхбыстрого роста городов:</label><br>
+            <input type="checkbox" name="q17" value="A" id="q17A"> <label for="q17A">Формирование трущоб</label><br>
+            <input type="checkbox" name="q17" value="B" id="q17B"> <label for="q17B">Перегрузка транспортной системы</label><br>
+            <input type="checkbox" name="q17" value="C" id="q17C"> <label for="q17C">Ухудшение экологической обстановки</label><br>
+            <input type="checkbox" name="q17" value="D" id="q17D"> <label for="q17D">Снижение уровня урбанизации</label>
+        </div>
+
+        <div class="question" id="question18">
+            <label>18. Соотнесите тип демографической политики и страну:<br>
+            1. Китай (до 2016)<br>
+            2. Россия<br>
+            3. Канада<br>
+            4. Аргентина<br>
+            5. Франция<br>
+            6. Япония<br>
+            A. Ограничительная<br>
+            B. Стимулирующая<br>
+            C. Нейтральная</label><br>
+            <input type="text" name="q18" placeholder="Пример: ABCBBC">
+        </div>
+
+        <div class="question" id="question19">
+            <label>19. Если в стране рождаемость — 8‰, смертность — 12‰, то естественный прирост равен:</label><br>
+            <input type="radio" name="q19" value="A" id="q19A"> <label for="q19A"> +4‰</label><br>
+            <input type="radio" name="q19" value="B" id="q19B"> <label for="q19B"> –4‰</label><br>
+            <input type="radio" name="q19" value="C" id="q19C"> <label for="q19C"> 20‰</label><br>
+            <input type="radio" name="q19" value="D" id="q19D"> <label for="q19D"> 8‰</label>
+        </div>
+
+        <div class="question" id="question20">
+            <label>20. СКР в стране — 1,3. Какой тип воспроизводства наблюдается?</label><br>
+            <input type="radio" name="q20" value="A" id="q20A"> <label for="q20A"> Расширенный</label><br>
+            <input type="radio" name="q20" value="B" id="q20B"> <label for="q20B"> Суженный</label><br>
+            <input type="radio" name="q20" value="C" id="q20C"> <label for="q20C"> Простой</label><br>
+            <input type="radio" name="q20" value="D" id="q20D"> <label for="q20D"> Кризисный</label>
+        </div>
+
+        <div class="question" id="question21">
+            <label>21. Население страны — 50 млн человек. Естественный прирост = –2‰. На сколько человек сократится население за год?</label><br>
+            <input type="text" name="q21" placeholder="Только число">
+        </div>
+
+        <div class="question" id="question22">
+            <label>22. В стране N за год родилось 850 000 человек при населении 170 млн. Чему равен коэффициент рождаемости (в ‰)?</label><br>
+            <input type="radio" name="q22" value="A" id="q22A"> <label for="q22A"> 8,5‰</label><br>
+            <input type="radio" name="q22" value="B" id="q22B"> <label for="q22B"> 5‰</label><br>
+            <input type="radio" name="q22" value="C" id="q22C"> <label for="q22C"> 10‰</label><br>
+            <input type="radio" name="q22" value="D" id="q22D"> <label for="q22D"> 0,5‰</label>
+        </div>
+
+        <div class="question" id="question23">
+            <label>23. Если в стране уровень простого воспроизводства не достигнут, а СКР = 1,4, то какова вероятная демографическая тенденция?</label><br>
+            <input type="radio" name="q23" value="A" id="q23A"> <label for="q23A"> Демографический взрыв</label><br>
+            <input type="radio" name="q23" value="B" id="q23B"> <label for="q23B"> Постепенное сокращение населения</label><br>
+            <input type="radio" name="q23" value="C" id="q23C"> <label for="q23C"> Стабильная численность</label><br>
+            <input type="radio" name="q23" value="D" id="q23D"> <label for="q23D"> Резкий рост миграции</label>
+        </div>
+
+        <div class="question" id="question24">
+            <label>24. В стране X продолжительность жизни у мужчин — 58 лет, у женщин — 63 года, а в стране Y — 82 и 86 лет соответственно. Какой вывод можно сделать?</label><br>
+            <input type="radio" name="q24" value="A" id="q24A"> <label for="q24A"> В стране Y выше рождаемость</label><br>
+            <input type="radio" name="q24" value="B" id="q24B"> <label for="q24B"> В стране X острее проблема здоровья и долголетия</label><br>
+            <input type="radio" name="q24" value="C" id="q24C"> <label for="q24C"> В стране X выше уровень урбанизации</label><br>
+            <input type="radio" name="q24" value="D" id="q24D"> <label for="q24D"> В стране Y наблюдается демографический кризис</label>
+        </div>
+
+        <div class="question" id="question25">
+            <label>25. В стране наблюдается одновременно рост числа мегаполисов и увеличение площади трущоб. Какая глобальная проблема здесь доминирует?</label><br>
+            <input type="radio" name="q25" value="A" id="q25A"> <label for="q25A"> Демографическая</label><br>
+            <input type="radio" name="q25" value="B" id="q25B"> <label for="q25B"> Проблема урбанизации</label><br>
+            <input type="radio" name="q25" value="C" id="q25C"> <label for="q25C"> Продовольственная</label><br>
+            <input type="radio" name="q25" value="D" id="q25D"> <label for="q25D"> Рурализация</label>
+        </div>
+
+        <div class="question" id="question26">
+            <label>26. В стране Z наблюдается СКР = 4,2, слабо развитый АПК и частые засухи. Какая глобальная проблема здесь наиболее актуальна?</label><br>
+            <input type="radio" name="q26" value="A" id="q26A"> <label for="q26A"> Продовольственная при высоком демографическом приросте</label><br>
+            <input type="radio" name="q26" value="B" id="q26B"> <label for="q26B"> Демографическое старение</label><br>
+            <input type="radio" name="q26" value="C" id="q26C"> <label for="q26C"> Утечка кадров</label><br>
+            <input type="radio" name="q26" value="D" id="q26D"> <label for="q26D"> Энергетический дефицит</label>
+        </div>
+
+        <div class="question" id="question27">
+            <label>27. Какие из перечисленных утверждений верны для стран с демографическим кризисом?</label><br>
+            <input type="checkbox" name="q27" value="A" id="q27A"> <label for="q27A">СКР &lt; 2,1</label><br>
+            <input type="checkbox" name="q27" value="B" id="q27B"> <label for="q27B">Преобладает суженный тип воспроизводства</label><br>
+            <input type="checkbox" name="q27" value="C" id="q27C"> <label for="q27C">Растёт доля лиц старше 65 лет</label><br>
+            <input type="checkbox" name="q27" value="D" id="q27D"> <label for="q27D">Наблюдается демографический взрыв</label>
+        </div>
+
+        <div class="question" id="question28">
+            <label>28. Почему в России, несмотря на стимулирующую демографическую политику, СКР остаётся ниже 2,1?</label><br>
+            <input type="radio" name="q28" value="A" id="q28A"> <label for="q28A"> Из-за высокого уровня миграции</label><br>
+            <input type="radio" name="q28" value="B" id="q28B"> <label for="q28B"> Из-за социально-экономической нестабильности и позднего вступления в брак</label><br>
+            <input type="radio" name="q28" value="C" id="q28C"> <label for="q28C"> Из-за избытка трудовых ресурсов</label><br>
+            <input type="radio" name="q28" value="D" id="q28D"> <label for="q28D"> Из-за политики ограничения рождаемости</label>
+        </div>
+
+        <div class="question" id="question29">
+            <label>29. Страна не вмешивается в процессы рождаемости и смертности, но активно регулирует потоки трудовой миграции. Какой тип политики описан?</label><br>
+            <input type="radio" name="q29" value="A" id="q29A"> <label for="q29A"> Стимулирующая</label><br>
+            <input type="radio" name="q29" value="B" id="q29B"> <label for="q29B"> Ограничительная</label><br>
+            <input type="radio" name="q29" value="C" id="q29C"> <label for="q29C"> Нейтральная</label><br>
+            <input type="radio" name="q29" value="D" id="q29D"> <label for="q29D"> Смешанная</label>
+        </div>
+
+        <div class="question" id="question30">
+            <label>30. Суждение А: «Для простого воспроизводства населения СКР должен быть равен 2,1».<br>
+            Суждение Б: «Продовольственная проблема особенно остра в странах с высоким демографическим приростом и слабым АПК».</label><br>
+            <input type="radio" name="q30" value="A" id="q30A"> <label for="q30A">A) Верно только А</label><br>
+            <input type="radio" name="q30" value="B" id="q30B"> <label for="q30B">B) Верно только Б</label><br>
+            <input type="radio" name="q30" value="C" id="q30C"> <label for="q30C">C) Оба верны</label><br>
+            <input type="radio" name="q30" value="D" id="q30D"> <label for="q30D">D) Оба неверны</label>
+        </div>
+
+        <div class="question" id="question31">
+            <label>31. В стране X ежегодный прирост населения составляет 3,1%, СКР = 5,2, уровень урбанизации — 42%, а доля населения, живущего за чертой бедности, превышает 60%. Агропромышленный комплекс (АПК) развит слабо, зависит от дождевого земледелия и часто страдает от засух. При этом в стране наблюдается высокая миграция молодёжи в соседние государства в поисках работы, а средняя продолжительность жизни — 65 год.<br>
+            Какие глобальные проблемы наиболее остро проявляются в этой стране?</label><br>
+            <input type="radio" name="q31" value="A" id="q31A"> <label for="q31A"> Демографический кризис и старение населения</label><br>
+            <input type="radio" name="q31" value="B" id="q31B"> <label for="q31B"> Низкий уровень образования и упадок сельскохозяйственных территорий</label><br>
+            <input type="radio" name="q31" value="C" id="q31C"> <label for="q31C"> Демографический взрыв и продовольственная проблема</label><br>
+            <input type="radio" name="q31" value="D" id="q31D"> <label for="q31D"> Проблема здоровья и низкое долголетие</label>
+        </div>
+
+        <div class="question" id="question32">
+            <label>32. В стране Y численность населения сокращается на 0,6% в год, СКР = 1,2, доля лиц старше 65 лет — 28%, высокий уровень миграции. При этом страна вкладывает значительные средства в здравоохранение: продолжительность жизни — 83 года. Однако многие сельские населённые пункты заброшены, а в крупных городах наблюдается рост числа трущобных районов из-за притока бедных иммигрантов.<br>
+            Какие две глобальные проблемы здесь переплетаются?</label><br>
+            <input type="radio" name="q32" value="A" id="q32A"> <label for="q32A"> Демографический взрыв и урбанизация</label><br>
+            <input type="radio" name="q32" value="B" id="q32B"> <label for="q32B"> Продовольственная проблема и проблема трудоустройства</label><br>
+            <input type="radio" name="q32" value="C" id="q32C"> <label for="q32C"> Демографический кризис и проблема урбанизации</label><br>
+            <input type="radio" name="q32" value="D" id="q32D"> <label for="q32D"> Здоровье и долголетие в сочетании с миграционным кризисом</label>
+        </div>
+
+        <div class="navigation">
+            <button type="button" class="prev-btn" id="prevBtn" disabled>← Назад</button>
+            <button type="button" class="next-btn" id="nextBtn">Далее →</button>
+        </div>
+ </form>
+</div>
+
+<div class="modal-overlay" id="timeoutModal">
+    <div class="modal-content">
+        <h3>Время вышло!</h3>
+        <p>Ваши ответы автоматически сохранены.<br>Тест завершен.</p>
+        <button class="modal-btn" id="modalOkBtn">OK</button>
+    </div>
+</div>
+
+<script>
+    let currentQuestion = 0;
+    const questions = document.querySelectorAll('.question');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const testForm = document.getElementById('testForm');
+    const timerElement = document.getElementById('timer');
+    const timeoutModal = document.getElementById('timeoutModal');
+    const modalOkBtn = document.getElementById('modalOkBtn');
+
+    const TOTAL_TIME = 1200; // 20 минут в секундах
+    const STORAGE_KEY = 'test_answers_' + window.location.pathname;
+    const TIMER_KEY = 'test_timer_' + window.location.pathname;
+
+    let timerInterval;
+    let isAutoSubmitted = false;
+
+    // Функция форматирования времени
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    // Сохранение ответов в sessionStorage
+    function saveAnswers() {
+        const formData = new FormData(testForm);
+        const answers = {};
+        for (let [key, value] of formData.entries()) {
+            answers[key] = value;
+        }
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+    }
+
+    // Загрузка ответов из sessionStorage
+    function loadAnswers() {
+        const saved = sessionStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            const answers = JSON.parse(saved);
+            // Восстанавливаем radio buttons
+            if (answers.age) {
+                const ageRadio = document.querySelector(`input[name="age"][value="${answers.age}"]`);
+                if (ageRadio) ageRadio.checked = true;
+            }
+            // Восстанавливаем текстовое поле
+            if (answers.name) {
+                document.getElementById('name').value = answers.name;
+            }
+        }
+    }
+
+    // Сохранение времени в sessionStorage
+    function saveTimer(time) {
+        sessionStorage.setItem(TIMER_KEY, time.toString());
+    }
+
+    // Загрузка времени из sessionStorage
+    function loadTimer() {
+        const savedTime = sessionStorage.getItem(TIMER_KEY);
+        if (savedTime !== null) {
+            return parseInt(savedTime, 10);
+        }
+        return TOTAL_TIME;
+    }
+
+    // Обновление таймера
+    function updateTimer() {
+        timerElement.textContent = `Осталось: ${formatTime(timeLeft)}`;
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            autoSubmit();
+            return;
+        }
+
+        timeLeft--;
+        saveTimer(timeLeft); // Сохраняем оставшееся время
+        saveAnswers(); // Сохраняем ответы каждую секунду
+    }
+
+    // Автоматическая отправка при истечении времени
+    function autoSubmit() {
+        if (isAutoSubmitted) return;
+        isAutoSubmitted = true;
+
+        // Сохраняем финальные ответы и время
+        saveAnswers();
+        saveTimer(0);
+
+        // Показываем модальное окно
+        timeoutModal.style.display = 'flex';
+
+        // Отключаем кнопки навигации
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        nextBtn.textContent = 'Отправлено';
+        nextBtn.classList.replace('next-btn', 'submit-btn');
+
+        // Отправляем форму программно
+        const formData = new FormData(testForm);
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', window.location.href, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                // После отправки разрешаем нажать OK
+                modalOkBtn.disabled = false;
+            }
+        };
+        xhr.send(formData);
+    }
+
+    // Обработка навигации
+    function showQuestion(index) {
+        questions.forEach((question, i) => {
+            question.classList.toggle('active', i === index);
+        });
+
+        prevBtn.disabled = index === 0;
+        nextBtn.textContent = index === questions.length - 1 ? 'Отправить' : 'Далее →';
+    }
+
+    function nextQuestion() {
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            showQuestion(currentQuestion);
+            saveAnswers();
+        } else {
+            // Отправка формы
+            clearInterval(timerInterval);
+            saveTimer(0); // Сохраняем, что время закончилось
+            testForm.submit();
+        }
+    }
+
+    function prevQuestion() {
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            showQuestion(currentQuestion);
+            saveAnswers();
+        }
+    }
+
+    // Обработчики событий
+    nextBtn.addEventListener('click', nextQuestion);
+    prevBtn.addEventListener('click', prevQuestion);
+
+    // Сохранение при изменении полей
+    testForm.addEventListener('change', saveAnswers);
+    testForm.addEventListener('input', saveAnswers);
+
+    // Обработка отправки формы (ручной отправки)
+    testForm.addEventListener('submit', function(e) {
+        if (!isAutoSubmitted) {
+            e.preventDefault();
+            clearInterval(timerInterval);
+            saveTimer(0); // Сохраняем, что время закончилось
+            // Отправка формы через AJAX чтобы не перезагружать страницу
+            const formData = new FormData(testForm);
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', window.location.href, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    sessionStorage.removeItem(STORAGE_KEY);
+                    sessionStorage.removeItem(TIMER_KEY);
+                    alert('Тест успешно отправлен!');
+                    window.location.href = '/';
+                }
+            };
+            xhr.send(formData);
+        }
+    });
+
+    // Обработка нажатия OK в модальном окне
+    modalOkBtn.addEventListener('click', function() {
+        modalOkBtn.disabled = true;
+        sessionStorage.removeItem(STORAGE_KEY);
+        sessionStorage.removeItem(TIMER_KEY);
+        window.location.href = '/';
+    });
+
+    // Загрузка сохраненных ответов при инициализации
+    loadAnswers();
+
+    // Загрузка сохраненного времени при инициализации
+    let timeLeft = loadTimer();
+
+    // Если время уже истекло, сразу отправляем
+    if (timeLeft <= 0) {
+        autoSubmit();
+    } else {
+        // Запуск таймера
+        timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    showQuestion(currentQuestion);
+
+    // Инициализация кнопки OK как неактивной до отправки
+    modalOkBtn.disabled = true;
+</script>
+</body>
+{% endblock %}

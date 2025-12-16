@@ -1,0 +1,392 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-lg-8 mx-auto">
+    <h1></h1>
+    <!-- Географическое положение -->
+    <section class="card shadow-sm mb-5">
+        <div class="row g-0">
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='./img/map.jpg') }}" width=100% height=100%>
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h2 class="card-title h4">Географическое положение России</h2>
+                    <p class="card-text">
+                        Россия — самая большая страна мира, занимающая обширную территорию в Восточной Европе и Северной
+                        Азии. Её площадь составляет более 17 млн км².
+                    </p>
+                    <ul class="list-unstyled">
+                        <li><strong>Границы:</strong> 60,9 тыс. км (сухопутные — 22 тыс. км, морские — 38,8 тыс. км)
+                        </li>
+                        <li><strong>Граничит с 16 государствами</strong> (с Японией и США — морские границы)</li>
+                        <li><strong>Омывается водами 12 морей</strong> трёх океанов: Атлантического, Северного
+                            Ледовитого и Тихого
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Политическая система -->
+    <section class="mb-5">
+        <h2 class="h3 mb-3 text-primary">Политическая система и статус</h2>
+        <div class="card border-primary">
+            <div class="card-body">
+                <p class="card-text">
+                    Согласно Конституции РФ, Россия является <strong>демократическим федеративным правовым
+                    государством</strong> с республиканской формой правления.
+                </p>
+                <p class="card-text">
+                    По уровню социально-экономического развития относится к группе экономически развитых стран (по
+                    мнению некоторых учёных — к странам с переходной экономикой).
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Внешняя политика -->
+    <section class="card shadow-sm mb-5">
+        <div class="card-header bg-primary text-white">
+            <h2 class="h4 mb-0">Внешняя политика России</h2>
+        </div>
+        <div class="card-body">
+            <p>Внешняя политика России направлена на укрепление её позиций на международной арене, развитие
+                сотрудничества с другими странами и обеспечение безопасности своих граждан.</p>
+
+            <h3 class="h5 mt-4">Основные направления:</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <strong>Сохранение суверенитета и территориальной целостности</strong> — противодействие
+                    вмешательству во внутренние дела
+                </li>
+                <li class="list-group-item">
+                    <strong>Развитие сотрудничества</strong> с государствами СНГ, ШОС, БРИКС и другими международными
+                    организациями
+                </li>
+                <li class="list-group-item">
+                    <strong>Участие в решении глобальных проблем</strong> — изменение климата, борьба с терроризмом и
+                    наркотрафиком
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Международные организации -->
+    <section class="mb-5">
+        <h2 class="h3 mb-4 text-primary">Россия в международных организациях</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-info">
+                    <div class="card-body">
+                        <h3 class="h5 card-title text-info">ООН</h3>
+                        <p class="card-text">РФ — постоянный член Совета Безопасности ООН с правом вето, что позволяет
+                            защищать свои интересы и интересы союзников на международной аренена международной
+                            арене.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-warning">
+                    <div class="card-body">
+                        <h3 class="h5 card-title text-warning">ОБСЕ</h3>
+                        <p class="card-text">Россия является одним из основателей ОБСЕ и активно участвует в вопросах
+                            безопасности, прав человека и демократии в Европе и Центральной Азии.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-success">
+                    <div class="card-body">
+                        <h3 class="h5 card-title text-success">ШОС</h3>
+                        <p class="card-text">Шанхайская организация сотрудничества (Россия, Китай, Казахстан, Киргизия,
+                            Таджикистан, Узбекистан) занимается вопросами безопасности, экономического сотрудничества и
+                            культурного обмена в регионе.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-danger">
+                    <div class="card-body">
+                        <h3 class="h5 card-title text-danger">БРИКС</h3>
+                        <p class="card-text">Группа стран (Россия, Бразилия, Индия, Китай, ЮАР), занимающаяся вопросами
+                            экономического сотрудничества, развития инфраструктуры и борьбы с бедностью.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="card shadow-sm mb-5">
+        <div class="card-header bg-success text-white">
+            <h2 class="h4 mb-0">Место России в мировой экономике</h2>
+        </div>
+        <div class="card-body">
+            <div class="row align-items-center mb-4">
+                <div class="col-md-8">
+                    <p class="card-text">
+                        Экономика (хозяйство страны) — исторически сложившаяся совокупность предприятий и учреждений,
+                        основанная на географическом разделении труда.
+                    </p>
+                    <p class="card-text">
+                        Экономическая система России основана на принципах рыночной экономики, хотя государство играет
+                        значительную роль в регулировании экономических процессов.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://images.unsplash.com/photo-1580655653885-65763b2597d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                         class="img-fluid rounded" alt="Экономика России">
+                </div>
+            </div>
+
+            <!-- Экспорт и импорт -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card h-100 border-success">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="h5 mb-0">Экспорт</h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Процесс вывоза продукции с целью продажи или обмена за пределы
+                                страны.</p>
+                            <p class="card-text"><strong>Россия является крупным экспортёром:</strong> нефти, газа,
+                                металлов и других товаров.</p>
+                            <p class="card-text"><strong>Основные партнёры России по экспорту:</strong> страны Европы,
+                                Азии и Латинской Америки.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-primary">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="h5 mb-0">Импорт</h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Процесс ввоза продукции в страну с целью продажи или обмена.</p>
+                            <p class="card-text"><strong>Импорт в Россию включает товары,</strong> которые не
+                                производятся в стране или производятся в недостаточном количестве.</p>
+                            <p class="card-text"><strong>Основные партнёры:</strong> страны Европы, Азии и Северной
+                                Америки.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задачи внешнеэкономической политики -->
+            <div class="card border-warning mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="h5 mb-0">Задачи внешнеэкономической политики</h4>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li>Расширение экспорта и привлечение иностранных инвестиций для стимулирования экономического
+                            роста.
+                        </li>
+                        <li>Защита от недобросовестной конкуренции и негативных воздействий со стороны других стран.
+                        </li>
+                        <li>Участие в международных организациях и форумах для защиты своих интересов и влияния на
+                            принятие решений.
+                        </li>
+                        <li>Развитие торговых и экономических отношений с ключевыми партнерами и диверсификация
+                            экономических связей.
+                        </li>
+                        <li>Содействие технологическому развитию и инновациям для повышения конкурентоспособности.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Основные отрасли экономики -->
+            <h3 class="h5 mb-3">Основные отрасли экономики России:</h3>
+            <div class="row g-3">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card text-center h-100 border-danger">
+                        <div class="card-body">
+                            <h4 class="h6 card-title">Нефтегазовый сектор</h4>
+                            <p class="card-text small">Россия является одним из крупнейших производителей и экспортёров
+                                нефти и газа в мире.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card text-center h-100 border-dark">
+                        <div class="card-body">
+                            <h4 class="h6 card-title">Металлургия</h4>
+                            <p class="card-text small">Россия обладает крупными запасами полезных ископаемых, включая
+                                железную руду, уголь и другие металлы.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card text-center h-100 border-info">
+                        <div class="card-body">
+                            <h4 class="h6 card-title">Машиностроение</h4>
+                            <p class="card-text small">Россия производит широкий спектр машин и оборудования, включая
+                                автомобили, самолёты и суда.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card text-center h-100 border-success">
+                        <div class="card-body">
+                            <h4 class="h6 card-title">Сельское хозяйство</h4>
+                            <p class="card-text small">Россия является одним из крупнейших производителей зерна в
+                                мире.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Россия в мировой экономике -->
+            <div class="mt-4">
+                <h4 class="h5 mb-3">Россия в мировой экономике:</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="h6 card-title">Места, занимаемые Россией на мировом рынке:</h5>
+                        <ul class="mb-0">
+                            <li><strong>1-е место:</strong> Зерновые культуры (пшеница, овес), сахарная свекла</li>
+                            <li><strong>2-е место:</strong> Природный газ, алюминий, молочные продукты</li>
+                            <li><strong>3-е место:</strong> Нефть, морепродукты, стальные трубы</li>
+                            <li><strong>4-е место:</strong> Серная кислота, чугун, сталь, энергия, пиломатериалы,
+                                минеральные удобрения
+                            </li>
+                            <li><strong>5-е место:</strong> Готовый прокат черных металлов, железные руды,
+                                машиностроение
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Интеграция в мировую экономику -->
+    <section class="mb-5">
+        <h2 class="h3 mb-4 text-primary">Интеграция России в мировую экономику</h2>
+        <div class="card border-primary mb-4">
+            <div class="card-body">
+                <p class="lead mb-0">
+                    Интеграция в мировую экономику — это процесс объединения национальных экономик государств в единую
+                    систему, который предполагает взаимное сближение и углубление взаимодействия, вплоть до унификации
+                    экономической политики.
+                </p>
+            </div>
+        </div>
+
+        <p class="mb-4">
+            Россия стремится к интеграции в мировую экономику, что предполагает участие в международных экономических
+            организациях, заключение торговых соглашений и привлечение иностранных инвестиций.
+        </p>
+
+        <div class="row mt-4">
+            <div class="col-lg-4 mb-3">
+                <div class="card h-100 border-primary">
+                    <div class="card-body text-center">
+                        <h3 class="h5 card-title">ВТО</h3>
+                        <p class="card-text">Членство во Всемирной торговой организации позволяет России участвовать в
+                            международном торговом регулировании и получать доступ к рынкам других стран.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <div class="card h-100 border-success">
+                    <div class="card-body text-center">
+                        <h3 class="h5 card-title">ЕАЭС</h3>
+                        <p class="card-text">Евразийский экономический союз объединяет страны СНГ для развития
+                            экономического сотрудничества. Россия — один из его основателей.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <div class="card h-100 border-warning">
+                    <div class="card-body text-center">
+                        <h3 class="h5 card-title">ШОС</h3>
+                        <p class="card-text">Участие в Шанхайской организации сотрудничества способствует решению
+                            вопросов безопасности и экономического сотрудничества в регионе.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Человеческий потенциал -->
+    <section class="card shadow-sm mb-5">
+        <div class="card-header bg-info text-white">
+            <h2 class="h4 mb-0">Человеческий потенциал России</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><strong>Численность населения:</strong> около 146 млн человек (9-е место в
+                            мире)
+                        </li>
+                        <li class="mb-2"><strong>Плотность населения:</strong> 8,53 чел./км²</li>
+                        <li class="mb-2"><strong>Размещение:</strong> неравномерное (причины: природные, исторические,
+                            социально-экономические)
+                        </li>
+                        <li class="mb-2"><strong>Преобладает городское население</strong> (в отличие от мирового тренда)
+                        </li>
+                        <li class="mb-2"><strong>Преобладает женское население</strong> (как в большинстве стран
+                            умеренных широт)
+                        </li>
+                        <li class="mb-2"><strong>Многонациональность:</strong> более 190 национальностей</li>
+                        <li><strong>Религиозный состав:</strong> разнообразный</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                         class="img-fluid rounded" alt="Население России">
+                </div>
+            </div>
+
+            <h3 class="h5 mt-4">Основные этнические группы:</h3>
+            <div class="row text-center mt-3">
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded">
+                        <h4 class="h6">Русские</h4>
+                        <p class="fw-bold text-primary">более 80%</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded">
+                        <h4 class="h6">Татары</h4>
+                        <p class="fw-bold text-primary">около 4%</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-light rounded">
+                        <h4 class="h6">Украинцы</h4>
+                        <p class="fw-bold text-primary">около 3%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="alert alert-info mt-5">
+        <h5 class="alert-heading">Задание: Законспектировать материал (конспект не проверяется) + пройти тест</h5>
+    </div>
+
+    <div class="alert alert-light border-start border-5 border-primary shadow-sm mt-5">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h4 class="alert-heading h5">Готовы проверить знания?</h4>
+                <p class="mb-0">После изучения материала пройдите тест. Тест можно пройти только 1 раз. На него дёется
+                    20 минут. При выходе с вкладки работа аннулируется. Желаю удачи</p>
+            </div>
+            <div class="col-md-4 text-end">
+                {% if current_user.is_authenticated %}
+                <div class="mb-3">
+                    <a href="/{{test}}" class="btn btn-primary">
+                        Начать тест
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
