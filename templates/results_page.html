@@ -5,8 +5,8 @@
     <label for="class_filter">Выберите класс:</label>
     <select name="class_filter" id="class_filter">
         <option value="">Все классы</option>
-        <option value="8а" {% if request.args.get('class_filter') == '8а' %} selected {% endif %}>8а</option>
-        <option value="8б" {% if request.args.get('class_filter') == '8б' %}selected{% endif %}>8б</option>
+        <option value="11а" {% if request.args.get('class_filter') == '11а' %} selected {% endif %}>11а</option>
+        <option value="11б" {% if request.args.get('class_filter') == '11б' %}selected{% endif %}>11б</option>
     </select>
     <button type="submit">Применить</button>
 </form>
@@ -19,8 +19,6 @@
             <th>Тест №3</th>
             <th>Тест №4</th>
             <th>Тест №5</th>
-            <th>Тест №6</th>
-            <th>Тест №7</th>
         </tr>
     </thead>
     <tbody>
@@ -32,8 +30,6 @@
             <td>{{ i.test3 }}</td>
             <td>{{ i.test4 }}</td>
             <td>{{ i.test5 }}</td>
-            <td>{{ i.test6 }}</td>
-            <td>{{ i.test7 }}</td>
         </tr>
         {% endfor %}
     </tbody>

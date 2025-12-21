@@ -39,11 +39,6 @@ def text4():
     return render_template("text4.html", test="test4")
 
 
-@app.route('/text5')
-def text5():
-    return render_template("text1.html", test="test5")
-
-
 @app.route('/test1', methods=['GET', 'POST'])
 def test1():
     if not current_user.is_authenticated:
@@ -82,53 +77,44 @@ def test1():
 
         if request.form.get('q10', '').strip().upper() == 'ШОС':
             score += 1
-        q11_correct = ['Китай', 'Индия', 'США', 'Индонезия', 'Пакистан', 'Нигерия', 'Бразилия', 'Бангладеш', 'Россия']
-        q11_raw = request.form.get('q11', '')
-        q11_user = [s.strip() for s in q11_raw.split(',')]
 
-        if q11_user == q11_correct:
+        if request.form.get('q11', '').strip() == '16':
             score += 1
 
-        if request.form.get('q12') in {'1', '2', '3', '4'}:
+        if request.form.get('q12') == 'd':
             score += 1
 
-        if request.form.get('q13', '').strip() == '16':
+        if request.form.get('q13') == 'b':
             score += 1
 
-        if request.form.get('q14') == 'd':
+        if request.form.get('q14') == 'b':
             score += 1
 
-        if request.form.get('q15') == 'b':
+        if request.form.get('q15', '').strip() == '9':
             score += 1
 
-        if request.form.get('q16') == 'b':
+        if request.form.get('q16') == 'a':
             score += 1
 
-        if request.form.get('q17', '').strip() == '9':
+        if request.form.get('q17') == 'b':
             score += 1
 
-        if request.form.get('q18') == 'a':
+        if request.form.get('q18') == 'b':
             score += 1
 
-        if request.form.get('q19') == 'b':
+        if request.form.get('q19') == 'c':
             score += 1
 
         if request.form.get('q20') == 'b':
             score += 1
 
-        if request.form.get('q21') == 'c':
+        if request.form.get('q21') == 'b':
             score += 1
 
         if request.form.get('q22') == 'b':
             score += 1
 
         if request.form.get('q23') == 'b':
-            score += 1
-
-        if request.form.get('q24') == 'b':
-            score += 1
-
-        if request.form.get('q25') == 'b':
             score += 1
 
         user_id = current_user.id
@@ -192,13 +178,11 @@ def test2():
         if request.form.get('q13', '').strip().replace(' ', '').lower() == 'гбдав':
             score += 1
 
-        q14_correct = "1-Природно-экономические,2-Политические,3-Геополитические,4-Социально-экономические"
-        q14_user = request.form.get('q14', '').strip().replace(' ', '')
-        if q14_user.lower() == q14_correct.replace(' ', '').lower():
+        q15 = set(request.form.getlist('q14'))
+        if q15 == {'B', 'D'}:
             score += 1
 
-        q15 = set(request.form.getlist('q15'))
-        if q15 == {'B', 'D'}:
+        if request.form.get('q15') == 'B':
             score += 1
 
         if request.form.get('q16') == 'B':
@@ -213,39 +197,36 @@ def test2():
         if request.form.get('q19') == 'B':
             score += 1
 
-        if request.form.get('q20') == 'B':
+        q21 = set(request.form.getlist('q20'))
+        if q21 == {'A', 'B'}:
             score += 1
 
-        q21 = set(request.form.getlist('q21'))
-        if q21 == {'A', 'B'}:
+        if request.form.get('q21') == 'C':
             score += 1
 
         if request.form.get('q22') == 'C':
             score += 1
 
-        if request.form.get('q23') == 'C':
+        if request.form.get('q23') == 'B':
             score += 1
 
         if request.form.get('q24') == 'B':
             score += 1
 
-        if request.form.get('q25') == 'B':
+        q26 = set(request.form.getlist('q25'))
+        if q26 == {'B', 'C'}:
             score += 1
 
-        q26 = set(request.form.getlist('q26'))
-        if q26 == {'B', 'C'}:
+        if request.form.get('q26') == 'B':
             score += 1
 
         if request.form.get('q27') == 'B':
             score += 1
 
-        if request.form.get('q28') == 'B':
+        if request.form.get('q28') == 'A':
             score += 1
 
-        if request.form.get('q29') == 'A':
-            score += 1
-
-        if request.form.get('q30') == 'D':
+        if request.form.get('q29') == 'D':
             score += 1
 
         user_id = current_user.id
@@ -268,7 +249,7 @@ def test3():
     if request.method == 'POST':
         score = 0
 
-        if request.form.get('q1', '').strip().replace(' ', '') == '3412':
+        if request.form.get('q1', '').strip().replace(' ', '') == '3124':
             score += 1
 
         q2 = set(request.form.getlist('q2'))
@@ -342,34 +323,30 @@ def test3():
             if q21_val == '5.7':
                 score += 1
 
-        if request.form.get('q22', '').strip().lower().replace('ё', 'е') in ['эвтрофикация', 'эвтрофикации',
-                                                                             'эвтрофикацией']:
+        if request.form.get('q22', '').strip().lower() in ['рекультивация', 'рекультивации']:
             score += 1
 
-        if request.form.get('q23', '').strip().lower() in ['рекультивация', 'рекультивации']:
-            score += 1
-
-        q24_ans = request.form.get('q24', '').strip().lower()
+        q24_ans = request.form.get('q23', '').strip().lower()
         if q24_ans in ['экологической', 'геоэкологической']:
             score += 1
 
-        if request.form.get('q25', '').strip().lower() in ['устойчивым', 'устойчивое']:
+        if request.form.get('q23', '').strip().lower() in ['устойчивым', 'устойчивое']:
             score += 1
 
-        if request.form.get('q26') == 'B':
+        if request.form.get('q25') == 'B':
             score += 1
 
-        q27 = set(request.form.getlist('q27'))
+        q27 = set(request.form.getlist('q26'))
         if q27 == {'A', 'C'}:
             score += 1
 
-        if request.form.get('q28') == 'C':
+        if request.form.get('q27') == 'C':
             score += 1
 
-        if request.form.get('q29') == 'B':
+        if request.form.get('q28') == 'B':
             score += 1
 
-        if request.form.get('q30') == 'D':
+        if request.form.get('q29') == 'D':
             score += 1
 
         user_id = current_user.id
@@ -525,11 +502,12 @@ def test5():
         score = 0
 
         q1 = request.form.get('q1')
-        if q1 == 'B':
+        if q1 == 'b':
             score += 1
 
-        q2 = request.form.get('q2')
-        if q2 == 'b':
+        q2 = request.form.getlist('q2')
+        correct_q2 = {'a', 'b', 'd'}
+        if set(q2) == correct_q2:
             score += 1
 
         q3 = request.form.getlist('q3')
@@ -538,42 +516,40 @@ def test5():
             score += 1
 
         q4 = request.form.getlist('q4')
-        correct_q4 = {'a', 'b', 'd'}
+        correct_q4 = {'a', 'b'}
         if set(q4) == correct_q4:
             score += 1
 
-        q5 = request.form.getlist('q5')
-        correct_q5 = {'a', 'b'}
-        if set(q5) == correct_q5:
+        q5 = request.form.get('q5', '').strip().upper()
+        if q5 == '1234':
             score += 1
 
-        q6 = request.form.get('q6', '').strip().upper()
-        if q6 == 'ABCD':
+        q6 = request.form.get('q6')
+        if q6 == '1':
             score += 1
 
-        q7 = request.form.get('q7')
-        if q7 == '1':
+        q7 = request.form.get('q7', '').strip()
+        if q7 == '17':
             score += 1
 
-        q8 = request.form.get('q8', '').strip()
-        if q8 == '17':
+        q8 = request.form.get('q8')
+        if q8 == 'b':
             score += 1
 
         q9 = request.form.get('q9')
-        if q9 == 'b':
+        if q9 == 'd':
             score += 1
 
         q10 = request.form.get('q10')
         if q10 == 'b':
             score += 1
 
-        # Вопрос 11
         q11 = request.form.get('q11')
-        if q11 == 'd':
+        if q11 == 'a':
             score += 1
 
         q12 = request.form.get('q12')
-        if q12 == 'b':
+        if q12 == 'd':
             score += 1
 
         q13 = request.form.get('q13')
@@ -581,11 +557,11 @@ def test5():
             score += 1
 
         q14 = request.form.get('q14')
-        if q14 == 'd':
+        if q14 == 'c':
             score += 1
 
         q15 = request.form.get('q15')
-        if q15 == 'a':
+        if q15 == 'b':
             score += 1
 
         q16 = request.form.get('q16')
@@ -593,19 +569,19 @@ def test5():
             score += 1
 
         q17 = request.form.get('q17')
-        if q17 == 'b':
+        if q17 == 'a':
             score += 1
 
         q18 = request.form.get('q18')
-        if q18 == 'c':
+        if q18 == 'b':
             score += 1
 
         q19 = request.form.get('q19')
-        if q19 == 'b':
+        if q19 == 'd':
             score += 1
 
         q20 = request.form.get('q20')
-        if q20 == 'a':
+        if q20 == 'c':
             score += 1
 
         q21 = request.form.get('q21')
@@ -613,70 +589,70 @@ def test5():
             score += 1
 
         q22 = request.form.get('q22')
-        if q22 == 'a':
+        if q22 == 'b':
             score += 1
 
         q23 = request.form.get('q23')
-        if q23 == 'b':
+        if q23 == 'c':
             score += 1
 
         q24 = request.form.get('q24')
-        if q24 == 'B':
+        if q24 == 'c':
             score += 1
 
         q25 = request.form.get('q25')
-        if q25 == 'B':
+        if q25 == 'b':
             score += 1
 
         q26 = request.form.get('q26')
-        if q26 == 'd':
+        if q26 == 'a':
             score += 1
 
         q27 = request.form.get('q27')
-        if q27 == 'g':
+        if q27 == 'b':
             score += 1
 
         q28 = request.form.get('q28')
-        if q28 == 'v':
+        if q28 == 'c':
             score += 1
 
         q29 = request.form.get('q29')
-        if q29 == 'g':
+        if q29 == 'c':
             score += 1
 
         q30 = request.form.get('q30')
-        if q30 == 'g':
+        if q30 == 'c':
             score += 1
 
         q31 = request.form.get('q31')
-        if q31 == 'B':
+        if q31 == 'c':
             score += 1
 
         q32 = request.form.get('q32')
         if q32 == 'b':
             score += 1
 
-        q33 = set(request.form.getlist('q33'))
+        q33 = request.form.get('q33')
         if q33 == 'b':
             score += 1
 
-        q34 = set(request.form.getlist('q34'))
-        if q34 == "c":
+        q34 = request.form.get('q34')
+        if q34 == 'b':
             score += 1
 
-        q35 = set(request.form.getlist('q35'))
+        q35 = request.form.get('q35')
         if q35 == 'b':
             score += 1
 
-        q36 = set(request.form.get('q36'))
-        if q36 == 'c':
+        q36 = request.form.get('q36')
+        if q36 == 'b':
             score += 1
 
         q37 = request.form.get('q37')
-        if q37 == 'b':
+        if q37 == 'a':
             score += 1
 
-        q38 = request.form.get('q38', '').strip()
+        q38 = request.form.get('q38')
         if q38 == 'b':
             score += 1
 
@@ -685,87 +661,7 @@ def test5():
             score += 1
 
         q40 = request.form.get('q40')
-        if q40 == 'b':
-            score += 1
-
-        q41 = request.form.get('q41')
-        if q41 == 'b':
-            score += 1
-
-        q42 = request.form.get('q42')
-        if q42 == 'a':
-            score += 1
-
-        q43 = request.form.get('q43')
-        if q43 == 'b':
-            score += 1
-
-        q44 = request.form.get('q44')
-        if q44 == 'a':
-            score += 1
-
-        q45 = request.form.get('q45')
-        if q45 == 'b':
-            score += 1
-
-        q46 = request.form.get('q46')
-        if q46 == 'c':
-            score += 1
-
-        q47 = request.form.get('q47')
-        if q47 == 'c':
-            score += 1
-
-        q48 = request.form.get('q48')
-        if q48 == 'c':
-            score += 1
-
-        q49 = request.form.get('q49')
-        if q49 == 'c':
-            score += 1
-
-        q50 = request.form.get('q50')
-        if q50 == 'b':
-            score += 1
-
-        q51 = request.form.get('q51')
-        if q51 == 'b':
-            score += 1
-
-        q52 = request.form.get('q52')
-        if q52 == 'b':
-            score += 1
-
-        q53 = request.form.get('q53')
-        if q53 == 'b':
-            score += 1
-
-        q54 = request.form.get('q54')
-        if q54 == 'b':
-            score += 1
-
-        q55 = request.form.get('q55')
-        if q55 == 'a':
-            score += 1
-
-        q56 = request.form.get('q56')
-        if q56 == 'b':
-            score += 1
-
-        q57 = request.form.get('q57')
-        if q57 == 'b':
-            score += 1
-
-        q58 = request.form.get('q58')
-        if q58 == 'a':
-            score += 1
-
-        q59 = request.form.get('q59')
-        if q59 == 'b':
-            score += 1
-
-        q60 = request.form.get('q60')
-        if q60 == 'c':
+        if q40 == 'c':
             score += 1
 
         user_id = current_user.id
@@ -788,42 +684,50 @@ def results():
     class_filter = request.args.get('class_filter', '')
     users = db_sess.query(User).filter(User.id != 1).order_by(User.class_choice, User.surname).all()
     for test in tests:
-        t = test.to_dict(only=["id", "user_id", "test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8"])
+        t = test.to_dict(only=["id", "user_id", "test1", "test2", "test3", "test4", "test5"])
         user = next((u for u in users if u.id == t["user_id"]), None)
         if user:
             t["user_id"] = f"{user.name} {user.surname}"
             t["id"] = user.id
             t["class_choice"] = user.class_choice
-            if test.test1:
-                t["test1"] = test.test1
-            else:
-                t["test1"] = 0
-            if test.test2:
-                t["test2"] = test.test2
-            else:
-                t["test2"] = 0
-            if test.test3:
-                t["test3"] = test.test3
-            else:
-                t["test3"] = 0
-            if test.test4:
-                t["test4"] = test.test4
-            else:
-                t["test4"] = 0
-            if test.test5:
-                t["test5"] = test.test5
-            else:
-                t["test5"] = 0
-            if test.test6:
-                t["test6"] = test.test6
-            else:
-                t["test6"] = 0
-            if test.test7:
-                t["test7"] = test.test7
-            else:
-                t["test7"] = 0
+            if 23 >= test.test1 >= 20:
+                t["test1"] = f'{test.test1}/23  -  5'
+            if 19 >= test.test1 >= 16:
+                t["test1"] = f'{test.test1}/23  -  4'
+            if 15 >= test.test1 >= 10:
+                t["test1"] = f'{test.test1}/23  -  3'
+
+            if 29 >= test.test2 >= 27:
+                t["test2"] = f'{test.test2}/29  -  5'
+            if 26 >= test.test2 >= 22:
+                t["test2"] = f'{test.test2}/29  -  4'
+            if 21 >= test.test2 >= 15:
+                t["test2"] = f'{test.test2}/29  -  3'
+
+            if 29 >= test.test3 >= 27:
+                t["test3"] = f'{test.test3}/29  -  5'
+            if 26 >= test.test3 >= 22:
+                t["test3"] = f'{test.test3}/29  -  4'
+            if 21 >= test.test3 >= 15:
+                t["test3"] = f'{test.test3}/29  -  3'
+
+            if 32 >= test.test4 >= 29:
+                t["test4"] = f'{test.test4}/32  -  5'
+            if 28 >= test.test4 >= 24:
+                t["test4"] = f'{test.test4}/32  -  5'
+            if 23 >= test.test4 >= 16:
+                t["test4"] = f'{test.test4}/32  -  5'
+
+            if 40 >= test.test5 >= 37:
+                t["test5"] = f'{test.test5}/40  -  5'
+            if 36 >= test.test5 >= 30:
+                t["test5"] = f'{test.test5}/40  -  4'
+            if 29 >= test.test5 >= 20:
+                t["test5"] = f'{test.test5}/40  -  3'
+
             if class_filter == '' or t["class_choice"] == class_filter:
                 new_test.append(t)
+
     return render_template("results_page.html", test=new_test)
 
 

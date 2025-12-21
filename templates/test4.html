@@ -451,21 +451,19 @@
     const timeoutModal = document.getElementById('timeoutModal');
     const modalOkBtn = document.getElementById('modalOkBtn');
 
-    const TOTAL_TIME = 1200; // 20 минут в секундах
+    const TOTAL_TIME = 1800;
     const STORAGE_KEY = 'test_answers_' + window.location.pathname;
     const TIMER_KEY = 'test_timer_' + window.location.pathname;
 
     let timerInterval;
     let isAutoSubmitted = false;
 
-    // Функция форматирования времени
     function formatTime(seconds) {
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
         return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     }
 
-    // Сохранение ответов в sessionStorage
     function saveAnswers() {
         const formData = new FormData(testForm);
         const answers = {};
@@ -475,29 +473,24 @@
         sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
     }
 
-    // Загрузка ответов из sessionStorage
     function loadAnswers() {
         const saved = sessionStorage.getItem(STORAGE_KEY);
         if (saved) {
             const answers = JSON.parse(saved);
-            // Восстанавливаем radio buttons
             if (answers.age) {
                 const ageRadio = document.querySelector(`input[name="age"][value="${answers.age}"]`);
                 if (ageRadio) ageRadio.checked = true;
             }
-            // Восстанавливаем текстовое поле
             if (answers.name) {
                 document.getElementById('name').value = answers.name;
             }
         }
     }
 
-    // Сохранение времени в sessionStorage
     function saveTimer(time) {
         sessionStorage.setItem(TIMER_KEY, time.toString());
     }
 
-    // Загрузка времени из sessionStorage
     function loadTimer() {
         const savedTime = sessionStorage.getItem(TIMER_KEY);
         if (savedTime !== null) {
@@ -506,7 +499,6 @@
         return TOTAL_TIME;
     }
 
-    // Обновление таймера
     function updateTimer() {
         timerElement.textContent = `Осталось: ${formatTime(timeLeft)}`;
 
@@ -517,42 +509,35 @@
         }
 
         timeLeft--;
-        saveTimer(timeLeft); // Сохраняем оставшееся время
-        saveAnswers(); // Сохраняем ответы каждую секунду
+        saveTimer(timeLeft);
+        saveAnswers();
     }
 
-    // Автоматическая отправка при истечении времени
     function autoSubmit() {
         if (isAutoSubmitted) return;
         isAutoSubmitted = true;
 
-        // Сохраняем финальные ответы и время
         saveAnswers();
         saveTimer(0);
 
-        // Показываем модальное окно
         timeoutModal.style.display = 'flex';
 
-        // Отключаем кнопки навигации
         prevBtn.disabled = true;
         nextBtn.disabled = true;
         nextBtn.textContent = 'Отправлено';
         nextBtn.classList.replace('next-btn', 'submit-btn');
 
-        // Отправляем форму программно
         const formData = new FormData(testForm);
         const xhr = new XMLHttpRequest();
         xhr.open('POST', window.location.href, true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
-                // После отправки разрешаем нажать OK
                 modalOkBtn.disabled = false;
             }
         };
         xhr.send(formData);
     }
 
-    // Обработка навигации
     function showQuestion(index) {
         questions.forEach((question, i) => {
             question.classList.toggle('active', i === index);
@@ -568,9 +553,8 @@
             showQuestion(currentQuestion);
             saveAnswers();
         } else {
-            // Отправка формы
             clearInterval(timerInterval);
-            saveTimer(0); // Сохраняем, что время закончилось
+            saveTimer(0);
             testForm.submit();
         }
     }
@@ -583,21 +567,17 @@
         }
     }
 
-    // Обработчики событий
     nextBtn.addEventListener('click', nextQuestion);
     prevBtn.addEventListener('click', prevQuestion);
 
-    // Сохранение при изменении полей
     testForm.addEventListener('change', saveAnswers);
     testForm.addEventListener('input', saveAnswers);
 
-    // Обработка отправки формы (ручной отправки)
     testForm.addEventListener('submit', function(e) {
         if (!isAutoSubmitted) {
             e.preventDefault();
             clearInterval(timerInterval);
-            saveTimer(0); // Сохраняем, что время закончилось
-            // Отправка формы через AJAX чтобы не перезагружать страницу
+            saveTimer(0);
             const formData = new FormData(testForm);
             const xhr = new XMLHttpRequest();
             xhr.open('POST', window.location.href, true);
@@ -613,7 +593,6 @@
         }
     });
 
-    // Обработка нажатия OK в модальном окне
     modalOkBtn.addEventListener('click', function() {
         modalOkBtn.disabled = true;
         sessionStorage.removeItem(STORAGE_KEY);
@@ -621,23 +600,17 @@
         window.location.href = '/';
     });
 
-    // Загрузка сохраненных ответов при инициализации
     loadAnswers();
 
-    // Загрузка сохраненного времени при инициализации
     let timeLeft = loadTimer();
 
-    // Если время уже истекло, сразу отправляем
     if (timeLeft <= 0) {
         autoSubmit();
     } else {
-        // Запуск таймера
         timerInterval = setInterval(updateTimer, 1000);
     }
 
     showQuestion(currentQuestion);
-
-    // Инициализация кнопки OK как неактивной до отправки
     modalOkBtn.disabled = true;
 </script>
 </body>

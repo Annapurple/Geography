@@ -3,18 +3,15 @@
 <div class="col-lg-8 mx-auto">
     <h1></h1>
     <!-- Географическое положение -->
-    <section class="card shadow-sm mb-5">
-        <div class="row g-0">
-            <div class="col-md-6">
-                <img src="{{ url_for('static', filename='./img/map.jpg') }}" width=100% height=100%>
-            </div>
-            <div class="col-md-6">
-                <div class="card-body">
-                    <h2 class="card-title h4">Географическое положение России</h2>
-                    <p class="card-text">
+    <section class="mb-5">
+        <h2 class="h3 mb-3 text-primary">Географическое положение России</h2>
+        <div class="card border-primary">
+            <div class="card-body">
+                <p class="card-text">
                         Россия — самая большая страна мира, занимающая обширную территорию в Восточной Европе и Северной
                         Азии. Её площадь составляет более 17 млн км².
-                    </p>
+                </p>
+
                     <ul class="list-unstyled">
                         <li><strong>Границы:</strong> 60,9 тыс. км (сухопутные — 22 тыс. км, морские — 38,8 тыс. км)
                         </li>
@@ -23,9 +20,9 @@
                             Ледовитого и Тихого
                         </li>
                     </ul>
+
                 </div>
             </div>
-        </div>
     </section>
 
 
@@ -373,10 +370,10 @@
             <div class="col-md-8">
                 <h4 class="alert-heading h5">Готовы проверить знания?</h4>
                 <p class="mb-0">После изучения материала пройдите тест. Тест можно пройти только 1 раз. На него дёется
-                    20 минут. При выходе с вкладки работа аннулируется. Желаю удачи</p>
+                    30 минут. Желаю удачи</p>
             </div>
             <div class="col-md-4 text-end">
-                {% if current_user.is_authenticated %}
+                {% if current_user.is_authenticated%}
                 <div class="mb-3">
                     <a href="/{{test}}" class="btn btn-primary">
                         Начать тест
