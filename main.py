@@ -1,7 +1,7 @@
 import secrets
 from forms.registration_form import RegisterForm
 from forms.login_form import LoginForm
-from flask import Flask, render_template, redirect, abort, request, url_for, send_file
+from flask import Flask, render_template, redirect, abort, request, url_for, send_file, jsonify
 from flask_login import login_user, LoginManager, logout_user, login_required, current_user
 from data import db_session
 from data.users import User
@@ -21,22 +21,102 @@ def page():
 
 @app.route('/text1')
 def text1():
-    return render_template("text1.html", test="test1")
+    test_result = ''
+    test_passed = ''
+    mark = ''
+    if  current_user.is_authenticated:
+        user_id = current_user.id
+        db_sess = db_session.create_session()
+        test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
+        if test_entry.test1 is not None:
+            test_passed = True
+            test_result = test_entry.test1
+
+        if 23 >= test_result >= 20:
+            mark = '5'
+        if 19 >= test_result >= 16:
+            mark = '4'
+        if 15 >= test_result >= 10:
+            mark = '3'
+        if test_result < 10:
+            mark = '2'
+        db_sess.close()
+    return render_template("text1.html", test="test1", test_passed=test_passed, test_result=test_result, mark=mark)
 
 
 @app.route('/text2')
 def text2():
-    return render_template("text2.html", test="test2")
+    test_result = ''
+    test_passed = ''
+    mark = ''
+    if current_user.is_authenticated:
+        user_id = current_user.id
+        db_sess = db_session.create_session()
+        test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
+        if test_entry.test2 is not None:
+            test_passed = True
+            test_result = test_entry.test2
+
+        if 29 >= test_result >= 27:
+            mark = '5'
+        if 26 >= test_result >= 22:
+            mark = '4'
+        if 21 >= test_result >= 15:
+            mark = '3'
+        if test_result < 15:
+            mark = '2'
+        db_sess.close()
+    return render_template("text2.html", test="test2", test_passed=test_passed, test_result=test_result, mark=mark)
 
 
 @app.route('/text3')
 def text3():
-    return render_template("text3.html", test="test3")
+    test_result = ''
+    test_passed = ''
+    mark = ''
+    if current_user.is_authenticated:
+        user_id = current_user.id
+        db_sess = db_session.create_session()
+        test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
+        if test_entry.test3 is not None:
+            test_passed = True
+            test_result = test_entry.test3
+
+        if 29 >= test_result >= 27:
+            mark = '5'
+        if 26 >= test_result >= 22:
+            mark = '4'
+        if 21 >= test_result >= 15:
+            mark = '3'
+        if test_result < 15:
+            mark = '2'
+        db_sess.close()
+    return render_template("text3.html", test="test3", test_passed=test_passed, test_result=test_result, mark=mark)
 
 
 @app.route('/text4')
 def text4():
-    return render_template("text4.html", test="test4")
+    test_result = ''
+    test_passed = ''
+    mark = ''
+    if current_user.is_authenticated:
+        user_id = current_user.id
+        db_sess = db_session.create_session()
+        test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
+        if test_entry.test4 is not None:
+            test_passed = True
+            test_result = test_entry.test4
+
+        if 32 >= test_result >= 29:
+            mark = '5'
+        if 28 >= test_result >= 24:
+            mark = '4'
+        if 23 >= test_result >= 16:
+            mark = '3'
+        if test_result < 16:
+            mark = '2'
+        db_sess.close()
+    return render_template("text4.html", test="test4", test_passed=test_passed, test_result=test_result, mark=mark)
 
 
 @app.route('/test1', methods=['GET', 'POST'])
@@ -125,7 +205,6 @@ def test1():
             test_entry = Tests(user_id=user_id, test1=score)
             db_sess.add(test_entry)
         db_sess.commit()
-        return redirect('/')
     return render_template('test1.html')
 
 
@@ -696,6 +775,10 @@ def results():
                 t["test1"] = f'{test.test1}/23  -  4'
             if 15 >= test.test1 >= 10:
                 t["test1"] = f'{test.test1}/23  -  3'
+            if test.test1 < 10:
+                t["test1"] = f'{test.test1}/23  -  2'
+            if not test.test1:
+                t["test1"] = ""
 
             if 29 >= test.test2 >= 27:
                 t["test2"] = f'{test.test2}/29  -  5'
@@ -703,6 +786,10 @@ def results():
                 t["test2"] = f'{test.test2}/29  -  4'
             if 21 >= test.test2 >= 15:
                 t["test2"] = f'{test.test2}/29  -  3'
+            if test.test2 < 15:
+                t["test2"] = f'{test.test2}/29  -  2'
+            if not test.test2:
+                t["test2"] = ""
 
             if 29 >= test.test3 >= 27:
                 t["test3"] = f'{test.test3}/29  -  5'
@@ -710,6 +797,10 @@ def results():
                 t["test3"] = f'{test.test3}/29  -  4'
             if 21 >= test.test3 >= 15:
                 t["test3"] = f'{test.test3}/29  -  3'
+            if test.test3 < 15:
+                t["test3"] = f'{test.test3}/29  -  2'
+            if not test.test3:
+                t["test3"] = ""
 
             if 32 >= test.test4 >= 29:
                 t["test4"] = f'{test.test4}/32  -  5'
@@ -717,6 +808,10 @@ def results():
                 t["test4"] = f'{test.test4}/32  -  5'
             if 23 >= test.test4 >= 16:
                 t["test4"] = f'{test.test4}/32  -  5'
+            if test.test4 < 16:
+                t["test4"] = f'{test.test4}/32  -  2'
+            if not test.test4:
+                t["test4"] = ""
 
             if 40 >= test.test5 >= 37:
                 t["test5"] = f'{test.test5}/40  -  5'
@@ -724,6 +819,10 @@ def results():
                 t["test5"] = f'{test.test5}/40  -  4'
             if 29 >= test.test5 >= 20:
                 t["test5"] = f'{test.test5}/40  -  3'
+            if test.test5 < 20:
+                t["test5"] = f'{test.test5}/40  -  2'
+            if not test.test5:
+                t["test5"] = ""
 
             if class_filter == '' or t["class_choice"] == class_filter:
                 new_test.append(t)

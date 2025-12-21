@@ -339,15 +339,23 @@
         <div class="row align-items-center">
             <div class="col-md-8">
                 <h4 class="alert-heading h5">Готовы проверить знания?</h4>
-                <p class="mb-0">После изучения материала пройдите тест. Тест можно пройти только 1 раз. На него дёется
+                <p class="mb-0">После изучения материала пройдите тест. Тест можно пройти только 1 раз. На него даётся
                     30 минут. Желаю удачи</p>
             </div>
             <div class="col-md-4 text-end">
-                {% if current_user.is_authenticated %}
+                {% if current_user.is_authenticated%}
+                <div class="mb-3">
+                    {% if test_passed%}
+                    <p style="color: blue;">Тест пройден</p>
+                    <p style="color: blue;">Ваш результат: {{test_result}}/29 </p>
+                    <p style="color: blue;">Ваша оценка: {{mark}}</p>
+                    {% else %}
                 <div class="mb-3">
                     <a href="/{{test}}" class="btn btn-primary">
                         Начать тест
                     </a>
+                </div>
+                {% endif %}
                 </div>
                 {% endif %}
             </div>

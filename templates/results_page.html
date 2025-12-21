@@ -25,11 +25,25 @@
         {% for i in test %}
         <tr>
             <td>{{ i.user_id }}</td>
-            <td>{{ i.test1 }}</td>
-            <td>{{ i.test2 }}</td>
-            <td>{{ i.test3 }}</td>
-            <td>{{ i.test4 }}</td>
-            <td>{{ i.test5 }}</td>
+            <td>
+                {% set parts = i.test1.split(' - ') %}
+                {{ parts[0] }} - <span style="color: blue;">{{ parts[1] }}</span></td>
+            <td>
+                {% set parts = i.test2.split(' - ') %}
+                {{ parts[0] }} - <span style="color:  blue;">{{ parts[1] }}</span>
+            </td>
+            <td>
+                {% set parts = i.test3.split(' - ') %}
+                {{ parts[0] }} - <span style="color:  blue;">{{ parts[1] }}</span>
+            </td>
+            <td>
+                {% set parts = i.test4.split(' - ') %}
+                {{ parts[0] }} - <span style="color:  blue;">{{ parts[1] }}</span>
+            </td>
+            <td>
+                {% set parts = i.test5.split(' - ') %}
+                {{ parts[0] }} - <span style="color:  blue;">{{ parts[1] }}</span>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
