@@ -27,42 +27,62 @@
             max-width: calc(100% - 80px);
             margin-left: auto;
             margin-right: auto;
+            position: relative;
         }
 
         .btn-custom {
             margin: 5px;
         }
-        .navbar {
-            background: linear-gradient(to right, #000, #444);
-            color: #0000ff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+        .nav-buttons-top-left {
+            position: absolute;
+            top: 10px;
+            left: 10px;
         }
-        .navbar a {
-            color: #fff;
+
+        .nav-buttons-top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .container .btn-nav {
+            margin: 4px;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            background-color: #a1c7ed;
+            border-color: #000;
+            color: #000;
+            border-radius: 6px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .container .btn-nav:hover {
+            background-color: #000;
+            border-color: #000;
+            color: white;
         }
     </style>
     <title>{{ title }}</title>
 </head>
 <body>
 
-<h1>Дистанционные работы по географии</h1>
-<nav class="navbar navbar-expand-lg">
-        <a class="btn btn-outline-light" href="/">Главная</a>
-    {% if current_user.id == 1%}
-        <a class="btn btn-outline-light" href="/results">Результаты</a>
-    {% endif %}
-        <div class="collapse navbar-collapse" style="display: flex; justify-content: flex-end;">
-            {% if current_user.is_authenticated %}
-                <a class="btn btn-outline-light" href="/logout">Выйти</a>
-            {% else %}
-                <div class="ml-auto">
-                    <a class="btn btn-outline-light" href="/register">Зарегистрироваться</a>
-                    <a class="btn btn-outline-light" href="/login">Войти</a>
-                </div>
-            {% endif %}
-        </div>
-    </nav>
 <main role="main" class="container">
+    <div class="nav-buttons-top-left">
+        <a class="btn btn-nav" href="/">Главная</a>
+        {% if current_user.id == 1%}
+            <a class="btn btn-nav" href="/results">Результаты</a>
+        {% endif %}
+    </div>
+    <div class="nav-buttons-top-right">
+        {% if current_user.is_authenticated %}
+            <a class="btn btn-nav" href="/logout">Выйти</a>
+        {% else %}
+            <a class="btn btn-nav" href="/register">Зарегистрироваться</a>
+            <a class="btn btn-nav" href="/login">Войти</a>
+        {% endif %}
+    </div>
     {% block content %}{% endblock %}
 </main>
 </body>

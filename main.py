@@ -16,7 +16,68 @@ login_manager.init_app(app)
 
 @app.route('/')
 def page():
-    return render_template("main_page.html")
+    test_entry = ''
+    mark1, mark2, mark3, mark4, mark5 = '', '', '', '', ''
+    if current_user.is_authenticated:
+        user_id = current_user.id
+        db_sess = db_session.create_session()
+        test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
+        if not test_entry:
+            test_entry = Tests(user_id=user_id)
+            db_sess.add(test_entry)
+            db_sess.commit()
+            db_sess.refresh(test_entry)
+        if test_entry and test_entry.test1 is not None:
+            test_result1 = test_entry.test1
+            if 23 >= test_result1 >= 20:
+                mark1 = '5'
+            if 19 >= test_result1 >= 16:
+                mark1 = '4'
+            if 15 >= test_result1 >= 10:
+                mark1 = '3'
+            if test_result1 < 10:
+                mark1 = '2'
+        if test_entry and test_entry.test2 is not None:
+            test_result2 = test_entry.test2
+            if 29 >= test_result2 >= 27:
+                mark2 = '5'
+            if 26 >= test_result2 >= 22:
+                mark2 = '4'
+            if 21 >= test_result2 >= 15:
+                mark2 = '3'
+            if test_result2 < 15:
+                mark2 = '2'
+        if test_entry and test_entry.test3 is not None:
+            test_result3 = test_entry.test3
+            if 29 >= test_result3 >= 27:
+                mark3 = '5'
+            if 26 >= test_result3 >= 22:
+                mark3 = '4'
+            if 21 >= test_result3 >= 15:
+                mark3 = '3'
+            if test_result3 < 15:
+                mark3 = '2'
+        if test_entry and test_entry.test4 is not None:
+            test_result4 = test_entry.test4
+            if 32 >= test_result4 >= 29:
+                mark4 = '5'
+            if 28 >= test_result4 >= 24:
+                mark4 = '4'
+            if 23 >= test_result4 >= 16:
+                mark4 = '3'
+            if test_result4 < 16:
+                mark4 = '2'
+        if test_entry and test_entry.test5 is not None:
+            test_result5 = test_entry.test5
+            if 40 >= test_result5 >= 37:
+                mark5 = '5'
+            if 36 >= test_result5 >= 30:
+                mark5 = '4'
+            if 29 >= test_result5 >= 20:
+                mark5 = '3'
+            if test_result5 < 20:
+                mark5 = '2'
+    return render_template("main_page.html", test=test_entry, mark1=mark1, mark2=mark2, mark3=mark3, mark4=mark4, mark5=mark5)
 
 
 @app.route('/text1')
@@ -24,22 +85,26 @@ def text1():
     test_result = ''
     test_passed = ''
     mark = ''
-    if  current_user.is_authenticated:
+    if current_user.is_authenticated:
         user_id = current_user.id
         db_sess = db_session.create_session()
         test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
-        if test_entry.test1 is not None:
+        if not test_entry:
+            test_entry = Tests(user_id=user_id)
+            db_sess.add(test_entry)
+            db_sess.commit()
+            db_sess.refresh(test_entry)
+        if test_entry and test_entry.test1 is not None:
             test_passed = True
             test_result = test_entry.test1
-
-        if 23 >= test_result >= 20:
-            mark = '5'
-        if 19 >= test_result >= 16:
-            mark = '4'
-        if 15 >= test_result >= 10:
-            mark = '3'
-        if test_result < 10:
-            mark = '2'
+            if 23 >= test_result >= 20:
+                mark = '5'
+            if 19 >= test_result >= 16:
+                mark = '4'
+            if 15 >= test_result >= 10:
+                mark = '3'
+            if test_result < 10:
+                mark = '2'
         db_sess.close()
     return render_template("text1.html", test="test1", test_passed=test_passed, test_result=test_result, mark=mark)
 
@@ -53,18 +118,22 @@ def text2():
         user_id = current_user.id
         db_sess = db_session.create_session()
         test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
-        if test_entry.test2 is not None:
+        if not test_entry:
+            test_entry = Tests(user_id=user_id)
+            db_sess.add(test_entry)
+            db_sess.commit()
+            db_sess.refresh(test_entry)
+        if test_entry and test_entry.test2 is not None:
             test_passed = True
             test_result = test_entry.test2
-
-        if 29 >= test_result >= 27:
-            mark = '5'
-        if 26 >= test_result >= 22:
-            mark = '4'
-        if 21 >= test_result >= 15:
-            mark = '3'
-        if test_result < 15:
-            mark = '2'
+            if 29 >= test_result >= 27:
+                mark = '5'
+            if 26 >= test_result >= 22:
+                mark = '4'
+            if 21 >= test_result >= 15:
+                mark = '3'
+            if test_result < 15:
+                mark = '2'
         db_sess.close()
     return render_template("text2.html", test="test2", test_passed=test_passed, test_result=test_result, mark=mark)
 
@@ -78,18 +147,22 @@ def text3():
         user_id = current_user.id
         db_sess = db_session.create_session()
         test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
-        if test_entry.test3 is not None:
+        if not test_entry:
+            test_entry = Tests(user_id=user_id)
+            db_sess.add(test_entry)
+            db_sess.commit()
+            db_sess.refresh(test_entry)
+        if test_entry and test_entry.test3 is not None:
             test_passed = True
             test_result = test_entry.test3
-
-        if 29 >= test_result >= 27:
-            mark = '5'
-        if 26 >= test_result >= 22:
-            mark = '4'
-        if 21 >= test_result >= 15:
-            mark = '3'
-        if test_result < 15:
-            mark = '2'
+            if 29 >= test_result >= 27:
+                mark = '5'
+            if 26 >= test_result >= 22:
+                mark = '4'
+            if 21 >= test_result >= 15:
+                mark = '3'
+            if test_result < 15:
+                mark = '2'
         db_sess.close()
     return render_template("text3.html", test="test3", test_passed=test_passed, test_result=test_result, mark=mark)
 
@@ -103,18 +176,22 @@ def text4():
         user_id = current_user.id
         db_sess = db_session.create_session()
         test_entry = db_sess.query(Tests).filter(Tests.user_id == user_id).first()
-        if test_entry.test4 is not None:
+        if not test_entry:
+            test_entry = Tests(user_id=user_id)
+            db_sess.add(test_entry)
+            db_sess.commit()
+            db_sess.refresh(test_entry)
+        if test_entry and test_entry.test4 is not None:
             test_passed = True
             test_result = test_entry.test4
-
-        if 32 >= test_result >= 29:
-            mark = '5'
-        if 28 >= test_result >= 24:
-            mark = '4'
-        if 23 >= test_result >= 16:
-            mark = '3'
-        if test_result < 16:
-            mark = '2'
+            if 32 >= test_result >= 29:
+                mark = '5'
+            if 28 >= test_result >= 24:
+                mark = '4'
+            if 23 >= test_result >= 16:
+                mark = '3'
+            if test_result < 16:
+                mark = '2'
         db_sess.close()
     return render_template("text4.html", test="test4", test_passed=test_passed, test_result=test_result, mark=mark)
 
@@ -769,58 +846,63 @@ def results():
             t["user_id"] = f"{user.name} {user.surname}"
             t["id"] = user.id
             t["class_choice"] = user.class_choice
-            if 23 >= test.test1 >= 20:
-                t["test1"] = f'{test.test1}/23  -  5'
-            if 19 >= test.test1 >= 16:
-                t["test1"] = f'{test.test1}/23  -  4'
-            if 15 >= test.test1 >= 10:
-                t["test1"] = f'{test.test1}/23  -  3'
-            if test.test1 < 10:
-                t["test1"] = f'{test.test1}/23  -  2'
+            if test.test1:
+                if 23 >= test.test1 >= 20:
+                    t["test1"] = f'{test.test1}/23  -  5'
+                if 19 >= test.test1 >= 16:
+                    t["test1"] = f'{test.test1}/23  -  4'
+                if 15 >= test.test1 >= 10:
+                    t["test1"] = f'{test.test1}/23  -  3'
+                if test.test1 < 10:
+                    t["test1"] = f'{test.test1}/23  -  2'
             if not test.test1:
                 t["test1"] = ""
 
-            if 29 >= test.test2 >= 27:
-                t["test2"] = f'{test.test2}/29  -  5'
-            if 26 >= test.test2 >= 22:
-                t["test2"] = f'{test.test2}/29  -  4'
-            if 21 >= test.test2 >= 15:
-                t["test2"] = f'{test.test2}/29  -  3'
-            if test.test2 < 15:
-                t["test2"] = f'{test.test2}/29  -  2'
+            if test.test2:
+                if 29 >= test.test2 >= 27:
+                    t["test2"] = f'{test.test2}/29  -  5'
+                if 26 >= test.test2 >= 22:
+                    t["test2"] = f'{test.test2}/29  -  4'
+                if 21 >= test.test2 >= 15:
+                    t["test2"] = f'{test.test2}/29  -  3'
+                if test.test2 < 15:
+                    t["test2"] = f'{test.test2}/29  -  2'
             if not test.test2:
                 t["test2"] = ""
 
-            if 29 >= test.test3 >= 27:
-                t["test3"] = f'{test.test3}/29  -  5'
-            if 26 >= test.test3 >= 22:
-                t["test3"] = f'{test.test3}/29  -  4'
-            if 21 >= test.test3 >= 15:
-                t["test3"] = f'{test.test3}/29  -  3'
-            if test.test3 < 15:
-                t["test3"] = f'{test.test3}/29  -  2'
+            if test.test3:
+                if 29 >= test.test3 >= 27:
+                    t["test3"] = f'{test.test3}/29  -  5'
+                if 26 >= test.test3 >= 22:
+                    t["test3"] = f'{test.test3}/29  -  4'
+                if 21 >= test.test3 >= 15:
+                    t["test3"] = f'{test.test3}/29  -  3'
+                if test.test3 < 15:
+                    t["test3"] = f'{test.test3}/29  -  2'
             if not test.test3:
                 t["test3"] = ""
 
-            if 32 >= test.test4 >= 29:
-                t["test4"] = f'{test.test4}/32  -  5'
-            if 28 >= test.test4 >= 24:
-                t["test4"] = f'{test.test4}/32  -  5'
-            if 23 >= test.test4 >= 16:
-                t["test4"] = f'{test.test4}/32  -  5'
-            if test.test4 < 16:
-                t["test4"] = f'{test.test4}/32  -  2'
+            if test.test4:
+                if 32 >= test.test4 >= 29:
+                    t["test4"] = f'{test.test4}/32  -  5'
+                if 28 >= test.test4 >= 24:
+                    t["test4"] = f'{test.test4}/32  -  5'
+                if 23 >= test.test4 >= 16:
+                    t["test4"] = f'{test.test4}/32  -  5'
+                if test.test4 < 16:
+                    t["test4"] = f'{test.test4}/32  -  2'
             if not test.test4:
                 t["test4"] = ""
 
-            if 40 >= test.test5 >= 37:
-                t["test5"] = f'{test.test5}/40  -  5'
-            if 36 >= test.test5 >= 30:
-                t["test5"] = f'{test.test5}/40  -  4'
-            if 29 >= test.test5 >= 20:
-                t["test5"] = f'{test.test5}/40  -  3'
-            if test.test5 < 20:
-                t["test5"] = f'{test.test5}/40  -  2'
+            if test.test5:
+                if 40 >= test.test5 >= 37:
+                    t["test5"] = f'{test.test5}/40  -  5'
+                if 36 >= test.test5 >= 30:
+                    t["test5"] = f'{test.test5}/40  -  4'
+                if 29 >= test.test5 >= 20:
+                    t["test5"] = f'{test.test5}/40  -  3'
+                if test.test5 < 20:
+                    t["test5"] = f'{test.test5}/40  -  2'
             if not test.test5:
                 t["test5"] = ""
 
