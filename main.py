@@ -835,6 +835,14 @@ def test5():
 @app.route('/results', methods=['GET', 'POST'])
 def results():
     db_sess = db_session.create_session()
+    if request.method == 'POST' and 'clear_results' in request.form:
+        try:
+            db_sess.query(Tests).delete()
+            db_sess.commit()
+        except Exception as e:
+            db_sess.rollback()
+        finally:
+            return redirect(url_for('results'))
     tests = db_sess.query(Tests).all()
     new_test = []
     class_filter = request.args.get('class_filter', '')
