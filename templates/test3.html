@@ -11,6 +11,15 @@
         .timer {
             text-align: center;
             font-size: 18px;
+            <style>
+    label[for] {
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 0;
+    }
+        .timer {
+            text-align: center;
+            font-size: 18px;
             font-weight: bold;
             color: #2c3e50;
             margin: 20px 0;
@@ -92,7 +101,6 @@
             margin-top:8px;
         }
 
-        /* Modal styles */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -128,6 +136,12 @@
             line-height: 1.5;
         }
 
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
         .modal-btn {
             background-color: #27ae60;
             color: white;
@@ -136,10 +150,19 @@
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
+            min-width: 100px;
         }
 
         .modal-btn:hover {
             background-color: #229954;
+        }
+
+        .modal-btn.cancel {
+            background-color: #e74c3c;
+        }
+
+        .modal-btn.cancel:hover {
+            background-color: #c0392b;
         }
 
         .noselect {
@@ -151,9 +174,6 @@
       user-select: none;
     }
 </style>
-
-
-
 <body class="noselect">
 <h1 style="text-align: center; color: #333;">Тест</h1>
 
@@ -402,8 +422,6 @@
         </div>
     </form>
 </div>
-
-<!-- Modal for timeout notification -->
 <div class="modal-overlay" id="timeoutModal">
     <div class="modal-content">
         <h3>Время вышло!</h3>
@@ -411,6 +429,19 @@
         <button class="modal-btn" id="modalOkBtn">OK</button>
     </div>
 </div>
+
+<!-- Второе модальное окно для завершения теста -->
+<div class="modal-overlay" id="submitModal">
+    <div class="modal-content">
+        <h3>Завершение теста {{res}}</h3>
+        <p>Вы уверены, что хотите завершить тест и отправить ответы?</p>
+        <div class="modal-buttons">
+            <button class="modal-btn cancel" id="submitModalNoBtn">Нет</button>
+            <button class="modal-btn" id="submitModalYesBtn">Да</button>
+        </div>
+    </div>
+</div>
+
 <script>
     let currentQuestion = 0;
     const questions = document.querySelectorAll('.question');
@@ -420,6 +451,9 @@
     const timerElement = document.getElementById('timer');
     const timeoutModal = document.getElementById('timeoutModal');
     const modalOkBtn = document.getElementById('modalOkBtn');
+    const submitModal = document.getElementById('submitModal');
+    const submitModalYesBtn = document.getElementById('submitModalYesBtn');
+    const submitModalNoBtn = document.getElementById('submitModalNoBtn');
 
     const TOTAL_TIME = 1800;
     const STORAGE_KEY = 'test_answers_' + window.location.pathname;
@@ -427,6 +461,7 @@
 
     let timerInterval;
     let isAutoSubmitted = false;
+    let isManualSubmitted = false;
 
     function formatTime(seconds) {
         const mins = Math.floor(seconds / 60);
@@ -508,6 +543,49 @@
         xhr.send(formData);
     }
 
+    function showConfirmationModal() {
+        if (isManualSubmitted || isAutoSubmitted) return;
+        submitModal.style.display = 'flex';
+    }
+
+    function submitTest() {
+        isManualSubmitted = true;
+
+        clearInterval(timerInterval);
+        saveTimer(0);
+        saveAnswers();
+
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        nextBtn.textContent = 'Отправлено';
+        nextBtn.classList.replace('next-btn', 'submit-btn');
+
+        const formData = new FormData(testForm);
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', window.location.href, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                // Показываем сообщение об успешной отправке
+                submitModal.querySelector('h3').textContent = 'Тест завершён';
+                submitModal.querySelector('p').textContent = 'Вы завершили тест. Можете ознакомиться с результатами на главной странице.';
+                submitModal.querySelector('.modal-buttons').style.display = 'none';
+
+                // Добавляем кнопку OK для перехода на главную
+                const okBtn = document.createElement('button');
+                okBtn.className = 'modal-btn';
+                okBtn.id = 'submitModalOkBtn';
+                okBtn.textContent = 'OK';
+                okBtn.addEventListener('click', function() {
+                    sessionStorage.removeItem(STORAGE_KEY);
+                    sessionStorage.removeItem(TIMER_KEY);
+                    window.location.href = '/';
+                });
+                submitModal.querySelector('.modal-content').appendChild(okBtn);
+            }
+        };
+        xhr.send(formData);
+    }
+
     function showQuestion(index) {
         questions.forEach((question, i) => {
             question.classList.toggle('active', i === index);
@@ -515,6 +593,13 @@
 
         prevBtn.disabled = index === 0;
         nextBtn.textContent = index === questions.length - 1 ? 'Отправить' : 'Далее →';
+
+        // Меняем класс кнопки на последнем вопросе
+        if (index === questions.length - 1) {
+            nextBtn.classList.replace('next-btn', 'submit-btn');
+        } else {
+            nextBtn.classList.replace('submit-btn', 'next-btn');
+        }
     }
 
     function nextQuestion() {
@@ -523,9 +608,7 @@
             showQuestion(currentQuestion);
             saveAnswers();
         } else {
-            clearInterval(timerInterval);
-            saveTimer(0);
-            testForm.submit();
+            showConfirmationModal();
         }
     }
 
@@ -544,22 +627,9 @@
     testForm.addEventListener('input', saveAnswers);
 
     testForm.addEventListener('submit', function(e) {
-        if (!isAutoSubmitted) {
-            e.preventDefault();
-            clearInterval(timerInterval);
-            saveTimer(0);
-            const formData = new FormData(testForm);
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', window.location.href, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4) {
-                    sessionStorage.removeItem(STORAGE_KEY);
-                    sessionStorage.removeItem(TIMER_KEY);
-                    alert('Тест успешно отправлен!');
-                    window.location.href = '/';
-                }
-            };
-            xhr.send(formData);
+        e.preventDefault();
+        if (currentQuestion === questions.length - 1) {
+            showConfirmationModal();
         }
     });
 
@@ -568,6 +638,16 @@
         sessionStorage.removeItem(STORAGE_KEY);
         sessionStorage.removeItem(TIMER_KEY);
         window.location.href = '/';
+    });
+
+    submitModalYesBtn.addEventListener('click', function() {
+        submitModalYesBtn.disabled = true;
+        submitModalNoBtn.disabled = true;
+        submitTest();
+    });
+
+    submitModalNoBtn.addEventListener('click', function() {
+        submitModal.style.display = 'none';
     });
 
     loadAnswers();
