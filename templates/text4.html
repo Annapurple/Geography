@@ -1,415 +1,434 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="col-lg-8 mx-auto">
-    <h1 class="mb-4 text-center">Глобальные проблемы народонаселения</h1>
-    
-    <!-- Основные понятия -->
-    <section class="card shadow-sm mb-5">
-        <div class="card-header bg-primary text-white">
-            <h2 class="h4 mb-0">Глобальные проблемы народонаселения</h2>
-        </div>
-        <div class="card-body">
-            <p><strong>Глобальные проблемы народонаселения</strong> — это комплексные, взаимосвязанные вызовы, возникающие в результате взаимодействия численности, структуры, размещения и качества жизни населения с природными, экономическими и социальными системами на планете. Эти проблемы затрагивают все страны, но проявляются по-разному в зависимости от уровня социально-экономического развития.</p>
-            
-            <div class="alert alert-info mt-3">
-                <h5 class="alert-heading">Ключевые глобальные демографические проблемы:</h5>
-            </div>
-            
-            <div class="row g-4 mt-2">
-                <div class="col-md-6">
-                    <div class="card h-100 border-start border-4 border-primary">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="h6 mb-0">1. Демографическая проблема</h5>
-                        </div>
-                        <div class="card-body">
-                            <ul class="mb-0">
-                                <li>Рост населения (в развивающихся странах — "демографический взрыв")</li>
-                                <li>Убыль населения (в развитых странах — "демографический кризис")</li>
-                                <li>Старение населения (увеличение доли лиц старше 65 лет)</li>
-                                <li>Миграционные потоки (вынужденные и экономические миграции, утечка мозгов кадров)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-start border-4 border-primary">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="h6 mb-0">2. Продовольственная проблема</h5>
-                        </div>
-                        <div class="card-body">
-                            <ul class="mb-0">
-                                <li>Неравномерное распределение продовольствия</li>
-                                <li>Угроза голода в Африке и Южной Азии</li>
-                                <li>Неустойчивость агропромышленного комплекса (АПК) перед климатическими и экономическими рисками</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-start border-4 border-primary">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="h6 mb-0">3. Проблема урбанизации</h5>
-                        </div>
-                        <div class="card-body">
-                            <ul class="mb-0">
-                                <li>Сверхбыстрый рост мегаполисов (более 10 млн человек)</li>
-                                <li>Формирование трущоб в развивающихся странах</li>
-                                <li>Перегрузка инфраструктуры, транспорта, жилищного фонда</li>
-                                <li>Экологическая и социальная деградация городских агломераций</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-start border-4 border-primary">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="h6 mb-0">4. Проблемы здоровья и долголетия</h5>
-                        </div>
-                        <div class="card-body">
-                            <ul class="mb-0">
-                                <li>Разрыв в продолжительности жизни (от 55 лет в некоторых африканских странах до 85+ в Японии, Швейцарии)</li>
-                                <li>Неравный доступ к качественному здравоохранению</li>
-                                <li>Угрозу пандемий и распространение хронических заболеваний (ВИЧ/СПИД, диабет)</li>
-                                <li>Влияние образа жизни (алкоголь, курение, стресс)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Основы демографии -->
-    <section class="card shadow-sm mb-5">
-        <div class="card-header bg-info text-white">
-            <h2 class="h4 mb-0">Основы демографии</h2>
-        </div>
-        <div class="card-body">
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="card h-100 border-start border-4 border-info">
-                        <div class="card-body">
-                            <h5 class="card-title">Демография</h5>
-                            <p class="card-text">Наука о народонаселении и закономерностях его развития; показатели численного состава населения, его изменений, размещения и т.д.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-start border-4 border-info">
-                        <div class="card-body">
-                            <h5 class="card-title">Воспроизводство населения</h5>
-                            <p class="card-text">Процесс постоянного возобновления и смены поколений людей, который обеспечивается рождаемостью, смертностью и естественным приростом.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <h5 class="mt-4 mb-3">Типы воспроизводства населения:</h5>
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <div class="card h-100 border-start border-4 border-success">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Расширенный</h5>
-                            <p class="card-text">Народонаселение увеличивается</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100 border-start border-4 border-warning">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Простый</h5>
-                            <p class="card-text">Численность остается на одном уровне</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100 border-start border-4 border-danger">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Суженный</h5>
-                            <p class="card-text">Население сокращается</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="alert alert-secondary mt-4">
-                <h5 class="alert-heading">Главные показатели воспроизводства:</h5>
-                <p class="mb-0">Коэффициент рождаемости и смертности, которые измеряются в <strong>промилле</strong> (на 1000 человек).</p>
-            </div>
-            
-            <div class="card mt-3">
-                <div class="card-header bg-dark text-white">
-                    <h5 class="h6 mb-0">Суммарный коэффициент рождаемости (СКР):</h5>
-                </div>
-                <div class="card-body">
-                    <ul class="mb-0">
-                        <li><strong>СКР ≥ 2,1</strong> → население растёт, Расширенное воспроизводство</li>
-                        <li><strong>СКР ≈ 2,1</strong> → простое воспроизводство</li>
-                        <li><strong>СКР &lt; 2,1</strong> → население сокращается в долгосрочной перспективе, суженное воспроизводство</li>
-                        <li><strong>СКР &lt; 1,5</strong> → острый демографический кризис</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Демографическая политика -->
-    <section class="card shadow-sm mb-5">
-        <div class="card-header bg-primary text-white">
-            <h2 class="h4 mb-0">Типы демографической политики</h2>
-        </div>
-        <div class="card-body">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 border-start border-4 border-info">
-                        <div class="card-header bg-info text-white">
-                            <h5 class="h6 mb-0">Стимулирующая</h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Страны с низкой рождаемостью и старением населения принимают меры для её повышения.</p>
-                            <p class="card-text"><strong>Цель:</strong> предотвратить демографический кризис и стабилизировать население.</p>
-                            <p class="card-text"><strong>Примеры:</strong> Россия, Германия, Франция, Япония.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100 border-start border-4 border-info">
-                        <div class="card-header bg-info text-white">
-                            <h5 class="h6 mb-0">Ограничительная</h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Страны с высоким уровнем рождаемости и быстрым ростом населения стремятся его замедлить.</p>
-                            <p class="card-text"><strong>Примеры:</strong> бывшая политика одного ребенка в Китае или меры в Индии.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100 border-start border-4 border-info">
-                        <div class="card-header bg-info text-white">
-                            <h5 class="h6 mb-0">Нейтральная</h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Страны со стабильной демографической ситуацией, где нет необходимости вмешиваться в процессы рождаемости и смертности.</p>
-                            <p class="card-text"><strong>Примеры:</strong> США, Канада, сосредоточены на управлении миграцией.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Основные демографические понятия -->
-    <section class="card shadow-sm mb-5">
-        <div class="card-header bg-info text-white">
-            <h2 class="h4 mb-0">Основные демографические понятия</h2>
-        </div>
-        <div class="card-body">
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Естественное движение</h5>
-                            <p class="card-text">Рождаемость, смертность, естественный прирост.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Естественный прирост</h5>
-                            <p class="card-text">Разность между рождаемостью и смертностью за определенный период.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-start">
-                        <div class="card-body">
-                            <h5 class="card-title">Демографический взрыв</h5>
-                            <p class="card-text">Резкий рост численности населения (характерен для развивающихся стран).</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-start">
-                        <div class="card-body">
-                            <h5 class="card-title">Демографический кризис</h5>
-                            <p class="card-text">Сокращение численности населения из-за низкой рождаемости и/или высокой смертности (характерен для развитых стран).</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-start">
-                        <div class="card-body">
-                            <h5 class="card-title">Демографическое старение</h5>
-                            <p class="card-text">Увеличение доли пожилых людей в общей структуре населения.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-start">
-                        <div class="card-body">
-                            <h5 class="card-title">Демографический переход</h5>
-                            <p class="card-text">Процесс смены типов воспроизводства населения.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card mt-4 border-primary">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="h6 mb-0">Этапы демографического перехода:</h5>
-                </div>
-                <div class="card-body">
-                    <ol class="mb-0">
-                        <li>Высокая рождаемость и высокая смертность → низкий прирост</li>
-                        <li>Высокая рождаемость и снижение смертности → быстрый рост</li>
-                        <li>Снижение рождаемости и смертности → замедление роста</li>
-                        <li>Низкая рождаемость и смертность → стабилизация или сокращение</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Мировая демографическая ситуация -->
-    <section class="card shadow-sm mb-5">
-        <div class="card-header bg-dark text-white">
-            <h2 class="h4 mb-0">Текущая мировая демографическая ситуация</h2>
-        </div>
-        <div class="card-body">
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <div class="card h-100 border-success">
-                        <div class="card-header bg-success text-white">
-                            <h5 class="h6 mb-0">Мир в целом</h5>
-                        </div>
-                        <div class="card-body">
-                            <ul class="mb-0">
-                                <li><strong>Население Земли:</strong> ~8 млрд человек</li>
-                                <li><strong>Ежегодный прирост:</strong> ~0,9%</li>
-                                <li><strong>Самый высокий прирост:</strong> Африка (2,5–3% в год)</li>
-                                <li><strong>Самый низкий прирост:</strong> Европа, Восточная Азия</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-success">
-                        <div class="card-header bg-success text-white">
-                            <h5 class="h6 mb-0">Россия</h5>
-                        </div>
-                        <div class="card-body">
-                            <ul class="mb-0">
-                                <li><strong>Численность населения:</strong> ~146 млн человек</li>
-                                <li><strong>Естественный прирост:</strong> отрицательный (с 2020 г. — устойчивая убыль)</li>
-                                <li><strong>СКР:</strong> 1,4–1,5 (ниже уровня простого воспроизводства — 2,1)</li>
-                                <li><strong>Смертность:</strong> ~13–14‰</li>
-                                <li><strong>Рождаемость:</strong> ~9–10‰</li>
-                                <li><strong>Средняя продолжительность жизни:</strong> мужчины — 68 лет, женщины — 74 года</li>
-                                <li><strong>Естественная убыль:</strong> –300–500 тыс. человек в год</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card border-warning">
-                <div class="card-header bg-warning text-dark">
-                    <h5 class="h6 mb-0">Причины демографического кризиса в РФ:</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul>
-                                <li>Низкая рождаемость (TFR ≈ 1,4–1,5 вместо 2,1 — уровня простого воспроизводства)</li>
-                                <li>Высокая смертность, особенно среди мужчин трудоспособного возраста</li>
-                                <li>Эмиграция</li>
-                                <li>Недостаточное качество здравоохранения</li>
-                                <li>Социально-экономическая нестабильность</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Последствия демографических проблем -->
-    <section class="card shadow-sm mb-5">
-        <div class="card-header bg-danger text-white">
-            <h2 class="h4 mb-0">Последствия демографических проблем</h2>
-        </div>
-        <div class="card-body">
-            <div class="row g-3">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-start border-4 border-danger">
-                        <div class="card-body">
-                            <h5 class="card-title">Экономические</h5>
-                            <ul class="mb-0">
-                                <li>Сокращение трудовых ресурсов → снижение экономического потенциала</li>
-                                <li>Рост пенсионной нагрузки (меньше работающих — больше пенсионеров)</li>
-                                <li>Снижение внутреннего рынка → падение потребления</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-start border-4 border-danger">
-                        <div class="card-body">
-                            <h5 class="card-title">Социальные</h5>
-                            <ul class="mb-0">
-                                <li>Заброшенные сёла и города → деградация инфраструктуры</li>
-                                <li>Угроза национальной безопасности (недостаток военнослужащих)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-4">
-                    <div class="card h-100 border-start border-4 border-danger">
-                        <div class="card-body">
-                            <h5 class="card-title">Связь с другими глобальными проблемами</h5>
-                            <ul class="mb-0">
-                                <li><strong>Экологическая:</strong> рост населения → давление на ресурсы</li>
-                                <li><strong>Энергетическая:</strong> больше людей → больше потребления энергии</li>
-                                <li><strong>Геополитика:</strong> демографический кризис в Европе → усиление роли мигрантов → межэтнические конфликты</li>
-                                <li><strong>Продовольственная:</strong> в странах с демографическим взрывом — риск голода</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Задание и тест -->
-<div class="alert alert-info mt-5">
-        <h5 class="alert-heading">Задание: Законспектировать материал (конспект не проверяется) + пройти тест</h5>
+<h1 class="mb-4 text-center">Глобальные проблемы народонаселения</h1>
+<div class="alert alert-info mt-5 text-center">
+    <h5 class="alert-heading">Задание: Ознакомиться с теорией и пройти тест</h5>
+</div>
+<!-- Основные понятия -->
+<section class="card shadow-sm mb-5">
+    <div class="card-header bg-primary text-white">
+        <h2 class="h4 mb-0">Глобальные проблемы народонаселения</h2>
     </div>
-
-    <div class="alert alert-light border-start border-5 border-primary shadow-sm mt-5">
-        <div class="row align-items-center">
-            <div class="col-md-8">
-                <h4 class="alert-heading h5">Готовы проверить знания?</h4>
-                <p class="mb-0">После изучения материала пройдите тест. Тест можно пройти только 1 раз. На него даётся
-                    30 минут. Желаю удачи</p>
+    <div class="card-body">
+        <p><strong>Глобальные проблемы народонаселения</strong> — это комплексные, взаимосвязанные вызовы, возникающие в
+            результате взаимодействия численности, структуры, размещения и качества жизни населения с природными,
+            экономическими и социальными системами на планете. Эти проблемы затрагивают все страны, но проявляются
+            по-разному в зависимости от уровня социально-экономического развития.</p>
+        <div class="alert alert-info mt-3">
+            <h5 class="alert-heading">Ключевые глобальные демографические проблемы:</h5>
+        </div>
+        <div class="row g-4 mt-2">
+            <div class="col-md-6">
+                <div class="card h-100 border-start border-4 border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="h6 mb-0">1. Демографическая проблема</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="mb-0">
+                            <li>Рост населения (в развивающихся странах — "демографический взрыв")</li>
+                            <li>Убыль населения (в развитых странах — "демографический кризис")</li>
+                            <li>Старение населения (увеличение доли лиц старше 65 лет)</li>
+                            <li>Миграционные потоки (вынужденные и экономические миграции, утечка мозгов кадров)</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 text-end">
-                {% if current_user.is_authenticated%}
-                <div class="mb-3">
-                    {% if test_passed%}
-                    <p style="color: blue;">Тест пройден</p>
-                    <p style="color: blue;">Ваш результат: {{test_result}}/32 </p>
-                    <p style="color: blue;">Ваша оценка: {{mark}}</p>
-                    {% else %}
+            <div class="col-md-6">
+                <div class="card h-100 border-start border-4 border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="h6 mb-0">2. Продовольственная проблема</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="mb-0">
+                            <li>Неравномерное распределение продовольствия</li>
+                            <li>Угроза голода в Африке и Южной Азии</li>
+                            <li>Неустойчивость агропромышленного комплекса (АПК) перед климатическими и экономическими
+                                рисками
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-start border-4 border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="h6 mb-0">3. Проблема урбанизации</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="mb-0">
+                            <li>Сверхбыстрый рост мегаполисов (более 10 млн человек)</li>
+                            <li>Формирование трущоб в развивающихся странах</li>
+                            <li>Перегрузка инфраструктуры, транспорта, жилищного фонда</li>
+                            <li>Экологическая и социальная деградация городских агломераций</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-start border-4 border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="h6 mb-0">4. Проблемы здоровья и долголетия</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="mb-0">
+                            <li>Разрыв в продолжительности жизни (от 55 лет в некоторых африканских странах до 85+ в
+                                Японии, Швейцарии)
+                            </li>
+                            <li>Неравный доступ к качественному здравоохранению</li>
+                            <li>Угрозу пандемий и распространение хронических заболеваний (ВИЧ/СПИД, диабет)</li>
+                            <li>Влияние образа жизни (алкоголь, курение, стресс)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Основы демографии -->
+<section class="card shadow-sm mb-5">
+    <div class="card-header bg-info text-white">
+        <h2 class="h4 mb-0">Основы демографии</h2>
+    </div>
+    <div class="card-body">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-start border-4 border-info">
+                    <div class="card-body">
+                        <h5 class="card-title">Демография</h5>
+                        <p class="card-text">Наука о народонаселении и закономерностях его развития; показатели
+                            численного состава населения, его изменений, размещения и т.д.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-start border-4 border-info">
+                    <div class="card-body">
+                        <h5 class="card-title">Воспроизводство населения</h5>
+                        <p class="card-text">Процесс постоянного возобновления и смены поколений людей, который
+                            обеспечивается рождаемостью, смертностью и естественным приростом.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h5 class="mt-4 mb-3">Типы воспроизводства населения:</h5>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="card h-100 border-start border-4 border-success">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Расширенный</h5>
+                        <p class="card-text">Народонаселение увеличивается</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-start border-4 border-warning">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Простый</h5>
+                        <p class="card-text">Численность остается на одном уровне</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-start border-4 border-danger">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Суженный</h5>
+                        <p class="card-text">Население сокращается</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-secondary mt-4">
+            <h5 class="alert-heading">Главные показатели воспроизводства:</h5>
+            <p class="mb-0">Коэффициент рождаемости и смертности, которые измеряются в <strong>промилле</strong> (на
+                1000 человек).</p>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header bg-dark text-white">
+                <h5 class="h6 mb-0">Суммарный коэффициент рождаемости (СКР):</h5>
+            </div>
+            <div class="card-body">
+                <ul class="mb-0">
+                    <li><strong>СКР ≥ 2,1</strong> → население растёт, Расширенное воспроизводство</li>
+                    <li><strong>СКР ≈ 2,1</strong> → простое воспроизводство</li>
+                    <li><strong>СКР &lt; 2,1</strong> → население сокращается в долгосрочной перспективе, суженное
+                        воспроизводство
+                    </li>
+                    <li><strong>СКР &lt; 1,5</strong> → острый демографический кризис</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Демографическая политика -->
+<section class="card shadow-sm mb-5">
+    <div class="card-header bg-primary text-white">
+        <h2 class="h4 mb-0">Типы демографической политики</h2>
+    </div>
+    <div class="card-body">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-start border-4 border-info">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="h6 mb-0">Стимулирующая</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Страны с низкой рождаемостью и старением населения принимают меры для её
+                            повышения.</p>
+                        <p class="card-text"><strong>Цель:</strong> предотвратить демографический кризис и
+                            стабилизировать население.</p>
+                        <p class="card-text"><strong>Примеры:</strong> Россия, Германия, Франция, Япония.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-start border-4 border-info">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="h6 mb-0">Ограничительная</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Страны с высоким уровнем рождаемости и быстрым ростом населения стремятся
+                            его замедлить.</p>
+                        <p class="card-text"><strong>Примеры:</strong> бывшая политика одного ребенка в Китае или меры в
+                            Индии.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-start border-4 border-info">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="h6 mb-0">Нейтральная</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Страны со стабильной демографической ситуацией, где нет необходимости
+                            вмешиваться в процессы рождаемости и смертности.</p>
+                        <p class="card-text"><strong>Примеры:</strong> США, Канада, сосредоточены на управлении
+                            миграцией.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Основные демографические понятия -->
+<section class="card shadow-sm mb-5">
+    <div class="card-header bg-info text-white">
+        <h2 class="h4 mb-0">Основные демографические понятия</h2>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Естественное движение</h5>
+                        <p class="card-text">Рождаемость, смертность, естественный прирост.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Естественный прирост</h5>
+                        <p class="card-text">Разность между рождаемостью и смертностью за определенный период.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-start">
+                    <div class="card-body">
+                        <h5 class="card-title">Демографический взрыв</h5>
+                        <p class="card-text">Резкий рост численности населения (характерен для развивающихся стран).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-start">
+                    <div class="card-body">
+                        <h5 class="card-title">Демографический кризис</h5>
+                        <p class="card-text">Сокращение численности населения из-за низкой рождаемости и/или высокой
+                            смертности (характерен для развитых стран).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-start">
+                    <div class="card-body">
+                        <h5 class="card-title">Демографическое старение</h5>
+                        <p class="card-text">Увеличение доли пожилых людей в общей структуре населения.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-start">
+                    <div class="card-body">
+                        <h5 class="card-title">Демографический переход</h5>
+                        <p class="card-text">Процесс смены типов воспроизводства населения.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-4 border-primary">
+            <div class="card-header bg-primary text-white">
+                <h5 class="h6 mb-0">Этапы демографического перехода:</h5>
+            </div>
+            <div class="card-body">
+                <ol class="mb-0">
+                    <li>Высокая рождаемость и высокая смертность → низкий прирост</li>
+                    <li>Высокая рождаемость и снижение смертности → быстрый рост</li>
+                    <li>Снижение рождаемости и смертности → замедление роста</li>
+                    <li>Низкая рождаемость и смертность → стабилизация или сокращение</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Мировая демографическая ситуация -->
+<section class="card shadow-sm mb-5">
+    <div class="card-header bg-dark text-white">
+        <h2 class="h4 mb-0">Текущая мировая демографическая ситуация</h2>
+    </div>
+    <div class="card-body">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-success">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="h6 mb-0">Мир в целом</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="mb-0">
+                            <li><strong>Население Земли:</strong> ~8 млрд человек</li>
+                            <li><strong>Ежегодный прирост:</strong> ~0,9%</li>
+                            <li><strong>Самый высокий прирост:</strong> Африка (2,5–3% в год)</li>
+                            <li><strong>Самый низкий прирост:</strong> Европа, Восточная Азия</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-success">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="h6 mb-0">Россия</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="mb-0">
+                            <li><strong>Численность населения:</strong> ~146 млн человек</li>
+                            <li><strong>Естественный прирост:</strong> отрицательный (с 2020 г. — устойчивая убыль)</li>
+                            <li><strong>СКР:</strong> 1,4–1,5 (ниже уровня простого воспроизводства — 2,1)</li>
+                            <li><strong>Смертность:</strong> ~13–14‰</li>
+                            <li><strong>Рождаемость:</strong> ~9–10‰</li>
+                            <li><strong>Средняя продолжительность жизни:</strong> мужчины — 68 лет, женщины — 74 года
+                            </li>
+                            <li><strong>Естественная убыль:</strong> –300–500 тыс. человек в год</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-warning">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="h6 mb-0">Причины демографического кризиса в РФ:</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Низкая рождаемость (TFR ≈ 1,4–1,5 вместо 2,1 — уровня простого воспроизводства)</li>
+                            <li>Высокая смертность, особенно среди мужчин трудоспособного возраста</li>
+                            <li>Эмиграция</li>
+                            <li>Недостаточное качество здравоохранения</li>
+                            <li>Социально-экономическая нестабильность</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Последствия демографических проблем -->
+<section class="card shadow-sm mb-5">
+    <div class="card-header bg-danger text-white">
+        <h2 class="h4 mb-0">Последствия демографических проблем</h2>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-start border-4 border-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">Экономические</h5>
+                        <ul class="mb-0">
+                            <li>Сокращение трудовых ресурсов → снижение экономического потенциала</li>
+                            <li>Рост пенсионной нагрузки (меньше работающих — больше пенсионеров)</li>
+                            <li>Снижение внутреннего рынка → падение потребления</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-start border-4 border-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">Социальные</h5>
+                        <ul class="mb-0">
+                            <li>Заброшенные сёла и города → деградация инфраструктуры</li>
+                            <li>Угроза национальной безопасности (недостаток военнослужащих)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <div class="card h-100 border-start border-4 border-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">Связь с другими глобальными проблемами</h5>
+                        <ul class="mb-0">
+                            <li><strong>Экологическая:</strong> рост населения → давление на ресурсы</li>
+                            <li><strong>Энергетическая:</strong> больше людей → больше потребления энергии</li>
+                            <li><strong>Геополитика:</strong> демографический кризис в Европе → усиление роли мигрантов
+                                → межэтнические конфликты
+                            </li>
+                            <li><strong>Продовольственная:</strong> в странах с демографическим взрывом — риск голода
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Задание и тест -->
+
+
+<div class="alert alert-light border-start border-5 border-primary shadow-sm mt-5">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h4 class="alert-heading h5">Готовы проверить знания?</h4>
+            <p class="mb-0">После изучения материала пройдите тест. Тест можно пройти только 1 раз. На него даётся
+                30 минут. Желаю удачи</p>
+        </div>
+        <div class="col-md-4 text-end">
+            {% if current_user.is_authenticated%}
+            <div class="mb-3">
+                {% if test_passed%}
+                <p style="color: blue;">Тест пройден</p>
+                <p style="color: blue;">Ваш результат: {{test_result}}/32 </p>
+                <p style="color: blue;">Ваша оценка: {{mark}}</p>
+                {% else %}
                 <div class="mb-3">
                     <a href="/{{test}}" class="btn btn-primary">
                         Начать тест
                     </a>
                 </div>
                 {% endif %}
-                </div>
-                {% endif %}
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
